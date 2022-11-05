@@ -91,3 +91,17 @@ var productPrices = [
         discount: 99
     }
 ];
+
+var offers = [
+    {
+        productId: 1,
+        storeId: 3,
+        offer: "10% off"
+    },
+
+    {
+        productId: 2,
+        storeId: 5,
+        offer: "Use code SAVE10 for 10% off"
+    }
+]

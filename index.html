@@ -9,6 +9,7 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <script src="./smartbuy-dal.js"></script>
+    <script src="./smartbuy-db.js"></script>
 </head>
 
 <body>
@@ -22,23 +23,51 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Notification
+                    <a class="nav-link dropdown" value="none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="565422.png" height="20px" width="20px">
                     </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <ul class="dropdown-menu dropdown-menu-end" id="notifications" >
+                      <!--<li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>-->
+                      <script>
+                            var list = document.getElementById('notifications');
+                            for (let i = 0; i < offers.length; i++) {
+                              var entry = document.createElement('li');
+                              for (let j=0;j<products.length;j++){
+                                if (products[j].id==offers[i].productId){
+                                  var prodname = products[j].name;
+                                  break;
+                                }
+                              }
+
+                              for (let j=0;j<stores.length;j++){
+                                if (stores[j].id==offers[i].storeId){
+                                  var storename = stores[j].name;
+                                  break;
+                                }
+                              }
+
+                              entry.appendChild(document.createTextNode(prodname+"\n"+offers[i].offer+" at "+storename));
+                              list.appendChild(entry);
+                              entry=document.createElement('hr');
+                              list.appendChild(entry);
+                              
+                            }
+                      </script>
                     </ul>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Hello John Doe
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="profile.jpg" height="25px" width="25px">
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu dropdown-menu-end">
                       <li><a class="dropdown-item" href="#">Edit Profile</a></li>
                       <li><a class="dropdown-item" href="#">Subscriptions</a></li>
                       <li><a class="dropdown-item" href="#">Log out</a></li>
                     </ul>
+                  </li>
+                  <li>
+                    Welcome, John Doe!
                   </li>
                 </ul>
                 <!-- <form class="d-flex" role="search">
@@ -48,6 +77,23 @@
               </div>
             </div>
           </nav>
+    </div>
+    <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <input class="form-control mr-sm-2" value="Chicago,IL" aria-label="location">
+          </li>
+        </ul>
+        <form class="form-inline ms-auto mb-2 my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <span class="input-group-btn">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="float:right">Search</button>
+          </span>
+        </form>
+      </div>
+    </nav>
     </div>
 </body>
 
