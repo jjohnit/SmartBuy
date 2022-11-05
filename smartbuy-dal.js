@@ -92,5 +92,3 @@ var productPrices = [
         discount: 99
     }
 ];
-
-document.getElementById('notification1').value=offers[0].offer;

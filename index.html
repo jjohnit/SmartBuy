@@ -46,8 +46,7 @@
                                   break;
                                 }
                               }
-
-                              entry.appendChild(document.createTextNode(prodname+"\n"+offers[i].offer+" at "+storename));
+                              entry.appendChild(document.createTextNode(prodname+" "+offers[i].offer+" at "+storename));
                               list.appendChild(entry);
                               entry=document.createElement('hr');
                               list.appendChild(entry);
@@ -89,7 +88,7 @@
         <form class="form-inline ms-auto mb-2 my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <span class="input-group-btn">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="float:right">Search</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="float:right;">Search</button>
           </span>
         </form>
       </div>
