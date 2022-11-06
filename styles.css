@@ -4,14 +4,16 @@
 
 .recent-searches-container,
 .nearby-stores-container,
-.search-results-container {
+.search-results-container,
+.product-details-container {
     margin: 1rem;
     padding: .5rem;
     background-color: lightgray;
     box-shadow: 3px 6px rgba(211, 211, 211, 0.527);
 }
 
-.search-results-container{
+.search-results-container,
+.product-details-container {
     background-color: inherit;
     box-shadow: none;
 }
