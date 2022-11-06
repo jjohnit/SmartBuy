@@ -2,11 +2,13 @@
     margin: 1rem;
 }
 
+.recent-searches-container{
+    margin: 1rem;
+    padding: .5rem;
+}
+
 .recent-searches {
     display: flex;
-    margin: 1rem;
-    padding: 1rem;
-    background-color: lightgray;
 }
 
 .card {
