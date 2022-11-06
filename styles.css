@@ -2,9 +2,11 @@
     margin: 1rem;
 }
 
-.recent-searches-container{
+.recent-searches-container, .nearby-stores-container {
     margin: 1rem;
     padding: .5rem;
+    background-color: lightgray;
+    box-shadow: 3px 6px rgba(211, 211, 211, 0.527);
 }
 
 .recent-searches {
@@ -27,4 +29,14 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+table {
+    border: solid 2px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    border: solid 2px;
 }
