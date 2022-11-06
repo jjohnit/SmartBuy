@@ -1,4 +1,9 @@
-document.getElementById('notification1').value = offers[0].offer;
+// document.getElementById('notification1').value = offers[0].offer;
+
+$(document).ready(function() {
+    // setPage('homepage');
+    setPage('search-results');
+})
 
 function getNotifications() {
     var list = document.getElementById('notifications');
@@ -23,5 +28,19 @@ function getNotifications() {
         entry = document.createElement('hr');
         list.appendChild(entry);
 
+    }
+}
+
+function setPage(page){
+    console.log("setpage ", page);
+    switch (page) {
+        case 'homepage':
+            $('#homepage').css('display', '');
+            $('#search-results').css('display', 'none');
+            break;
+        case 'search-results':
+            $('#homepage').css('display', 'none');
+            $('#search-results').css('display', '');
+            break;
     }
 }

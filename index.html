@@ -10,15 +10,16 @@
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
-  <script src="./smartbuy-dal.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="./smartbuy-db.js"></script>
+  <script src="./smartbuy-dal.js"></script>
 </head>
 
 <body>
-  <div>
+  <div id="nav-bar-div">
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">SmartBuy</a>
+        <a class="navbar-brand" href="#"><button class="btn btn-success">SmartBuy</button></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -62,7 +63,7 @@
   </div>
   <div class="page-container">
     <!-- First row with location and search -->
-    <div style="display: flex;">
+    <div id="location-search-div" style="display: flex;">
       <div>
         <input class="form-control mr-sm-2" value="Chicago,IL" aria-label="location">
       </div>
@@ -71,43 +72,75 @@
         <button class="btn btn-outline-success" type="submit" style="float:right; margin-left: 4px;">Search</button>
       </div>
     </div>
-    <!-- div for recent searches -->
-    <div class="recent-searches-container">
-      <p style="margin: 0;">Recent Searches</p>
-      <div class="recent-searches">
-        <div class="card" title="Iphone 14">
-          <img class="card-img-top" src="./assets/iphone-14.png">
-          <!-- <div class="card-body" style="padding: 0px;">
+    <!-- Homepage -->
+    <div id="homepage" style="display: none;">
+      <!-- div for recent searches -->
+      <div class="recent-searches-container">
+        <p style="margin: 0;">Recent Searches</p>
+        <div class="recent-searches">
+          <div class="card" title="Iphone 14">
+            <img class="card-img-top" src="./assets/iphone-14.png">
+            <!-- <div class="card-body" style="padding: 0px;">
             <p class="card-text">Iphone 14</p>
           </div> -->
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="./assets/hard-disk.png" title="Samsung portable harddisk 1TB">
+          </div>
         </div>
-        <div class="card">
-          <img class="card-img-top" src="./assets/hard-disk.png" title="Samsung portable harddisk 1TB">
-        </div>      
+      </div>
+      <!-- Nearest Stores -->
+      <div class="nearby-stores-container">
+        <p>Nearby stores</p>
+        <table>
+          <tr>
+            <td>
+              <p>Walmart <br /> 2 miles from your location</p>
+            </td>
+            <td>
+              <ul>
+                <li>10% off on electronics</li>
+                <li>5% off on groceries</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Target <br /> 5 miles from your location</p>
+            </td>
+            <td>
+              <ul>
+                <li>10% off on home appliances</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
-    <!-- Nearest Stores -->
-    <div class="nearby-stores-container">
-      <p>Nearby stores</p>
-      <table>
-        <tr>
-          <td><p>Walmart <br/> 2 miles from your location</p></td>
-          <td>
-            <ul>
-            <li>10% off on electronics</li>
-            <li>5% off on groceries</li>
-          </ul>
-        </td>
-        </tr>
-        <tr>
-          <td><p>Target <br/> 5 miles from your location</p></td>
-          <td>
-            <ul>
-              <li>10% off on home appliances</li>
-            </ul>
-          </td>
-        </tr>
-      </table>
+    <!-- Search results page -->
+    <div>
+      <!-- Search results -->
+      <div id="search-results" class="search-results-container">
+        <p>Search results</p>
+        <table>
+          <tr>
+            <td>
+              <p>Iphone 14 (black, 128 gb) <br /> icons</p>
+            </td>
+            <td>
+              <p>Starting from <br><strong>$1150</strong></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Iphone 14 (black, 128 gb) <br /> icons</p>
+            </td>
+            <td>
+              <p>Starting from <br><strong>$1150</strong></p>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </body>
