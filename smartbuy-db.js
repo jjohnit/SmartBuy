@@ -99,7 +99,11 @@ var offers = [
         storeId: 3,
         offer: "10% off"
     },
-
+    {
+        productId: 1,
+        storeId: 1,
+        offer: "15% off on Phones"
+    },
     {
         productId: 2,
         storeId: 5,
