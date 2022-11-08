@@ -71,8 +71,8 @@
       <div class="ms-auto" style="display: flex;">
         <button id= "sort" type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
         <button id="filter" type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" style="float:right; margin-left: 4px;">Search</button>
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search-tab">
+        <button class="btn btn-outline-success" type="submit" style="float:right; margin-left: 4px;" id="search-button">Search</button>
       </div>
     </div>
 
@@ -124,9 +124,9 @@
 
     <!-- Search results page-->
     <div id="search-results" class="search-results-container">
-      <p>Search results</p>
-      <table>
-        <tr>
+      <p>Search results</p>  
+      <table id = "search-results-table">
+    <!--    <tr>
           <td>
             <p>Iphone 14 (black, 128 gb) <br /> icons</p>
           </td>
@@ -141,8 +141,9 @@
           <td>
             <p>Starting from <br><strong>$1150</strong></p>
           </td>
-        </tr>
+        </tr>-->
       </table>
+
     </div>
 
     <!-- product details page -->
