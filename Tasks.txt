@@ -1,0 +1,22 @@
+Product results page should be based on search -
+    assign the search keyword to a var and use the var to filter the products.
+Product page should be dynamic.
+
+Stores result page.
+Dynamically add nearby stores -
+    create a dummy table with distances between different places. set the predefined current location,
+    calculate the distance between the store place and current location using the dummy table.
+badge for online, offline in search results.
+
+Sort and filter in results page (may use modal) -
+    modal for filter options. create a dictionary using the filter options,
+    filter the products list using the dictionary.
+
+Notifictions icon in product page.
+My subscriptions page - with unsubscribe -
+    dummy user profile with subscriptions, add or remove subscriptions to the profile.
+
+
+
+
+unsubscribe in notifications list.
