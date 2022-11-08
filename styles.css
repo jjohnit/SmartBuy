@@ -5,7 +5,7 @@
 .recent-searches-container,
 .nearby-stores-container,
 .search-results-container,
-.product-details-containert,
+.product-details-container,
 .subscriptions-container {
     margin: 1rem;
     padding: .5rem;
@@ -52,3 +52,4 @@ td {
     border: solid 2px;
     padding: 4px;
 }
+

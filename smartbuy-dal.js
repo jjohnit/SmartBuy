@@ -3,8 +3,8 @@
 $(document).ready(function () {
     // setPage('homepage');
     // setPage('search-results');
-    // setPage('product-details');
-    setPage('subscriptions');
+    setPage('product-details');
+    //setPage('subscriptions');
 })
 
 function setPage(page) {
