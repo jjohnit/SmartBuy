@@ -1,5 +1,3 @@
-// document.getElementById('notification1').value = offers[0].offer;
-
 $(document).ready(function () {
     setPage('homepage');
     //setPage('search-results');
