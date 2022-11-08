@@ -3,10 +3,6 @@
 + Product results page and product details page should be dynamic.
 
 
-+ Stores result page.
-+ Dynamically add nearby stores -
-    create a dummy table with distances between different places. set the predefined current location,
-    calculate the distance between the store place and current location using the dummy table.
 + badge for online, offline in search results.
 
 
@@ -20,6 +16,10 @@
     dummy user profile with subscriptions, add or remove subscriptions to the profile.
 
 
+- Stores result page.
+- Dynamically add nearby stores -
+    create a dummy table with distances between different places. set the predefined current location,
+    calculate the distance between the store place and current location using the dummy table.
 
 
 unsubscribe in notifications list.
