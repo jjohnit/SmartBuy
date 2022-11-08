@@ -3,7 +3,8 @@
 $(document).ready(function () {
     // setPage('homepage');
     // setPage('search-results');
-    setPage('product-details');
+    // setPage('product-details');
+    setPage('subscriptions');
 })
 
 function setPage(page) {
@@ -13,16 +14,25 @@ function setPage(page) {
             $('#homepage').css('display', '');
             $('#search-results').css('display', 'none');
             $('#product-details').css('display', 'none');
+            $('#subscriptions').css('display', 'none');
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
             $('#product-details').css('display', 'none');
+            $('#subscriptions').css('display', 'none');
             $('#search-results').css('display', '');
             break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
+            $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', '');
+            break;
+        case 'subscriptions':
+            $('#homepage').css('display', 'none');
+            $('#search-results').css('display', 'none');
+            $('#product-details').css('display', 'none');
+            $('#subscriptions').css('display', '');
             break;
     }
 }
