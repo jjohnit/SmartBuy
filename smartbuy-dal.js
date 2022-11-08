@@ -1,9 +1,9 @@
 // document.getElementById('notification1').value = offers[0].offer;
 
 $(document).ready(function () {
-    // setPage('homepage');
-    // setPage('search-results');
-    // setPage('product-details');
+    //setPage('homepage');
+    //setPage('search-results');
+    //setPage('product-details');
     setPage('subscriptions');
 })
 
@@ -15,6 +15,7 @@ function setPage(page) {
             $('#search-results').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
+            $('#sort').css('display', 'none');
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
@@ -33,6 +34,7 @@ function setPage(page) {
             $('#search-results').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', '');
+            $('#sort').css('display', 'none');
             break;
     }
 }
