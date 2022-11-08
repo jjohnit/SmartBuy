@@ -1,3 +1,5 @@
+var recentSearches = [1,2];
+
 
 var products = [
     {
