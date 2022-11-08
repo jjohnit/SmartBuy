@@ -5,17 +5,21 @@
 
 + badge for online, offline in search results.
 
-
-+ Sort and filter in results page (may use modal) -
-    modal for filter options. create a dictionary using the filter options,
-    filter the products list using the dictionary.
++ sort, filter buttons in all pages
 
 
 + Notifictions icon in product page.
+
 + My subscriptions page - with unsubscribe -
     dummy user profile with subscriptions, add or remove subscriptions to the profile.
++ My subscriptions page should be dynamic.
++ Unsubscribe button for removing the subscription.
++ Add subscription when user adds a subscription.
 
 
+- Sort and filter in results page (may use modal) -
+    modal for filter options. create a dictionary using the filter options,
+    filter the products list using the dictionary.
 - Stores result page.
 - Dynamically add nearby stores -
     create a dummy table with distances between different places. set the predefined current location,

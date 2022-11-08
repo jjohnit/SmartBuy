@@ -5,7 +5,8 @@
 .recent-searches-container,
 .nearby-stores-container,
 .search-results-container,
-.product-details-container {
+.product-details-container,
+.subscriptions-container {
     margin: 1rem;
     padding: .5rem;
     background-color: lightgray;
@@ -13,7 +14,8 @@
 }
 
 .search-results-container,
-.product-details-container {
+.product-details-container,
+.subscriptions-container  {
     background-color: inherit;
     box-shadow: none;
 }
@@ -55,3 +57,4 @@ td {
     width:25px;
     height:25px;
 }
+

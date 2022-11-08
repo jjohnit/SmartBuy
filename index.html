@@ -66,9 +66,11 @@
     <!-- First row with location and search -->
     <div id="location-search-div" style="display: flex;">
       <div>
-        <input class="form-control mr-sm-2" value="Chicago,IL" aria-label="location">
+        <input class="form-control mr-sm-2" value="Chicago,IL" aria-label="location" readonly title="Feature in progress">
       </div>
       <div class="ms-auto" style="display: flex;">
+        <button id= "sort" type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
+        <button id="filter" type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search-tab">
         <button class="btn btn-outline-success" type="submit" style="float:right; margin-left: 4px;" id="search-button">Search</button>
       </div>
@@ -148,7 +150,9 @@
     <div id="product-details" class="product-details-container">
       <table>
         <tr>
-          <td colspan="3">Apple iPhone 14 (Black, 128 gb)</td>
+          <td colspan="3">Apple iPhone 14 (Black, 128 gb)
+          <button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;"> Subscribe </button>
+          </td>
         </tr>
         <tr>
           <td>
@@ -177,6 +181,7 @@
         </tr>
         <tr>
           <td>
+            <span class="badge rounded-pill bg-info text-dark" style="float:right;">Online </span>
             <p>Amazon <br>Delivery in 2 days</p>
           </td>
           <td>
@@ -189,6 +194,34 @@
             <p>$1170</p>
           </td>
         </tr>
+      </table>
+    </div>
+
+    <!-- My subscriptions page -->
+    <div id="subscriptions" class="subscriptions-container">
+      <p>My subscriptions</p>
+      <table id="subscriptions-table">
+        <!-- <tr>
+          <td>
+            Apple iPhone 14 (Black, 128 gb)
+          </td>
+          <td>
+            <ul>
+              <li>10% off on electronics at Walmart</li>
+              <li>15% off on electronics at Target</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Samsung SSD (Black, 1 TB)
+          </td>
+          <td>
+            <ul>
+              <li>15% off on electronics at Target</li>
+            </ul>
+          </td>
+        </tr> -->
       </table>
     </div>
   </div>

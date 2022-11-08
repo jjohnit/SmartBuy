@@ -1,3 +1,5 @@
+var recentSearches = [1,2];
+
 
 var products = [
     {
@@ -122,10 +124,22 @@ var offers = [
         storeId: 3,
         offer: "10% off"
     },
-
+    {
+        productId: 1,
+        storeId: 1,
+        offer: "15% off on Phones"
+    },
     {
         productId: 2,
         storeId: 5,
         offer: "Use code SAVE10 for 10% off"
     }
 ]
+
+
+var currentUser = {
+    name: 'John Doe',
+    email: 'john.doe@uic.edu',
+    last_location: 60607,
+    subscriptions: [1, 2]
+}
