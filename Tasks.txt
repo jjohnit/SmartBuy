@@ -12,6 +12,9 @@
 
 + My subscriptions page - with unsubscribe -
     dummy user profile with subscriptions, add or remove subscriptions to the profile.
++ My subscriptions page should be dynamic.
++ Unsubscribe button for removing the subscription.
++ Add subscription when user adds a subscription.
 
 
 - Sort and filter in results page (may use modal) -
