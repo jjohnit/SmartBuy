@@ -93,7 +93,7 @@ function createTable_product(productid,product_desc){
     rowElem = document.createElement('tr');
     colElem = document.createElement('td');
     colElem.colSpan = "3";
-    colElem.innerHTML= product_desc+'<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;"> Subscribe </button>';
+    colElem.innerHTML= product_desc+'<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" onclick="checkSubscription('+productid+');"> Subscribe </button>';
     rowElem.appendChild(colElem);
     tableElem.appendChild(rowElem);
 
@@ -161,9 +161,20 @@ function createTable_product(productid,product_desc){
         }
     }
 
-
     
 }
+
+function checkSubscription(productid){
+    if(currentUser.subscriptions.find(subscribe => subscribe==productid)){
+        removeSubscription(productid);
+        alert("Successfully unsubscribed to this product");
+    }
+    else{
+        addSubscription(productid);
+        alert("Successfully subscribed to this product");
+    }
+}
+
 
 function setPage(page) {
     console.log("setpage ", page);
