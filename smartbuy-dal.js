@@ -132,7 +132,10 @@ function createTable_product(productid,product_desc){
             colElem.innerHTML="";
             colElem.innerHTML+="<strong>"
             +stores.find(store => store.id.toString()==productPrices[i].storeId.toString()).name
-            +"</strong><br/>";
+            +"</strong>";
+            if(stores.find(store => store.id.toString()==productPrices[i].storeId.toString()).type=="online"){
+                colElem.innerHTML+='<span class="badge rounded-pill bg-info text-dark" style="float:right;">Online </span>';
+            } 
             rowElem.appendChild(colElem);
 
             colElem = document.createElement('td');
