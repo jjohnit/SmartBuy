@@ -80,6 +80,13 @@
 
     <!-- Homepage -->
     <div id="homepage" style="display: none;">
+      <!--div for breadcrumbs-->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+        </ol>
+      </nav>
+      <!--div for breadcrumbs-->
       <!-- div for recent searches -->
       <div class="recent-searches-container">
         <p style="margin: 0;">Recent Searches</p>
@@ -123,6 +130,14 @@
 
     <!-- Search results page-->
     <div id="search-results" class="search-results-container">
+        <!--div for breadcrumbs-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+            <li class="breadcrumb-item"><a href="#" onclick='setPage("search-results");'>Search Results</a></li>
+          </ol>
+        </nav>
+        <!--div for breadcrumbs-->
       <p>Search results</p>  
       <table id = "search-results-table">
      <!--<tr>
@@ -147,6 +162,15 @@
 
     <!-- product details page -->
     <div id="product-details" class="product-details-container">
+      <!--div for breadcrumbs-->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("search-results");'>Search Results</a></li>
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("product-details");'>Product Details</a></li>
+        </ol>
+      </nav>
+      <!--div for breadcrumbs-->
       <table id="product-details-table">
        <!--<tr>
           <td colspan="3">Apple iPhone 14 (Black, 128 gb)
@@ -198,6 +222,14 @@
 
     <!-- My subscriptions page -->
     <div id="subscriptions" class="subscriptions-container">
+      <!--div for breadcrumbs-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+            <li class="breadcrumb-item"><a href="#" onclick='setPage("subscriptions");'>Subscriptions</a></li>
+          </ol>
+        </nav>
+      <!--div for breadcrumbs-->
       <p>My subscriptions</p>
       <table id="subscriptions-table">
         <!-- <tr>
