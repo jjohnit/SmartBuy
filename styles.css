@@ -15,7 +15,7 @@
 
 .search-results-container,
 .product-details-container,
-.subscriptions-container  {
+.subscriptions-container {
     background-color: inherit;
     box-shadow: none;
 }
@@ -51,4 +51,18 @@ table {
 td {
     border: solid 2px;
     padding: 4px;
+}
+
+button {
+    margin: 4px;
+}
+
+.product-image{
+    width:30px;
+    height:60px;
+}
+
+.icon-image {
+    width: 25px;
+    height: 25px;
 }
