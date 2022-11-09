@@ -115,6 +115,7 @@ $(document).on('mouseout', '#search-results-table tr', function(){
 
 function createTable_product(productid,product_desc){
     tableElem = document.getElementById("product-details-table");
+    tableElem.innerHTML="";
     rowElem = document.createElement('tr');
     colElem = document.createElement('td');
     colElem.colSpan = "3";
