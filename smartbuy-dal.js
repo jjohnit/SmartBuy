@@ -224,11 +224,12 @@ function getNotifications() {
 }
 
 // To get the data for my subscriptions
-function getSubscriptions(){
-    let subscriptionsList= [];  //To save the list of objects with product name and offersz.
+function getSubscriptions() {
+    let subscriptionsList = [];  //To save the list of objects with product name and offersz.
     // Get the offers for all the subscribed products.
     currentUser.subscriptions.forEach(productId => {
         let productOffersObj = {
+            id: productId,
             name: '',
             offers: []
         };
@@ -248,14 +249,18 @@ function getSubscriptions(){
 }
 
 // To generate the my subscriptions page dynamically
-function createViewForSubscriptions(subscriptions){
+function createViewForSubscriptions(subscriptions) {
     let subscriptionsTable = document.getElementById('subscriptions-table');
+    subscriptionsTable.innerHTML = "";
     let row, column;
     subscriptions.forEach(subscription => {
         row = document.createElement('tr');
         column = document.createElement('td');
         // Add name to the first column
-        column.innerHTML = `<p>${subscription.name}</p>`;
+        column.innerHTML = `<p>${subscription.name}
+            <button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;"
+            onclick="removeSubscription(${subscription.id})">
+            Unsubscribe</button></p>`;
         row.append(column);
         // Add offers to the next column
         column = document.createElement('td');
@@ -278,9 +283,10 @@ function addSubscription(productId) {
 
 // To remove a subscription
 function removeSubscription(productId) {
+    console.log(productId);
     let index = currentUser.subscriptions.indexOf(productId);
-    if (index >= 0){
-        currentUser.subscriptions.splice(index);
+    if (index >= 0) {
+        currentUser.subscriptions.splice(index, 1);
         getSubscriptions();
     }
     else {
