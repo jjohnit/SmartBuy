@@ -15,7 +15,7 @@
 
 .search-results-container,
 .product-details-container,
-.subscriptions-container  {
+.subscriptions-container {
     background-color: inherit;
     box-shadow: none;
 }
@@ -53,3 +53,11 @@ td {
     padding: 4px;
 }
 
+button {
+    margin: 4px;
+}
+
+.icon-image {
+    width: 25px;
+    height: 25px;
+}
