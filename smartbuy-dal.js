@@ -2,9 +2,9 @@
 
 $(document).ready(function () {
     //setPage('homepage');
-    //setPage('search-results');
-    //setPage('product-details');
-    setPage('subscriptions');
+   // setPage('search-results');
+    setPage('product-details');
+    //setPage('subscriptions');
 
     getSubscriptions();
 })
@@ -18,18 +18,27 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
+            $('#home').css('display', '');
+            $('#homepage').css('display', 'none');
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#search-results').css('display', '');
+            $('#home').css('display', 'none');
+            $('#homepage').css('display', '');
             break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', '');
+            $('#home').css('display', 'none');
+            $('#homepage').css('display', '');
+            $('#homepage').css('display', '');
+            $('#searchpage').css('display', '');
+            $('#productdetails').css('display', 'none');
             break;
         case 'subscriptions':
             $('#homepage').css('display', 'none');
@@ -37,6 +46,8 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
+            $('#home').css('display', 'none');
+            $('#homepage').css('display', '');
             break;
     }
 }
