@@ -5,7 +5,7 @@ $(document).ready(function () {
     //setPage('subscriptions');
 })
 
-$(document).on('click', '#search-button', function () {
+function searchProducts() {
     var search_term = document.getElementById('search-tab').value;
     var final_prods = [];
     for (let j = 0; j < products.length; j++) {
@@ -17,7 +17,19 @@ $(document).on('click', '#search-button', function () {
     }
     setPage('search-results');
     createTable_searchresults(final_prods);
+}
+
+$(document).on('click', '#search-button', function () {
+    searchProducts();
 })
+
+// Using Enter to submit search input
+$(document).on('keypress', '#search-tab', function (event) {
+    console.log('Here');
+    if (event.key === 'Enter') {
+        searchProducts();
+    }
+});
 
 var recentProducts = []
 
