@@ -1,28 +1,5 @@
-+ Product results page should be based on search -
-    assign the search keyword to a var and use the var to filter the products.
-+ Product results page and product details page should be dynamic.
-
-
-+ badge for online, offline in search results.
-
-+ sort, filter buttons in all pages
-
-
-+ Notifictions icon in product page.
-
-+ My subscriptions page - with unsubscribe -
-    dummy user profile with subscriptions, add or remove subscriptions to the profile.
-+ My subscriptions page should be dynamic.
-+ Unsubscribe button for removing the subscription.
-+ Add subscription when user adds a subscription.
-
-
-+ Breadcrumbs.
-+ Going to homepage from product details - bug
-+ No products in search results.
-+ Enter key for search.
-+ Notification scrollbar.
-+ Dynamically change text between subscribe & unsubscribe in product details page.
++ bug in going back to homepage, product details.
++ keep page on refresh.
 
 
 - Sort and filter in results page (may use modal) -
@@ -35,3 +12,23 @@
 
 
 unsubscribe in notifications list.
+
+
+*********************** Done *********************** 
+
++ Product results page should be based on search -
+    assign the search keyword to a var and use the var to filter the products.
++ Product results page and product details page should be dynamic.
++ badge for online, offline in search results.
++ sort, filter buttons in all pages
++ Notifictions icon in product page.
++ My subscriptions page - with unsubscribe -
+    dummy user profile with subscriptions, add or remove subscriptions to the profile.
++ My subscriptions page should be dynamic.
++ Unsubscribe button for removing the subscription.
++ Add subscription when user adds a subscription.
++ Breadcrumbs.
++ No products in search results.
++ Enter key for search.
++ Notification scrollbar.
++ Dynamically change text between subscribe & unsubscribe in product details page.
