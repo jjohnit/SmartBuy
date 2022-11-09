@@ -95,6 +95,16 @@ for (let i = 0; i < final_prods.length; i++){
   tableElem.appendChild(rowElem);
 }
 
+if(final_prods==""){
+    tableElem = document.getElementById("search-results-table");
+    tableElem.innerHTML="";
+    rowElem = document.createElement('tr');
+    colElem = document.createElement('td');
+    colElem.innerHTML="No Results";
+    rowElem.appendChild(colElem);
+    tableElem.appendChild(rowElem);
+}
+
 }
 
 $(document).on('click', '#search-results-table tr', function(){
