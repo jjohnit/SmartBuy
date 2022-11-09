@@ -1,10 +1,8 @@
 $(document).ready(function () {
-    //setPage('homepage');
+    setPage('homepage');
     //setPage('search-results');
-    setPage('product-details');
+    // setPage('product-details');
     //setPage('subscriptions');
-
-    getSubscriptions();
 })
 
 $(document).on('click','#search-button', function(){
@@ -236,6 +234,7 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
+            getSubscriptions();
             $('#filter').css('display', '');
             break;
     }
