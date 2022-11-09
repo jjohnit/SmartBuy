@@ -17,6 +17,14 @@
 + Add subscription when user adds a subscription.
 
 
++ Breadcrumbs.
++ Going to homepage from product details - bug
++ No products in search results.
++ Enter key for search.
++ Notification scrollbar.
++ Dynamically change text between subscribe & unsubscribe in product details page.
+
+
 - Sort and filter in results page (may use modal) -
     modal for filter options. create a dictionary using the filter options,
     filter the products list using the dictionary.

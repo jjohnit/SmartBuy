@@ -296,6 +296,18 @@ function createViewForSubscriptions(subscriptions) {
     let subscriptionsTable = document.getElementById('subscriptions-table');
     subscriptionsTable.innerHTML = "";
     let row, column;
+    if(subscriptions.length <= 0){
+        row = document.createElement('tr');
+        row.style.width = '100%';
+        row.style.textAlign = 'center';
+        column = document.createElement('td');
+        column.innerHTML = '<p>No subscriptions</p>';
+        row.append(column);
+        // Add the row to the table.
+        subscriptionsTable.append(row);
+        return;
+    }
+
     subscriptions.forEach(subscription => {
         row = document.createElement('tr');
         column = document.createElement('td');
