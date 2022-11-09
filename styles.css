@@ -66,3 +66,12 @@ button {
     width: 25px;
     height: 25px;
 }
+
+#notifications{
+    width: 300px;
+    height: 200px;
+    overflow-y: scroll;
+    /*scrollbar-color: rebeccapurple green;*/
+    scrollbar-width: thin;
+    padding: 4px;
+  }
