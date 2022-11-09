@@ -57,7 +57,10 @@ button {
     margin: 4px;
 }
 
-.icon-image {
+.product-image{
+    width:30px;
+    height:60px;
+}.icon-image {
     width: 25px;
     height: 25px;
 }
