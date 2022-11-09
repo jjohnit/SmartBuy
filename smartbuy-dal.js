@@ -1,8 +1,8 @@
 $(document).ready(function () {
     //setPage('homepage');
     //setPage('search-results');
-    //setPage('product-details');
-    setPage('subscriptions');
+    setPage('product-details');
+    //setPage('subscriptions');
 
     getSubscriptions();
 })
@@ -21,6 +21,30 @@ $(document).on('click', '#search-button', function () {
     createTable_searchresults(final_prods);
 })
 
+var recentProducts = []
+
+function recentSearches(id){
+    recentProducts.push(id)
+    console.log(recentProducts)
+/*     <div class="card" title="Iphone 14">
+            <img class="card-img-top" src="./assets/iphone-14.png">
+          </div> */
+    recents = document.getElementById("recents");
+    recentElement = document.createElement("div");
+    recentElement.setAttribute("class","card");
+    for (let i = 0;i<products.length;i++){
+        if (products[i].id==id){
+            recentElement.setAttribute("title",products[i].name);
+            //recentElement.innerHTML = products[i].name
+            itemImage = document.createElement("img")
+            itemImage.setAttribute("class","card-img-top");
+            itemImage.setAttribute("src",products[i].imgUrl);
+            recentElement.appendChild(itemImage);
+        }
+    }
+    recents.appendChild(recentElement)
+
+}
 
 function createTable_searchresults(final_prods) {
     tableElem = document.getElementById("search-results-table");
@@ -28,10 +52,13 @@ function createTable_searchresults(final_prods) {
     for (let i = 0; i < final_prods.length; i++) {
         rowElem = document.createElement('tr');
         colElem = document.createElement('td');
+        colElem.setAttribute("id","")
+        
         colElem.innerHTML = "";
         for (var key in final_prods[i]) {
             if (key.toString() != 'id') {
-                colElem.innerHTML = colElem.innerHTML + " " + final_prods[i][key].toString();
+                colElem.setAttribute("onclick", "recentSearches("+final_prods[i].id+")")
+                colElem.innerHTML = colElem.innerHTML + " " + final_prods[i][key].toString()
             }
         }
 
@@ -63,7 +90,11 @@ function createTable_searchresults(final_prods) {
 
         prices.sort();
         colElem = document.createElement('td');
-        colElem.innerHTML = "Starting from <br /><strong>" + prices[0].toString() + "</strong>";
+        colElem.innerHTML = "Starting from"+
+/*         '<div class="radio">'+
+                        '<label><input type="radio" id="regular" name="optradio">ADD</label>'+
+                    '</div>'+ */
+        "<br /><strong>" + prices[0].toString() + '</strong>';
         rowElem.appendChild(colElem);
 
         tableElem.appendChild(rowElem);
@@ -207,9 +238,3 @@ function removeSubscription(productId) {
     }
 }
 
-// Recent Searches 
-function getRecentSearches(productId) {
-    
-
-
-}
