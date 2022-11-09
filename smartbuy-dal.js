@@ -81,18 +81,23 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
+            $('#filter').css('display', '');
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#search-results').css('display', '');
+            $('#sort').css('display', '');
+            $('#filter').css('display', '');
             break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', '');
+            $('#sort').css('display', '');
+            $('#filter').css('display', '');
             break;
         case 'subscriptions':
             $('#homepage').css('display', 'none');
@@ -100,6 +105,7 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
+            $('#filter').css('display', '');
             break;
     }
 }
@@ -199,4 +205,11 @@ function removeSubscription(productId) {
     else {
         alert('Unable to delete the subscription');
     }
+}
+
+// Recent Searches 
+function getRecentSearches(productId) {
+    
+
+
 }
