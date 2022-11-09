@@ -210,8 +210,6 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
-            $('#home').css('display', '');
-            $('#homepage').css('display', 'none');
             $('#filter').css('display', '');
             break;
         case 'search-results':
@@ -219,8 +217,6 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#search-results').css('display', '');
-            $('#home').css('display', 'none');
-            $('#homepage').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
             break;
@@ -229,11 +225,6 @@ function setPage(page) {
             $('#search-results').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', '');
-            $('#home').css('display', 'none');
-            $('#homepage').css('display', '');
-            $('#homepage').css('display', '');
-            $('#searchpage').css('display', '');
-            $('#productdetails').css('display', 'none');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
             break;
@@ -243,8 +234,6 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
-            $('#home').css('display', 'none');
-            $('#homepage').css('display', '');
             getSubscriptions();
             $('#filter').css('display', '');
             break;
