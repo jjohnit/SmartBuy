@@ -7,24 +7,28 @@ var products = [
         name: "iPhone 14",
         color: "Black",
         storage: "128 GB",
+        images: ['iphone-14.png','iphone-14-1.png','iphone-14-2.png']
     },
     {
         id : 2,
         name: "Samsung SSD",
         color: "Black",
         storage: "1 TB",
+        images: ['hard-disk.png','hard-disk-1.png']
     },
     {
         id : 3,
         name: "Eggs",
         type: "Organic",
         quantity: 12,
+        images: ['eggs.png']
     },
     {
         id : 4,
         name: "iPhone 14",
         color: "Blue",
         storage: "256 GB",
+        images: ['iphone-14.png','iphone-14-1.png','iphone-14-2.png']
     },
 ];
 

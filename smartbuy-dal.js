@@ -30,10 +30,11 @@ for (let i = 0; i < final_prods.length; i++){
   colElem = document.createElement('td');
   colElem.innerHTML="";
   for (var key in final_prods[i]) {
-    if (key.toString()!='id'){
+    if (key.toString()!='id' && key.toString()!='images'){
         colElem.innerHTML=colElem.innerHTML+" "+final_prods[i][key].toString();
     }
   }
+  colElem.innerHTML=colElem.innerHTML+"<p style='display:none'>"+final_prods[i].id.toString()+"</p>";
 
 
   var prices=[];
@@ -71,6 +72,95 @@ for (let i = 0; i < final_prods.length; i++){
 
 }
 
+$(document).on('click', '#search-results-table tr', function(){
+    var productid = $(this).find("td:first").find('p').text();
+    $('p').remove();
+    var product_desc = $(this).find("td:first").text();
+    setPage('product-details');
+    createTable_product(productid,product_desc);
+});
+
+$(document).on('mouseover', '#search-results-table tr', function(){
+    $("#search-results-table").css("cursor", "pointer");
+});
+
+$(document).on('mouseout', '#search-results-table tr', function(){
+    $("#search-results-table").css("cursor", "pointer");
+});
+
+function createTable_product(productid,product_desc){
+    tableElem = document.getElementById("product-details-table");
+    rowElem = document.createElement('tr');
+    colElem = document.createElement('td');
+    colElem.colSpan = "3";
+    colElem.innerHTML= product_desc+'<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;"> Subscribe </button>';
+    rowElem.appendChild(colElem);
+    tableElem.appendChild(rowElem);
+
+    rowElem = document.createElement('tr');
+    colElem = document.createElement('td');
+    colElem.colSpan = "1";
+    colElem.innerHTML="";
+    var product_final=[];
+    product_final=products.find(product => product.id.toString()==productid.toString());
+    for(let j=0;j<product_final.images.length;j++){
+        colElem.innerHTML+="<img src='./assets/"+product_final.images[j]+"' class='product-image'>";
+    }
+        
+    rowElem.appendChild(colElem);
+
+    colElem = document.createElement('td');
+    colElem.colSpan = "2";
+    colElem.innerHTML="<strong>Promotions</strong><br/>";
+    colElem.innerHTML+="<ul>";
+    for(i=0;i<offers.length;i++){
+        if(offers[i].productId==productid){
+            colElem.innerHTML+="<li>"+offers[i].offer+" at "
+            +stores.find(store => store.id.toString()==offers[i].storeId.toString()).name
+            +"</li>";
+        }
+    }
+    colElem.innerHTML+="</ul>";
+    rowElem.appendChild(colElem);
+    tableElem.appendChild(rowElem);
+ 
+    for(let i=0;i<productPrices.length;i++){
+        if(productPrices[i].productId==productid){
+            rowElem = document.createElement('tr');
+            colElem = document.createElement('td');
+            colElem.colSpan = "1";
+            colElem.innerHTML="";
+            colElem.innerHTML+="<strong>"
+            +stores.find(store => store.id.toString()==productPrices[i].storeId.toString()).name
+            +"</strong><br/>";
+            rowElem.appendChild(colElem);
+
+            colElem = document.createElement('td');
+            colElem.colSpan = "1";
+            colElem.innerHTML="";
+            colElem.innerHTML+='Price:'+productPrices[i].price+"<br/>";
+            colElem.innerHTML+='Tax:'+productPrices[i].tax+"<br/>";
+            if(productPrices[i].deliveryCharge!=0){
+                colElem.innerHTML+='Delivery Charges:'+productPrices[i].deliveryCharge+"<br/>";   
+            }
+            colElem.innerHTML+='Discount:'+productPrices[i].discount+"<br/>";
+            rowElem.appendChild(colElem);
+
+            colElem = document.createElement('td');
+            colElem.colSpan = "1";
+            colElem.innerHTML="";
+            colElem.innerHTML=productPrices[i].price+
+            productPrices[i].tax-
+            productPrices[i].discount+
+            productPrices[i].deliveryCharge;
+            rowElem.appendChild(colElem);
+            tableElem.appendChild(rowElem);
+        }
+    }
+
+
+    
+}
 
 function setPage(page) {
     console.log("setpage ", page);
