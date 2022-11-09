@@ -1,10 +1,8 @@
 $(document).ready(function () {
-    //setPage('homepage');
+    setPage('homepage');
     //setPage('search-results');
-    //setPage('product-details');
-    setPage('subscriptions');
-
-    getSubscriptions();
+    // setPage('product-details');
+    //setPage('subscriptions');
 })
 
 $(document).on('click','#search-button', function(){
@@ -21,6 +19,30 @@ setPage('search-results');
 createTable_searchresults(final_prods);
 })
 
+var recentProducts = []
+
+function recentSearches(id){
+    recentProducts.push(id)
+    console.log(recentProducts)
+/*     <div class="card" title="Iphone 14">
+            <img class="card-img-top" src="./assets/iphone-14.png">
+          </div> */
+    recents = document.getElementById("recents");
+    recentElement = document.createElement("div");
+    recentElement.setAttribute("class","card");
+    for (let i = 0;i<products.length;i++){
+        if (products[i].id==id){
+            recentElement.setAttribute("title",products[i].name);
+            //recentElement.innerHTML = products[i].name
+            itemImage = document.createElement("img")
+            itemImage.setAttribute("class","card-img-top");
+            itemImage.setAttribute("src",products[i].imgUrl);
+            recentElement.appendChild(itemImage);
+        }
+    }
+    recents.appendChild(recentElement)
+
+}
 
 function createTable_searchresults(final_prods){  
 tableElem = document.getElementById("search-results-table");
@@ -28,10 +50,13 @@ tableElem.innerHTML="";
 for (let i = 0; i < final_prods.length; i++){    
   rowElem = document.createElement('tr');
   colElem = document.createElement('td');
+        colElem.setAttribute("id","")
+        
   colElem.innerHTML="";
   for (var key in final_prods[i]) {
     if (key.toString()!='id' && key.toString()!='images'){
-        colElem.innerHTML=colElem.innerHTML+" "+final_prods[i][key].toString();
+        colElem.setAttribute("onclick", "recentSearches("+final_prods[i].id+")")
+                colElem.innerHTML=colElem.innerHTML+" "+final_prods[i][key].toString()
     }
   }
   colElem.innerHTML=colElem.innerHTML+"<p style='display:none'>"+final_prods[i].id.toString()+"</p>";
@@ -185,18 +210,23 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
+            $('#filter').css('display', '');
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#search-results').css('display', '');
+            $('#sort').css('display', '');
+            $('#filter').css('display', '');
             break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', '');
+            $('#sort').css('display', '');
+            $('#filter').css('display', '');
             break;
         case 'subscriptions':
             $('#homepage').css('display', 'none');
@@ -204,6 +234,8 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
+            getSubscriptions();
+            $('#filter').css('display', '');
             break;
     }
 }
