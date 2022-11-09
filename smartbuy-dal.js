@@ -119,7 +119,14 @@ function createTable_product(productid,product_desc){
     rowElem = document.createElement('tr');
     colElem = document.createElement('td');
     colElem.colSpan = "3";
-    colElem.innerHTML= product_desc+'<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" onclick="checkSubscription('+productid+');"> Subscribe </button>';
+
+    
+    if(currentUser.subscriptions.find(subscribe => subscribe==productid)){
+        colElem.innerHTML= product_desc+'<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription('+productid+');">Unsubscribe</button>';
+    }
+    else{
+        colElem.innerHTML= product_desc+'<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription('+productid+');">Subscribe</button>';
+    }
     rowElem.appendChild(colElem);
     tableElem.appendChild(rowElem);
 
@@ -192,12 +199,13 @@ function createTable_product(productid,product_desc){
 
 function checkSubscription(productid){
     if(currentUser.subscriptions.find(subscribe => subscribe==productid)){
+        document.getElementById('subscribe-button-prod').innerHTML="Subscribe"
         removeSubscription(productid);
-        alert("Successfully unsubscribed to this product");
+
     }
     else{
+        document.getElementById('subscribe-button-prod').innerHTML="Unsubscribe"
         addSubscription(productid);
-        alert("Successfully subscribed to this product");
     }
 }
 
