@@ -1,5 +1,6 @@
 body{
     font-family: Garamond, serif;
+    background-color: #fffbf0;
 }
 
 .page-container {
@@ -14,7 +15,7 @@ body{
     margin: 1rem;
     padding: .5rem;
     /*background-color: lightgray;*/
-    background-color: white;
+    background-color: #fffbf0;;
     /*box-shadow: 3px 6px rgba(211, 211, 211, 0.527);*/
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
@@ -88,6 +89,9 @@ button {
 .product-image{
     width:30px;
     height:60px;
+    border:  1px solid;
+    border-radius: 6px;
+    margin: 4px;
 }
 
 .icon-image {
@@ -103,3 +107,7 @@ button {
     scrollbar-width: thin;
     padding: 4px;
   }
+
+.breadcrumbs a{
+    color: #943d24;
+}  
