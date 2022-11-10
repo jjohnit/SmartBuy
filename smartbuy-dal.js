@@ -1,9 +1,29 @@
 $(document).ready(function () {
-    setPage('homepage');
-    //setPage('search-results');
-    //setPage('product-details');
-    //setPage('subscriptions');
+    let hash = getHash();
+    if (hash) {
+        loadPage(hash.split('&'));
+    }
+    else {
+        setPage('homepage');
+    }
 })
+
+function loadPage(hashValues) {
+    console.log(hashValues);
+    switch (hashValues[0]) {
+        case 'search-results':
+            searchProducts(hashValues[1]);
+            break;
+        case 'product-details':
+            createTable_product(hashValues[1]);
+            break;
+        case 'subscriptions':
+            setPage('subscriptions');
+            break;
+        default:
+            setPage('homepage');
+    }
+}
 
 function setPage(page) {
     switch (page) {
@@ -15,6 +35,9 @@ function setPage(page) {
             $('#sort').css('display', 'none');
             $('#filter').css('display', '');
             getRecentSearches();
+            sessionStorage.clear();
+            // clear the value in search
+            document.getElementById('search-tab').value = '';
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
@@ -44,28 +67,41 @@ function setPage(page) {
     }
 }
 
-function searchProducts() {
-    var search_term = document.getElementById('search-tab').value;
-    var final_prods = [];
+function setHash(value) {
+    // window.location.hash = value;
+    sessionStorage.setItem('hash', value);
+}
+
+function getHash() {
+    // return window.location.hash.substring(1);
+    let hash = sessionStorage.getItem('hash');
+    return hash;
+}
+
+function searchProducts(search_term) {
+    var final_prod_ids = [];
     for (let j = 0; j < products.length; j++) {
         var prodname = products[j].name.toLowerCase().replace(/\s/g, '');
         if (prodname.includes(search_term.toLowerCase().replace(/\s/g, ''))) {
-            final_prods.push(products[j]);
+            final_prod_ids.push(products[j].id);
         }
     }
-    createTable_searchresults(final_prods);
+    createTable_searchresults(final_prod_ids);
+    // set hash to retain page on refresh
+    setHash(`search-results&${search_term}`)
     setPage('search-results');
 }
 
 $(document).on('click', '#search-button', function () {
-    searchProducts();
+    let search_term = document.getElementById('search-tab').value;
+    searchProducts(search_term);
 })
 
 // Using Enter to submit search input
 $(document).on('keypress', '#search-tab', function (event) {
-    console.log('Here');
     if (event.key === 'Enter') {
-        searchProducts();
+        let search_term = document.getElementById('search-tab').value;
+        searchProducts(search_term);
     }
 });
 
@@ -106,27 +142,35 @@ function getRecentSearches() {
     // }
 }
 
-function createTable_searchresults(final_prods) {
+// To get the product description using id
+function getProductDescription(productId) {
+    let product = products.find(x => x.id == productId);
+    let productDesc = '';
+    for (var key in product) {
+        if (key.toString() != 'id' && key.toString() != 'images') {
+            productDesc += " " + product[key].toString();
+        }
+    }
+    return productDesc;
+}
+
+function createTable_searchresults(final_prod_ids) {
     tableElem = document.getElementById("search-results-table");
     tableElem.innerHTML = "";
-    for (let i = 0; i < final_prods.length; i++) {
+    for (let i = 0; i < final_prod_ids.length; i++) {
         rowElem = document.createElement('tr');
         colElem = document.createElement('td');
         colElem.setAttribute("id", "")
 
         colElem.innerHTML = "";
-        for (var key in final_prods[i]) {
-            if (key.toString() != 'id' && key.toString() != 'images') {
-                colElem.setAttribute("onclick", "addRecentSearch(" + final_prods[i].id + ")")
-                colElem.innerHTML = colElem.innerHTML + " " + final_prods[i][key].toString()
-            }
-        }
-        colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prods[i].id.toString() + "</p>";
+        colElem.innerHTML = getProductDescription(final_prod_ids[i]);
+        colElem.setAttribute("onclick", "addRecentSearch(" + final_prod_ids[i] + ")");
+        colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prod_ids[i].toString() + "</p>";
 
         var prices = [];
         var stores_final = [];
         for (let j = 0; j < productPrices.length; j++) {
-            if (productPrices[j].productId == final_prods[i].id) {
+            if (productPrices[j].productId == final_prod_ids[i]) {
                 var total = productPrices[j].price +
                     productPrices[j].tax +
                     productPrices[j].deliveryCharge -
@@ -155,7 +199,7 @@ function createTable_searchresults(final_prods) {
         tableElem.appendChild(rowElem);
     }
 
-    if (final_prods == "") {
+    if (final_prod_ids == "") {
         tableElem = document.getElementById("search-results-table");
         tableElem.innerHTML = "";
         rowElem = document.createElement('tr');
@@ -168,10 +212,10 @@ function createTable_searchresults(final_prods) {
 
 $(document).on('click', '#search-results-table tr', function () {
     var productid = $(this).find("td:first").find('p').text();
-    $('p').remove();
-    var product_desc = $(this).find("td:first").text();
-    setPage('product-details');
-    createTable_product(productid, product_desc);
+    setHash(`product-details&${productid}&${getHash().split('&')[1]}`);
+    // $('p').remove();
+    // var product_desc = $(this).find("td:first").text();
+    createTable_product(productid);
 });
 
 $(document).on('mouseover', '#search-results-table tr', function () {
@@ -182,7 +226,13 @@ $(document).on('mouseout', '#search-results-table tr', function () {
     $("#search-results-table").css("cursor", "pointer");
 });
 
-function createTable_product(productid, product_desc) {
+function createTable_product(productid) {
+    document.getElementById('search-result-breadcrumb').addEventListener('click',
+        () => loadPage(["search-results", getHash().split('&')[2]]));
+    // clear the value in search
+    document.getElementById('search-tab').value = '';
+    setPage('product-details');
+    product_desc = getProductDescription(productid);
     tableElem = document.getElementById("product-details-table");
     tableElem.innerHTML = "";
     rowElem = document.createElement('tr');
@@ -306,6 +356,7 @@ function getNotifications() {
 
 // To get the data for my subscriptions
 function getSubscriptions() {
+    setHash('subscriptions');
     let subscriptionsList = [];  //To save the list of objects with product name and offersz.
     // Get the offers for all the subscribed products.
     currentUser.subscriptions.forEach(productId => {
