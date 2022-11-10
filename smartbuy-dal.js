@@ -35,6 +35,7 @@ function setPage(page) {
             $('#sort').css('display', 'none');
             $('#filter').css('display', '');
             getRecentSearches();
+            sessionStorage.clear();
             // clear the value in search
             document.getElementById('search-tab').value = '';
             break;
@@ -67,11 +68,14 @@ function setPage(page) {
 }
 
 function setHash(value) {
-    window.location.hash = value;
+    // window.location.hash = value;
+    sessionStorage.setItem('hash', value);
 }
 
 function getHash() {
-    return window.location.hash.substring(1);
+    // return window.location.hash.substring(1);
+    let hash = sessionStorage.getItem('hash');
+    return hash;
 }
 
 function searchProducts(search_term) {
