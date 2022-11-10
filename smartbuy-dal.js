@@ -168,7 +168,7 @@ function createTable_searchresults(final_prods) {
 
 $(document).on('click', '#search-results-table tr', function () {
     var productid = $(this).find("td:first").find('p').text();
-    $('p').remove();
+    // $('p').remove();
     var product_desc = $(this).find("td:first").text();
     setPage('product-details');
     createTable_product(productid, product_desc);
