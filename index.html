@@ -20,7 +20,9 @@
   <div id="nav-bar-div">
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#" onclick="setPage('homepage')"><h1><strong>SmartBuy</strong></h1></a>
+        <a class="navbar-brand" href="#" onclick="setPage('homepage')">
+          <h1><strong>SmartBuy</strong></h1>
+        </a>
         <!--<a class="navbar-brand" href="#"><button class="btn btn-success" onclick="setPage('homepage')">SmartBuy</button></a>-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,13 +70,17 @@
     <!-- First row with location and search -->
     <div id="location-search-div" style="display: flex;">
       <div>
-        <input class="form-control mr-sm-2" value="Chicago,IL" aria-label="location" readonly title="Feature in progress">
+        <input class="form-control mr-sm-2" value="Chicago,IL" aria-label="location" readonly
+          title="Feature in progress">
       </div>
       <div class="ms-auto" style="display: flex;">
-        <button id= "sort" type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
-        <button id="filter" type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
+        <button id="sort" type="button" class="btn btn-outline-secondary btn-sm"
+          style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
+        <button id="filter" type="button" class="btn btn-outline-secondary btn-sm"
+          style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search-tab">
-        <button class="btn btn-outline-success" type="submit" style="float:right; margin-left: 4px;" id="search-button" >Search</button>
+        <button class="btn btn-outline-success" type="submit" style="float:right; margin-left: 4px;"
+          id="search-button">Search</button>
       </div>
     </div>
 
@@ -91,7 +97,7 @@
       <div class="recent-searches-container">
         <p style="margin: 0;">Recent Searches</p>
         <div class="recent-searches" id="recents">
-<!--           <div class="card" title="Iphone 14">
+          <!-- <div class="card" title="Iphone 14">
             <img class="card-img-top" src="./assets/iphone-14.png">
           </div>
           <div class="card">
@@ -102,7 +108,7 @@
       <!-- Nearest Stores -->
       <div class="nearby-stores-container">
         <p>Nearby stores</p>
-        <table>
+        <table id="nearby-stores">
           <tr>
             <td>
               <p>Walmart <br /> 2 miles from your location</p>
@@ -130,17 +136,17 @@
 
     <!-- Search results page-->
     <div id="search-results" class="search-results-container">
-        <!--div for breadcrumbs-->
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
-            <li class="breadcrumb-item"><a href="#" onclick='setPage("search-results");'>Search Results</a></li>
-          </ol>
-        </nav>
-        <!--div for breadcrumbs-->
-      <p>Search results</p>  
-      <table id = "search-results-table">
-     <!--<tr>
+      <!--div for breadcrumbs-->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("search-results");'>Search Results</a></li>
+        </ol>
+      </nav>
+      <!--div for breadcrumbs-->
+      <p>Search results</p>
+      <table id="search-results-table">
+        <!--<tr>
           <td>
             <p>Iphone 14 (black, 128 gb) <br /> icons</p>
           </td>
@@ -172,7 +178,7 @@
       </nav>
       <!--div for breadcrumbs-->
       <table id="product-details-table">
-       <!--<tr>
+        <!--<tr>
           <td colspan="3">Apple iPhone 14 (Black, 128 gb)
           <button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;"> Subscribe </button>
           </td>
@@ -223,12 +229,12 @@
     <!-- My subscriptions page -->
     <div id="subscriptions" class="subscriptions-container">
       <!--div for breadcrumbs-->
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
-            <li class="breadcrumb-item"><a href="#" onclick='setPage("subscriptions");'>Subscriptions</a></li>
-          </ol>
-        </nav>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("subscriptions");'>Subscriptions</a></li>
+        </ol>
+      </nav>
       <!--div for breadcrumbs-->
       <p>My subscriptions</p>
       <table id="subscriptions-table">
