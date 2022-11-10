@@ -15,6 +15,8 @@ function setPage(page) {
             $('#sort').css('display', 'none');
             $('#filter').css('display', '');
             getRecentSearches();
+            // clear the value in search
+            document.getElementById('search-tab').value = '';
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
@@ -169,6 +171,8 @@ function createTable_searchresults(final_prods) {
 $(document).on('click', '#search-results-table tr', function () {
     var productid = $(this).find("td:first").find('p').text();
     // $('p').remove();
+    // clear the value in search
+    document.getElementById('search-tab').value = '';
     var product_desc = $(this).find("td:first").text();
     setPage('product-details');
     createTable_product(productid, product_desc);
