@@ -9,8 +9,10 @@
 .subscriptions-container {
     margin: 1rem;
     padding: .5rem;
-    background-color: lightgray;
-    box-shadow: 3px 6px rgba(211, 211, 211, 0.527);
+    /*background-color: lightgray;*/
+    background-color: white;
+    /*box-shadow: 3px 6px rgba(211, 211, 211, 0.527);*/
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
 }
 
@@ -61,6 +63,7 @@ table {
     border:solid black 2px;
     border-radius:6px;
     width: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 td, th {
