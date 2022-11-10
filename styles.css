@@ -89,6 +89,9 @@ button {
 .product-image{
     width:30px;
     height:60px;
+    border:  1px solid;
+    border-radius: 6px;
+    margin: 4px;
 }
 
 .icon-image {
