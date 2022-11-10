@@ -18,7 +18,7 @@
 
 <body>
   <div id="nav-bar-div">
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg" style="background-color: #efddf4; color: #2d2d2d;">
       <div class="container-fluid">
         <a class="navbar-brand" href="#" onclick="setPage('homepage')">
           <h1><strong>SmartBuy</strong></h1>
@@ -71,15 +71,15 @@
     <div id="location-search-div" style="display: flex;">
       <div>
         <input class="form-control mr-sm-2" value="Chicago,IL" aria-label="location" readonly
-          title="Feature in progress">
+          title="Feature in progress" style="background: transparent;">
       </div>
       <div class="ms-auto" style="display: flex;">
         <button id="sort" type="button" class="btn btn-outline-secondary btn-sm"
           style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
         <button id="filter" type="button" class="btn btn-outline-secondary btn-sm"
           style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search-tab">
-        <button class="btn btn-outline-success" type="submit" style="float:right; margin-left: 4px;"
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="background: transparent;" id="search-tab">
+        <button class="btn btn-outline-secondary" type="submit" style="float:right; margin-left: 4px;"
           id="search-button">Search</button>
       </div>
     </div>
@@ -87,11 +87,13 @@
     <!-- Homepage -->
     <div id="homepage" style="display: none;">
       <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Home</li>
         </ol>
       </nav>
+      </div>
       <!--div for breadcrumbs-->
       <!-- div for recent searches -->
       <div class="recent-searches-container">
@@ -137,12 +139,14 @@
     <!-- Search results page-->
     <div id="search-results" class="search-results-container">
       <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
-          <li class="breadcrumb-item"><a href="#" onclick='setPage("search-results");'>Search Results</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Search Results</li>
         </ol>
       </nav>
+      </div>
       <!--div for breadcrumbs-->
       <p>Search results</p>
       <table id="search-results-table">
@@ -169,13 +173,15 @@
     <!-- product details page -->
     <div id="product-details" class="product-details-container">
       <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
           <li class="breadcrumb-item"><a href="#" onclick='setPage("search-results");'>Search Results</a></li>
-          <li class="breadcrumb-item"><a href="#" onclick='setPage("product-details");'>Product Details</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Product Details</li>
         </ol>
       </nav>
+      </div>
       <!--div for breadcrumbs-->
       <table id="product-details-table">
         <!--<tr>
@@ -229,12 +235,14 @@
     <!-- My subscriptions page -->
     <div id="subscriptions" class="subscriptions-container">
       <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
-          <li class="breadcrumb-item"><a href="#" onclick='setPage("subscriptions");'>Subscriptions</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Subscriptions</li>
         </ol>
       </nav>
+      </div>
       <!--div for breadcrumbs-->
       <p>My subscriptions</p>
       <table id="subscriptions-table">
