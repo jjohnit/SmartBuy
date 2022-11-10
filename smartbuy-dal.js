@@ -386,4 +386,3 @@ function removeSubscription(productId) {
         alert('Unable to delete the subscription');
     }
 }
-
