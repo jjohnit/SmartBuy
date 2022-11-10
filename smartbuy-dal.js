@@ -70,7 +70,7 @@ function setHash(value) {
     window.location.hash = value;
 }
 
-function getHash(){
+function getHash() {
     return window.location.hash.substring(1);
 }
 
@@ -159,10 +159,8 @@ function createTable_searchresults(final_prod_ids) {
         colElem.setAttribute("id", "")
 
         colElem.innerHTML = "";
-        for (var id in final_prod_ids) {
-            colElem.innerHTML = getProductDescription(id);
-            colElem.setAttribute("onclick", "addRecentSearch(" + id + ")");
-        }
+        colElem.innerHTML = getProductDescription(final_prod_ids[i]);
+        colElem.setAttribute("onclick", "addRecentSearch(" + final_prod_ids[i] + ")");
         colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prod_ids[i].toString() + "</p>";
 
         var prices = [];
@@ -212,7 +210,7 @@ $(document).on('click', '#search-results-table tr', function () {
     var productid = $(this).find("td:first").find('p').text();
     setHash(`product-details&${productid}&${getHash().split('&')[1]}`);
     // $('p').remove();
-    var product_desc = $(this).find("td:first").text();
+    // var product_desc = $(this).find("td:first").text();
     createTable_product(productid);
 });
 
@@ -225,7 +223,7 @@ $(document).on('mouseout', '#search-results-table tr', function () {
 });
 
 function createTable_product(productid) {
-    document.getElementById('search-result-breadcrumb').addEventListener('click', 
+    document.getElementById('search-result-breadcrumb').addEventListener('click',
         () => loadPage(["search-results", getHash().split('&')[2]]));
     // clear the value in search
     document.getElementById('search-tab').value = '';
