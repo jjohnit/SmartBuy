@@ -113,12 +113,19 @@ function addRecentSearch(id) {
 }
 
 function getRecentSearches() {
+    // Show 'No recent searches when recentSearches is empty'
+    if(recentProducts.length <= 0){
+        $('#empty-recents').show();
+        return;
+    }
+    
     recents = document.getElementById("recents");
     recents.innerHTML = "";
     let recentElement;
     // Get the recent products
     let productsList = products.filter(x => recentProducts.includes(x.id));
     productsList.forEach(product => {
+        // $('#empty-recents').hide();
         recentElement = document.createElement("div");
         recentElement.setAttribute("class", "card recent-item");
         recentElement.setAttribute("title", getProductDescription(product.id));
