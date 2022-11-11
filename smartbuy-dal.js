@@ -9,7 +9,6 @@ $(document).ready(function () {
 })
 
 function loadPage(hashValues) {
-    console.log(hashValues);
     switch (hashValues[0]) {
         case 'search-results':
             searchProducts(hashValues[1]);
@@ -62,6 +61,7 @@ function setPage(page) {
             $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
             getSubscriptions();
+            setHash('subscriptions');
             $('#filter').css('display', '');
             break;
     }
@@ -107,22 +107,29 @@ $(document).on('keypress', '#search-tab', function (event) {
 
 function addRecentSearch(id) {
     recentProducts.push(id)
-    console.log(recentProducts)
     /*     <div class="card" title="Iphone 14">
                 <img class="card-img-top" src="./assets/iphone-14.png">
               </div> */
 }
 
 function getRecentSearches() {
+    // Show 'No recent searches when recentSearches is empty'
+    if(recentProducts.length <= 0){
+        $('#empty-recents').show();
+        return;
+    }
+    
     recents = document.getElementById("recents");
     recents.innerHTML = "";
     let recentElement;
     // Get the recent products
     let productsList = products.filter(x => recentProducts.includes(x.id));
     productsList.forEach(product => {
+        // $('#empty-recents').hide();
         recentElement = document.createElement("div");
-        recentElement.setAttribute("class", "card");
-        recentElement.setAttribute("title", product.name);
+        recentElement.setAttribute("class", "card recent-item");
+        recentElement.setAttribute("title", getProductDescription(product.id));
+        recentElement.setAttribute('data-id', product.id);
         //recentElement.innerHTML = products[i].name
         itemImage = document.createElement("img")
         itemImage.setAttribute("class", "card-img-top");
@@ -148,7 +155,7 @@ function getProductDescription(productId) {
     let productDesc = '';
     for (var key in product) {
         if (key.toString() != 'id' && key.toString() != 'images') {
-            productDesc += " " + product[key].toString();
+            productDesc += product[key].toString() + " ";
         }
     }
     return productDesc;
@@ -356,7 +363,6 @@ function getNotifications() {
 
 // To get the data for my subscriptions
 function getSubscriptions() {
-    setHash('subscriptions');
     let subscriptionsList = [];  //To save the list of objects with product name and offersz.
     // Get the offers for all the subscribed products.
     currentUser.subscriptions.forEach(productId => {
@@ -427,7 +433,6 @@ function addSubscription(productId) {
 
 // To remove a subscription
 function removeSubscription(productId) {
-    console.log(productId);
     let index = currentUser.subscriptions.indexOf(productId);
     if (index >= 0) {
         currentUser.subscriptions.splice(index, 1);
@@ -437,3 +442,10 @@ function removeSubscription(productId) {
         alert('Unable to delete the subscription');
     }
 }
+
+// To redirect on product details page on click of recent search item.
+$(document).on('click', '.recent-item', function() {
+    let id = this.dataset.id;
+    setHash(`product-details&${id}&${getProductDescription(id).split(' ')[0]}`);
+    createTable_product(id);
+});
