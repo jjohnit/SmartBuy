@@ -271,4 +271,14 @@ var offers = [
         storeId: 5,
         offer: "Use code SAVE10 for 10% off"
     },
+    {
+        productId: 5,
+        storeId: 5,
+        offer: "Use code SAVE10 for 10% off"
+    },
+    {
+        productId: 6,
+        storeId: 3,
+        offer: "Black Friday Offers starting from November 20th on all products"
+    },
 ]
