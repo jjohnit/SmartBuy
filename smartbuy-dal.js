@@ -162,6 +162,7 @@ function getProductDescription(productId) {
 }
 
 function createTable_searchresults(final_prod_ids) {
+    $('#empty-searches').hide();
     tableElem = document.getElementById("search-results-table");
     tableElem.innerHTML = "";
     for (let i = 0; i < final_prod_ids.length; i++) {
@@ -207,13 +208,7 @@ function createTable_searchresults(final_prod_ids) {
     }
 
     if (final_prod_ids == "") {
-        tableElem = document.getElementById("search-results-table");
-        tableElem.innerHTML = "";
-        rowElem = document.createElement('tr');
-        colElem = document.createElement('td');
-        colElem.innerHTML = "No Results";
-        rowElem.appendChild(colElem);
-        tableElem.appendChild(rowElem);
+        $('#empty-searches').show();
     }
 }
 
@@ -239,15 +234,23 @@ $(document).on('mouseout', '#search-results-table tr', function () {
 
 
 $(document).on('mouseover', '.popup', function () {
-    $(this).find("i").addClass('fa-xl');
+    $(this).find("div:first").addClass('fa-xl');
     $(this).find("h1").addClass('brand-hover');
 });
 
 $(document).on('mouseout', '.popup', function () {
-    $(this).find("i").removeClass('fa-xl');
+    $(this).find("div:first").removeClass('fa-xl');
     $(this).find("h1").removeClass('brand-hover');
 });
 
+
+$(document).on('mouseover', '.dropdown-home', function (event) {
+    $(this).parent().find("div:first").addClass('fa-xl');
+});
+
+$(document).on('mouseout', '.dropdown-home', function () {
+    $(this).parent().find("div:first").removeClass('fa-xl');
+});
 
 
 function createTable_product(productid) {
@@ -310,7 +313,7 @@ function createTable_product(productid) {
                 + stores.find(store => store.id.toString() == productPrices[i].storeId.toString()).name
                 + "</strong>";
             if (stores.find(store => store.id.toString() == productPrices[i].storeId.toString()).type == "online") {
-                colElem.innerHTML += '<span class="badge rounded-pill bg-info text-dark" style="float:right; background-color:#b4f3ee;">Online </span>';
+                colElem.innerHTML += '<span class="badge rounded-pill bg-secondary" style="float:right; background-color:black">Online </span>';
             }
             rowElem.appendChild(colElem);
 

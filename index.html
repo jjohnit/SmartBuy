@@ -33,9 +33,11 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown popup" value="none" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
+                <div style="width:20px; height:10px;">
                 <i class="fa fa-solid fa-bell" style="color: white;"></i>
+                </div>
               </a>
-              <ul class="dropdown-menu dropdown-menu-end" id="notifications">
+              <ul class="dropdown-menu dropdown-menu-end dropdown-home" id="notifications">
                 <!--<li><a class="dropdown-item" href="#">Action</a></li>
                       <li><a class="dropdown-item" href="#">Another action</a></li>-->
                 <script>
@@ -45,9 +47,11 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link popup" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div style="width:20px; height:10px;">
                 <i class="fa fa-solid fa-user" style="color: white;"></i>
+                </div>
               </a>
-              <ul class="dropdown-menu dropdown-menu-end">
+              <ul class="dropdown-menu dropdown-menu-end dropdown-home">
                 <li><a class="dropdown-item" href="#">Edit Profile</a></li>
                 <li><a class="dropdown-item" onclick="setPage('subscriptions')" href="#">Subscriptions</a></li>
                 <li><a class="dropdown-item" href="#">Logout</a></li>
@@ -114,7 +118,7 @@
         <table id="nearby-stores">
           <tr>
             <td>
-              <p>Walmart <br /> 2 miles from your location</p>
+              <p><img src="./assets/walmart-icon.png" class="icon-image">Walmart <br /> 2 miles from your location</p>
             </td>
             <td>
               <ul>
@@ -125,7 +129,7 @@
           </tr>
           <tr>
             <td>
-              <p>Target <br /> 5 miles from your location</p>
+              <p><img src="./assets/target-icon.png" class="icon-image">Target <br /> 5 miles from your location</p>
             </td>
             <td>
               <ul>
@@ -150,6 +154,7 @@
       </div>
       <!--div for breadcrumbs-->
       <p><strong>Search Results</strong></p>
+      <p id="empty-searches" style="width: 100%; text-align: center;">No Results</p>
       <table id="search-results-table">
         <!--<tr>
           <td>
