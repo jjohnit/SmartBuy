@@ -373,7 +373,7 @@ function getNotifications() {
     let prodname, storename;
     offersOnSubscriptions.forEach(offer => {
         var entry = document.createElement('li');
-        prodname = products.find(x => x.id == offer.productId)?.name;
+        prodname = getProductDescription(offer.productId);
         storename = stores.find(x => x.id == offer.storeId)?.name;
 
         entry.appendChild(document.createTextNode(prodname + " - " + offer.offer + " at " + storename));
@@ -394,7 +394,7 @@ function getSubscriptions() {
             offers: []
         };
         // Get the name of product from the products list.
-        productOffersObj.name = products.find(product => product.id == productId).name;
+        productOffersObj.name = getProductDescription(productId);
         // Get all the offers on the product from offers list.
         let offersForProductId = offers.filter(x => x.productId == productId);
         // Get the offer details with store name.
