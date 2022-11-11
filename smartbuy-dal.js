@@ -163,7 +163,7 @@ function createTable_searchresults(final_prod_ids) {
         colElem.setAttribute("id", "")
 
         colElem.innerHTML = "";
-        colElem.innerHTML = getProductDescription(final_prod_ids[i]);
+        colElem.innerHTML = "<strong>"+getProductDescription(final_prod_ids[i])+"</strong><br/>";
         colElem.setAttribute("onclick", "addRecentSearch(" + final_prod_ids[i] + ")");
         colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prod_ids[i].toString() + "</p>";
 
@@ -218,13 +218,30 @@ $(document).on('click', '#search-results-table tr', function () {
     createTable_product(productid);
 });
 
+
+
 $(document).on('mouseover', '#search-results-table tr', function () {
     $("#search-results-table").css("cursor", "pointer");
+    $(this).find("td").addClass('hover-table');
 });
 
 $(document).on('mouseout', '#search-results-table tr', function () {
     $("#search-results-table").css("cursor", "pointer");
+    $(this).find("td").removeClass('hover-table');
 });
+
+
+$(document).on('mouseover', '.popup', function () {
+    $(this).find("i").addClass('fa-xl');
+    $(this).find("h1").addClass('brand-hover');
+});
+
+$(document).on('mouseout', '.popup', function () {
+    $(this).find("i").removeClass('fa-xl');
+    $(this).find("h1").removeClass('brand-hover');
+});
+
+
 
 function createTable_product(productid) {
     document.getElementById('search-result-breadcrumb').addEventListener('click',
@@ -286,7 +303,7 @@ function createTable_product(productid) {
                 + stores.find(store => store.id.toString() == productPrices[i].storeId.toString()).name
                 + "</strong>";
             if (stores.find(store => store.id.toString() == productPrices[i].storeId.toString()).type == "online") {
-                colElem.innerHTML += '<span class="badge rounded-pill bg-info text-dark" style="float:right;">Online </span>';
+                colElem.innerHTML += '<span class="badge rounded-pill bg-info text-dark" style="float:right; background-color:#b4f3ee;">Online </span>';
             }
             rowElem.appendChild(colElem);
 

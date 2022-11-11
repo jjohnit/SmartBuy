@@ -18,9 +18,9 @@
 
 <body>
   <div id="nav-bar-div">
-    <nav class="navbar navbar-expand-lg" style="background-color: #efddf4; color: #2d2d2d;">
+    <nav class="navbar navbar-expand-lg" style="background-color: black; color: white;">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#" onclick="setPage('homepage')">
+        <a class="navbar-brand popup" href="#" onclick="setPage('homepage')" style="color:white;">
           <h1><strong>SmartBuy</strong></h1>
         </a>
         <!--<a class="navbar-brand" href="#"><button class="btn btn-success" onclick="setPage('homepage')">SmartBuy</button></a>-->
@@ -31,9 +31,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown" value="none" href="#" role="button" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown popup" value="none" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <i class="fa fa-solid fa-bell"></i>
+                <i class="fa fa-solid fa-bell" style="color: white;"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end" id="notifications">
                 <!--<li><a class="dropdown-item" href="#">Action</a></li>
@@ -44,13 +44,13 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-solid fa-user"></i>
+              <a class="nav-link popup" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-solid fa-user" style="color: white;"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="#">Edit Profile</a></li>
                 <li><a class="dropdown-item" onclick="setPage('subscriptions')" href="#">Subscriptions</a></li>
-                <li><a class="dropdown-item" href="#">Log out</a></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
               </ul>
             </li>
             <li>
@@ -70,7 +70,7 @@
     <!-- First row with location and search -->
     <div id="location-search-div" style="display: flex;">
       <div>
-        <input class="form-control mr-sm-2" value="Chicago,IL" aria-label="location" readonly
+        <input class="form-control mr-sm-2" value="60607" aria-label="location"
           title="Feature in progress" style="background: transparent;">
       </div>
       <div class="ms-auto" style="display: flex;">
@@ -97,7 +97,7 @@
       <!--div for breadcrumbs-->
       <!-- div for recent searches -->
       <div class="recent-searches-container">
-        <p style="margin: 0;">Recent Searches</p>
+        <p style="margin: 0;"><strong>Recent Searches</strong></p>
         <div class="recent-searches" id="recents">
           <!-- <div class="card" title="Iphone 14">
             <img class="card-img-top" src="./assets/iphone-14.png">
@@ -109,7 +109,7 @@
       </div>
       <!-- Nearest Stores -->
       <div class="nearby-stores-container">
-        <p>Nearby stores</p>
+        <p><strong>Nearby Stores</strong></p>
         <table id="nearby-stores">
           <tr>
             <td>
@@ -148,7 +148,7 @@
       </nav>
       </div>
       <!--div for breadcrumbs-->
-      <p>Search results</p>
+      <p><strong>Search Results</strong></p>
       <table id="search-results-table">
         <!--<tr>
           <td>
@@ -240,12 +240,12 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Subscriptions</li>
+          <li class="breadcrumb-item active" aria-current="page">My Subscriptions</li>
         </ol>
       </nav>
       </div>
       <!--div for breadcrumbs-->
-      <p>My subscriptions</p>
+      <p><strong>My Subscriptions</strong></p>
       <table id="subscriptions-table">
         <!-- <tr>
           <td>
