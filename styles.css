@@ -11,7 +11,8 @@ body{
 .nearby-stores-container,
 .search-results-container,
 .product-details-container,
-.subscriptions-container {
+.subscriptions-container
+{
     margin: 1rem;
     padding: .5rem;
     /*background-color: lightgray;*/
@@ -99,6 +100,8 @@ button {
 .icon-image {
     width: 25px;
     height: 25px;
+    /*padding-right: 10px;*/
+    margin-right: 10px;
 }
 
 #notifications{
@@ -111,7 +114,7 @@ button {
   }
 
 .breadcrumbs a{
-    color: blue;
+    color: burlywood;
 }  
 
 .search-results-container table tr .hover-table{
@@ -138,6 +141,7 @@ button {
 }
 
 .search-results-container tr td{
+    padding:10px;
     border-top: solid white 2px;
     border: none;
 }
