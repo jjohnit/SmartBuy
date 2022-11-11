@@ -9,7 +9,6 @@ $(document).ready(function () {
 })
 
 function loadPage(hashValues) {
-    console.log(hashValues);
     switch (hashValues[0]) {
         case 'search-results':
             searchProducts(hashValues[1]);
@@ -108,7 +107,6 @@ $(document).on('keypress', '#search-tab', function (event) {
 
 function addRecentSearch(id) {
     recentProducts.push(id)
-    console.log(recentProducts)
     /*     <div class="card" title="Iphone 14">
                 <img class="card-img-top" src="./assets/iphone-14.png">
               </div> */
@@ -428,7 +426,6 @@ function addSubscription(productId) {
 
 // To remove a subscription
 function removeSubscription(productId) {
-    console.log(productId);
     let index = currentUser.subscriptions.indexOf(productId);
     if (index >= 0) {
         currentUser.subscriptions.splice(index, 1);
@@ -441,7 +438,6 @@ function removeSubscription(productId) {
 
 // To redirect on product details page on click of recent search item.
 $(document).on('click', '.recent-item', function() {
-    console.log(this, this.dataset.id);
     let id = this.dataset.id;
     setHash(`product-details&${id}&${getProductDescription(id).split(' ')[0]}`);
     createTable_product(id);

@@ -1,10 +1,10 @@
-var recentProducts = [2]
+var recentProducts = []
 
 var currentUser = {
     name: 'John Doe',
     email: 'john.doe@uic.edu',
     last_location: 60607,
-    subscriptions: [1, 2]
+    subscriptions: []
 }
 
 var products = [
