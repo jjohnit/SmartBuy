@@ -364,28 +364,23 @@ function checkSubscription(productid) {
 
 function getNotifications() {
     var list = document.getElementById('notifications');
-    for (let i = 0; i < offers.length; i++) {
+    let offersOnSubscriptions = offers.filter(x => currentUser.subscriptions.includes(x.productId));
+    if(offersOnSubscriptions.length <= 0){
+        list.innerHTML = '<p style="text-align: center;">No notifications</p>';
+        return;
+    }
+    list.innerHTML = '';
+    let prodname, storename;
+    offersOnSubscriptions.forEach(offer => {
         var entry = document.createElement('li');
-        for (let j = 0; j < products.length; j++) {
-            if (products[j].id == offers[i].productId) {
-                var prodname = products[j].name;
-                break;
-            }
-        }
+        prodname = products.find(x => x.id == offer.productId)?.name;
+        storename = stores.find(x => x.id == offer.storeId)?.name;
 
-        for (let j = 0; j < stores.length; j++) {
-            if (stores[j].id == offers[i].storeId) {
-                var storename = stores[j].name;
-                break;
-            }
-        }
-
-        entry.appendChild(document.createTextNode(prodname + "\n" + offers[i].offer + " at " + storename));
+        entry.appendChild(document.createTextNode(prodname + " - " + offer.offer + " at " + storename));
         list.appendChild(entry);
         entry = document.createElement('hr');
         list.appendChild(entry);
-
-    }
+    });
 }
 
 // To get the data for my subscriptions
@@ -456,6 +451,7 @@ function createViewForSubscriptions(subscriptions) {
 // To add a new subscription
 function addSubscription(productId) {
     currentUser.subscriptions.push(productId);
+    getNotifications();
 }
 
 // To remove a subscription
@@ -464,6 +460,7 @@ function removeSubscription(productId) {
     if (index >= 0) {
         currentUser.subscriptions.splice(index, 1);
         getSubscriptions();
+        getNotifications();
     }
     else {
         alert('Unable to delete the subscription');
