@@ -1,9 +1,28 @@
 $(document).ready(function () {
-    setPage('homepage');
-    //setPage('search-results');
-    //setPage('product-details');
-    //setPage('subscriptions');
+    let hash = getHash();
+    if (hash) {
+        loadPage(hash.split('&'));
+    }
+    else {
+        setPage('homepage');
+    }
 })
+
+function loadPage(hashValues) {
+    switch (hashValues[0]) {
+        case 'search-results':
+            searchProducts(hashValues[1]);
+            break;
+        case 'product-details':
+            createTable_product(hashValues[1]);
+            break;
+        case 'subscriptions':
+            setPage('subscriptions');
+            break;
+        default:
+            setPage('homepage');
+    }
+}
 
 function setPage(page) {
     switch (page) {
@@ -15,6 +34,9 @@ function setPage(page) {
             $('#sort').css('display', 'none');
             $('#filter').css('display', '');
             getRecentSearches();
+            sessionStorage.clear();
+            // clear the value in search
+            document.getElementById('search-tab').value = '';
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
@@ -39,54 +61,75 @@ function setPage(page) {
             $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
             getSubscriptions();
+            setHash('subscriptions');
             $('#filter').css('display', '');
             break;
     }
 }
 
-function searchProducts() {
-    var search_term = document.getElementById('search-tab').value;
-    var final_prods = [];
+function setHash(value) {
+    // window.location.hash = value;
+    sessionStorage.setItem('hash', value);
+}
+
+function getHash() {
+    // return window.location.hash.substring(1);
+    let hash = sessionStorage.getItem('hash');
+    return hash;
+}
+
+function searchProducts(search_term) {
+    var final_prod_ids = [];
     for (let j = 0; j < products.length; j++) {
         var prodname = products[j].name.toLowerCase().replace(/\s/g, '');
         if (prodname.includes(search_term.toLowerCase().replace(/\s/g, ''))) {
-            final_prods.push(products[j]);
+            final_prod_ids.push(products[j].id);
         }
     }
-    createTable_searchresults(final_prods);
+    createTable_searchresults(final_prod_ids);
+    // set hash to retain page on refresh
+    setHash(`search-results&${search_term}`)
     setPage('search-results');
 }
 
 $(document).on('click', '#search-button', function () {
-    searchProducts();
+    let search_term = document.getElementById('search-tab').value;
+    searchProducts(search_term);
 })
 
 // Using Enter to submit search input
 $(document).on('keypress', '#search-tab', function (event) {
-    console.log('Here');
     if (event.key === 'Enter') {
-        searchProducts();
+        let search_term = document.getElementById('search-tab').value;
+        searchProducts(search_term);
     }
 });
 
 function addRecentSearch(id) {
     recentProducts.push(id)
-    console.log(recentProducts)
     /*     <div class="card" title="Iphone 14">
                 <img class="card-img-top" src="./assets/iphone-14.png">
               </div> */
 }
 
 function getRecentSearches() {
+    // Show 'No recent searches when recentSearches is empty'
+    if(recentProducts.length <= 0){
+        $('#empty-recents').show();
+        return;
+    }
+    
     recents = document.getElementById("recents");
     recents.innerHTML = "";
     let recentElement;
     // Get the recent products
     let productsList = products.filter(x => recentProducts.includes(x.id));
     productsList.forEach(product => {
+        // $('#empty-recents').hide();
         recentElement = document.createElement("div");
-        recentElement.setAttribute("class", "card");
-        recentElement.setAttribute("title", product.name);
+        recentElement.setAttribute("class", "card recent-item");
+        recentElement.setAttribute("title", getProductDescription(product.id));
+        recentElement.setAttribute('data-id', product.id);
         //recentElement.innerHTML = products[i].name
         itemImage = document.createElement("img")
         itemImage.setAttribute("class", "card-img-top");
@@ -106,27 +149,35 @@ function getRecentSearches() {
     // }
 }
 
-function createTable_searchresults(final_prods) {
+// To get the product description using id
+function getProductDescription(productId) {
+    let product = products.find(x => x.id == productId);
+    let productDesc = '';
+    for (var key in product) {
+        if (key.toString() != 'id' && key.toString() != 'images') {
+            productDesc += product[key].toString() + " ";
+        }
+    }
+    return productDesc;
+}
+
+function createTable_searchresults(final_prod_ids) {
     tableElem = document.getElementById("search-results-table");
     tableElem.innerHTML = "";
-    for (let i = 0; i < final_prods.length; i++) {
+    for (let i = 0; i < final_prod_ids.length; i++) {
         rowElem = document.createElement('tr');
         colElem = document.createElement('td');
         colElem.setAttribute("id", "")
 
         colElem.innerHTML = "";
-        for (var key in final_prods[i]) {
-            if (key.toString() != 'id' && key.toString() != 'images') {
-                colElem.setAttribute("onclick", "addRecentSearch(" + final_prods[i].id + ")")
-                colElem.innerHTML = colElem.innerHTML + " " + final_prods[i][key].toString()
-            }
-        }
-        colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prods[i].id.toString() + "</p>";
+        colElem.innerHTML = "<strong>"+getProductDescription(final_prod_ids[i])+"</strong><br/>";
+        colElem.setAttribute("onclick", "addRecentSearch(" + final_prod_ids[i] + ")");
+        colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prod_ids[i].toString() + "</p>";
 
         var prices = [];
         var stores_final = [];
         for (let j = 0; j < productPrices.length; j++) {
-            if (productPrices[j].productId == final_prods[i].id) {
+            if (productPrices[j].productId == final_prod_ids[i]) {
                 var total = productPrices[j].price +
                     productPrices[j].tax +
                     productPrices[j].deliveryCharge -
@@ -155,7 +206,7 @@ function createTable_searchresults(final_prods) {
         tableElem.appendChild(rowElem);
     }
 
-    if (final_prods == "") {
+    if (final_prod_ids == "") {
         tableElem = document.getElementById("search-results-table");
         tableElem.innerHTML = "";
         rowElem = document.createElement('tr');
@@ -168,21 +219,44 @@ function createTable_searchresults(final_prods) {
 
 $(document).on('click', '#search-results-table tr', function () {
     var productid = $(this).find("td:first").find('p').text();
-    $('p').remove();
-    var product_desc = $(this).find("td:first").text();
-    setPage('product-details');
-    createTable_product(productid, product_desc);
+    setHash(`product-details&${productid}&${getHash().split('&')[1]}`);
+    // $('p').remove();
+    // var product_desc = $(this).find("td:first").text();
+    createTable_product(productid);
 });
+
+
 
 $(document).on('mouseover', '#search-results-table tr', function () {
     $("#search-results-table").css("cursor", "pointer");
+    $(this).find("td").addClass('hover-table');
 });
 
 $(document).on('mouseout', '#search-results-table tr', function () {
     $("#search-results-table").css("cursor", "pointer");
+    $(this).find("td").removeClass('hover-table');
 });
 
-function createTable_product(productid, product_desc) {
+
+$(document).on('mouseover', '.popup', function () {
+    $(this).find("i").addClass('fa-xl');
+    $(this).find("h1").addClass('brand-hover');
+});
+
+$(document).on('mouseout', '.popup', function () {
+    $(this).find("i").removeClass('fa-xl');
+    $(this).find("h1").removeClass('brand-hover');
+});
+
+
+
+function createTable_product(productid) {
+    document.getElementById('search-result-breadcrumb').addEventListener('click',
+        () => loadPage(["search-results", getHash().split('&')[2]]));
+    // clear the value in search
+    document.getElementById('search-tab').value = '';
+    setPage('product-details');
+    product_desc = getProductDescription(productid);
     tableElem = document.getElementById("product-details-table");
     tableElem.innerHTML = "";
     rowElem = document.createElement('tr');
@@ -205,7 +279,7 @@ function createTable_product(productid, product_desc) {
     colElem.innerHTML = "";
     var product_final = [];
     product_final = products.find(product => product.id.toString() == productid.toString());
-    for (let j = 0; j < product_final.images.length; j++) {
+    for (let j = 0; j < product_final.images?.length; j++) {
         colElem.innerHTML += "<img src='./assets/" + product_final.images[j] + "' class='product-image'>";
     }
 
@@ -236,7 +310,7 @@ function createTable_product(productid, product_desc) {
                 + stores.find(store => store.id.toString() == productPrices[i].storeId.toString()).name
                 + "</strong>";
             if (stores.find(store => store.id.toString() == productPrices[i].storeId.toString()).type == "online") {
-                colElem.innerHTML += '<span class="badge rounded-pill bg-info text-dark" style="float:right;">Online </span>';
+                colElem.innerHTML += '<span class="badge rounded-pill bg-info text-dark" style="float:right; background-color:#b4f3ee;">Online </span>';
             }
             rowElem.appendChild(colElem);
 
@@ -376,7 +450,6 @@ function addSubscription(productId) {
 
 // To remove a subscription
 function removeSubscription(productId) {
-    console.log(productId);
     let index = currentUser.subscriptions.indexOf(productId);
     if (index >= 0) {
         currentUser.subscriptions.splice(index, 1);
@@ -386,3 +459,10 @@ function removeSubscription(productId) {
         alert('Unable to delete the subscription');
     }
 }
+
+// To redirect on product details page on click of recent search item.
+$(document).on('click', '.recent-item', function() {
+    let id = this.dataset.id;
+    setHash(`product-details&${id}&${getProductDescription(id).split(' ')[0]}`);
+    createTable_product(id);
+});
