@@ -1,6 +1,6 @@
 body{
-    font-family: Garamond, serif;
-    background-color: #fffbf0;
+    font-family: "Roboto", sans-serif !important;
+    background-color: white;
 }
 
 .page-container {
@@ -15,7 +15,8 @@ body{
     margin: 1rem;
     padding: .5rem;
     /*background-color: lightgray;*/
-    background-color: #fffbf0;;
+    background-color: white;
+    border: solid 2px burlywood;
     /*box-shadow: 3px 6px rgba(211, 211, 211, 0.527);*/
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
@@ -62,12 +63,13 @@ td {
 }*/
 
 table {
-    border-collapse:separate;
+   border-collapse:separate;
     border:solid black 2px;
     border-radius:6px;
     width: 100%;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
 
 td, th {
     border-left:solid black 2px;
@@ -109,5 +111,41 @@ button {
   }
 
 .breadcrumbs a{
-    color: #943d24;
+    color: blue;
 }  
+
+.search-results-container table tr .hover-table{
+    background-color: rgb(244, 241, 237);
+    box-shadow: burlywood 0px 7px 20px 0px;
+    border-radius:6px;
+}
+
+.search-results-container table {
+    border: none;
+    border-collapse: separate;
+    width: 100%;
+    border-radius: 10px;
+    border-spacing:0 20px;
+    box-shadow: none;
+}
+
+.search-results-container tr {
+    border: solid white 2px;
+    margin-top: 10px;
+    border-top:solid white 2px;
+    border-radius: 6px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.search-results-container tr td{
+    border-top: solid white 2px;
+    border: none;
+}
+
+.search-results-container td:last-child, th:last-child {
+     border-left: none;
+}
+
+.brand-hover{
+    font-size: 50px;
+}
