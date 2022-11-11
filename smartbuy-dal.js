@@ -62,6 +62,7 @@ function setPage(page) {
             $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
             getSubscriptions();
+            setHash('subscriptions');
             $('#filter').css('display', '');
             break;
     }
@@ -121,8 +122,9 @@ function getRecentSearches() {
     let productsList = products.filter(x => recentProducts.includes(x.id));
     productsList.forEach(product => {
         recentElement = document.createElement("div");
-        recentElement.setAttribute("class", "card");
-        recentElement.setAttribute("title", product.name);
+        recentElement.setAttribute("class", "card recent-item");
+        recentElement.setAttribute("title", getProductDescription(product.id));
+        recentElement.setAttribute('data-id', product.id);
         //recentElement.innerHTML = products[i].name
         itemImage = document.createElement("img")
         itemImage.setAttribute("class", "card-img-top");
@@ -148,7 +150,7 @@ function getProductDescription(productId) {
     let productDesc = '';
     for (var key in product) {
         if (key.toString() != 'id' && key.toString() != 'images') {
-            productDesc += " " + product[key].toString();
+            productDesc += product[key].toString() + " ";
         }
     }
     return productDesc;
@@ -356,7 +358,6 @@ function getNotifications() {
 
 // To get the data for my subscriptions
 function getSubscriptions() {
-    setHash('subscriptions');
     let subscriptionsList = [];  //To save the list of objects with product name and offersz.
     // Get the offers for all the subscribed products.
     currentUser.subscriptions.forEach(productId => {
@@ -437,3 +438,11 @@ function removeSubscription(productId) {
         alert('Unable to delete the subscription');
     }
 }
+
+// To redirect on product details page on click of recent search item.
+$(document).on('click', '.recent-item', function() {
+    console.log(this, this.dataset.id);
+    let id = this.dataset.id;
+    setHash(`product-details&${id}&${getProductDescription(id).split(' ')[0]}`);
+    createTable_product(id);
+});
