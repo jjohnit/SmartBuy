@@ -106,6 +106,11 @@ $(document).on('keypress', '#search-tab', function (event) {
 });
 
 function addRecentSearch(id) {
+    //Remove the id if it is already there
+    let index = recentProducts.indexOf(id);
+    if(index >= 0) {
+        recentProducts.splice(index, 1);
+    }
     recentProducts.push(id)
     /*     <div class="card" title="Iphone 14">
                 <img class="card-img-top" src="./assets/iphone-14.png">
@@ -123,9 +128,11 @@ function getRecentSearches() {
     recents.innerHTML = "";
     let recentElement;
     // Get the recent products
-    let productsList = products.filter(x => recentProducts.includes(x.id));
-    productsList.forEach(product => {
+    // let productsList = products.filter(x => recentProducts.includes(x.id));
+    let product;
+    for(var i = recentProducts.length - 1; i >= 0; i--) {
         // $('#empty-recents').hide();
+        product = products.find(x => x.id == recentProducts[i]);
         recentElement = document.createElement("div");
         recentElement.setAttribute("class", "card recent-item");
         recentElement.setAttribute("title", getProductDescription(product.id));
@@ -136,7 +143,7 @@ function getRecentSearches() {
         itemImage.setAttribute("src", `./assets/${product.images[0]}`);
         recentElement.appendChild(itemImage);
         recents.appendChild(recentElement);
-    });
+    }
     // for (let i = 0; i < products.length; i++) {
     //     if (products[i].id == id) {
     //         recentElement.setAttribute("title", products[i].name);
