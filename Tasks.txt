@@ -1,6 +1,8 @@
 + bug in going back to homepage, product details.
 + keep page on refresh.
 
++ bug - search with ss or ssd
+
 
 - Sort and filter in results page (may use modal) -
     modal for filter options. create a dictionary using the filter options,
