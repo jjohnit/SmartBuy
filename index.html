@@ -56,7 +56,7 @@
               <ul class="dropdown-menu dropdown-menu-end dropdown-home">
                 <li><a class="dropdown-item" href="#">Edit Profile</a></li>
                 <li><a class="dropdown-item" onclick="setPage('subscriptions')" href="#">Subscriptions</a></li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
+                <li><a class="dropdown-item" onclick="setPage('login')" href="#">Logout</a></li>
               </ul>
             </li>
             <li>
@@ -71,6 +71,24 @@
       </div>
     </nav>
   </div>
+
+  <!--Login Page-->
+  <div id="login">
+    <div class="login-title">
+      <h2><b>LOGIN</b></h2>
+    </div>
+    <form>
+      <div class ='image'>
+        <img src="./assets/login.png" alt="Avatar" class="avatar">
+      </div>
+        <label for="username" id="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter username" name="username" required> <br>
+        <label for="password" id="psw"><b>Password</b></label>
+        <input type="text" placeholder="Enter password" name="password" required> <br>
+        <button class="login-button" type="submit" onclick="setPage('homepage')">LOGIN</button>
+    </form>
+  </div>
+  
   <div class="page-container">
 
     <!-- First row with location and search -->

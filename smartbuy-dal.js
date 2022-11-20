@@ -4,7 +4,7 @@ $(document).ready(function () {
         loadPage(hash.split('&'));
     }
     else {
-        setPage('homepage');
+        setPage('login');
     }
 })
 
@@ -19,8 +19,12 @@ function loadPage(hashValues) {
         case 'subscriptions':
             setPage('subscriptions');
             break;
-        default:
+        case 'homepage':
             setPage('homepage');
+            break;
+        default:
+            setPage('login');
+            break;
     }
 }
 
@@ -33,6 +37,7 @@ function setPage(page) {
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
             $('#filter').css('display', '');
+            $('#login').css('display','none');
             getRecentSearches();
             sessionStorage.clear();
             // clear the value in search
@@ -45,6 +50,7 @@ function setPage(page) {
             $('#search-results').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
+            $('#login').css('display','none');
             break;
         case 'product-details':
             $('#homepage').css('display', 'none');
@@ -53,6 +59,7 @@ function setPage(page) {
             $('#product-details').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
+            $('#login').css('display','none');
             break;
         case 'subscriptions':
             $('#homepage').css('display', 'none');
@@ -63,7 +70,18 @@ function setPage(page) {
             getSubscriptions();
             setHash('subscriptions');
             $('#filter').css('display', '');
+            $('#login').css('display','none');
             break;
+        case 'login':
+            $('#login').css('display','');
+            $('#homepage').css('display', 'none');
+            $('#search-results').css('display', 'none');
+            $('#subscriptions').css('display', 'none');
+            $('#product-details').css('display', 'none');
+            $('#sort').css('display', 'none');
+            $('#filter').css('display', 'none');
+            break;
+
     }
 }
 
