@@ -1,8 +1,3 @@
-+ bug in going back to homepage, product details.
-+ keep page on refresh.
-
-+ bug - search with ss or ssd
-
 
 - Sort and filter in results page (may use modal) -
     modal for filter options. create a dictionary using the filter options,
@@ -11,6 +6,11 @@
 - Dynamically add nearby stores -
     create a dummy table with distances between different places. set the predefined current location,
     calculate the distance between the store place and current location using the dummy table.
+- Edit profile page.
+- Login page.
+
+- On click on recent searches.
+- on click on nearby stores.
 
 
 unsubscribe in notifications list.
