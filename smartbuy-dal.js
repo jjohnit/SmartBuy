@@ -4,7 +4,7 @@ $(document).ready(function () {
         loadPage(hash.split('&'));
     }
     else {
-        setPage('homepage');
+        setPage('login');
     }
 })
 
@@ -19,20 +19,31 @@ function loadPage(hashValues) {
         case 'subscriptions':
             setPage('subscriptions');
             break;
-        default:
+        case 'homepage':
             setPage('homepage');
+            break;
+        case 'edit-profile':
+            setPage('edit-profile');
+            break;
+        default:
+            setPage('login');
+            break;
     }
 }
 
 function setPage(page) {
     switch (page) {
         case 'homepage':
-            $('#homepage').css('display', '');
             $('#search-results').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
+            $('#login').css('display','none');
+            $('#homepage').css('display', '');
             $('#filter').css('display', '');
+            $('#location-search-div').css('display', 'flex');
+            $('#navbar-group').css('display', '');
+            $('#edit-profile').css('display','none');
             getRecentSearches();
             sessionStorage.setItem('hash', null);
             // clear the value in search
@@ -42,27 +53,61 @@ function setPage(page) {
             $('#homepage').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
+            $('#login').css('display','none');
             $('#search-results').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
+            $('#location-search-div').css('display', 'flex');
+            $('#navbar-group').css('display', '');
+            $('#edit-profile').css('display','none');
             break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#subscriptions').css('display', 'none');
+            $('#login').css('display','none');
             $('#product-details').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
+            $('#location-search-div').css('display', 'flex');
+            $('#navbar-group').css('display', '');
+            $('#edit-profile').css('display','none');
             break;
         case 'subscriptions':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#product-details').css('display', 'none');
-            $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
+            $('#login').css('display','none');
+            $('#subscriptions').css('display', '');
             getSubscriptions();
             setHash('subscriptions');
             $('#filter').css('display', '');
+            $('#location-search-div').css('display', 'flex');
+            $('#navbar-group').css('display', '');
+            $('#edit-profile').css('display','none');
+            break;
+        case 'login':
+            $('#homepage').css('display', 'none');
+            $('#search-results').css('display', 'none');
+            $('#subscriptions').css('display', 'none');
+            $('#product-details').css('display', 'none');
+            $('#location-search-div').css('display', 'none');
+            $('#navbar-group').css('display', 'none');
+            $('#login').css('display','');
+            $('#edit-profile').css('display','none');
+            break;
+        case 'edit-profile':
+            $('#login').css('display','none');
+            $('#homepage').css('display', 'none');
+            $('#search-results').css('display', 'none');
+            $('#subscriptions').css('display', 'none');
+            $('#product-details').css('display', 'none');
+            $('#sort').css('display', 'none');
+            $('#filter').css('display', 'none');
+            $('#edit-profile').css('display','');
+            $('#location-search-div').css('display', 'flex');
+            $('#navbar-group').css('display', '');
             break;
     }
 }

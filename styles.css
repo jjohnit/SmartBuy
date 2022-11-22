@@ -157,3 +157,67 @@ td {
 .brand-hover{
     font-size: 50px;
 }
+
+form {
+    border: 3px solid #f1f1f1;
+    margin-left: 15% ;
+    margin-right: 15%;
+}
+
+.login-title,
+.editprofile{
+    text-align: center;
+    padding: 15px;
+}
+
+#uname,
+#psw,
+#fname,
+#lname,
+#euname {
+    margin-left: 35%;
+}
+
+input[type=text], input[type=password] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-left: 35%;
+  }
+
+  .login-button{
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    margin-left: 40%;
+  }
+
+  .login-button:hover{
+    opacity: 0.8;
+  }
+
+  .image {
+    text-align: center;
+    margin: 20px 0 8px 0;
+  }
+
+  img.avatar {
+    width: 10%;
+    border-radius: 50%;
+  }
+
+  #login {
+    padding: 10px;
+  }
+
+  span.password {
+    float: right;
+    padding-top: 16px;
+  }

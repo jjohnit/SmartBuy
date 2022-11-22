@@ -282,3 +282,11 @@ var offers = [
         offer: "Black Friday Offers starting from November 20th on all products"
     },
 ]
+
+
+var currentUser = {
+    name: 'John Doe',
+    email: 'john.doe@uic.edu',
+    last_location: 60607,
+    subscriptions: []
+}
