@@ -1,5 +1,11 @@
-var recentSearches = [1,2];
+var recentProducts = []
 
+var currentUser = {
+    name: 'John Doe',
+    email: 'john.doe@uic.edu',
+    last_location: 60607,
+    subscriptions: []
+}
 
 var products = [
     {
@@ -74,7 +80,7 @@ var stores = [
         id: 5,
         name: "Amazon",
         type: "online",
-        icon: "amazon-icon.png",
+        icon: "amazon-icon2.png",
     },
     {
         id: 6,
@@ -119,7 +125,7 @@ var productPrices = [
     },
     {
         productId: 2,
-        storeId: 3,
+        storeId: 6,
         price: 799,
         tax: 19.99,
         deliveryCharge: 0,
@@ -265,6 +271,16 @@ var offers = [
         storeId: 5,
         offer: "Use code SAVE10 for 10% off"
     },
+    {
+        productId: 5,
+        storeId: 5,
+        offer: "Use code SAVE10 for 10% off"
+    },
+    {
+        productId: 6,
+        storeId: 3,
+        offer: "Black Friday Offers starting from November 20th on all products"
+    },
 ]
 
 
@@ -272,5 +288,5 @@ var currentUser = {
     name: 'John Doe',
     email: 'john.doe@uic.edu',
     last_location: 60607,
-    subscriptions: [1, 2]
+    subscriptions: []
 }

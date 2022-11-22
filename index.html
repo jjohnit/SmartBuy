@@ -11,29 +11,35 @@
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="./smartbuy-db.js"></script>
   <script src="./smartbuy-dal.js"></script>
 </head>
 
 <body>
   <div id="nav-bar-div">
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg" style="background-color: black; color: white;">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#" onclick="setPage('homepage')"><h1><strong>SmartBuy</strong></h1></a>
+        <a class="navbar-brand popup" href="#" onclick="setPage('homepage')" style="color:white;">
+          <h1><strong>SmartBuy</strong></h1>
+        </a>
         <!--<a class="navbar-brand" href="#"><button class="btn btn-success" onclick="setPage('homepage')">SmartBuy</button></a>-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+          style="background-color: white;">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown" value="none" href="#" role="button" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown popup" value="none" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <i class="fa fa-solid fa-bell"></i>
+                <div style="width:20px; height:10px;">
+                <i class="fa fa-solid fa-bell" style="color: white;"></i>
+                </div>
               </a>
-              <ul class="dropdown-menu dropdown-menu-end" id="notifications">
+              <ul class="dropdown-menu dropdown-menu-end dropdown-home" id="notifications">
                 <!--<li><a class="dropdown-item" href="#">Action</a></li>
                       <li><a class="dropdown-item" href="#">Another action</a></li>-->
                 <script>
@@ -43,13 +49,15 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-solid fa-user"></i>
+              <a class="nav-link popup" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div style="width:20px; height:10px;">
+                <i class="fa fa-solid fa-user" style="color: white;"></i>
+                </div>
               </a>
-              <ul class="dropdown-menu dropdown-menu-end">
+              <ul class="dropdown-menu dropdown-menu-end dropdown-home">
                 <li><a class="dropdown-item" href="#">Edit Profile</a></li>
                 <li><a class="dropdown-item" onclick="setPage('subscriptions')" href="#">Subscriptions</a></li>
-                <li><a class="dropdown-item" href="#">Log out</a></li>
+                <li><a class="dropdown-item" onclick="setPage('login')" href="#">Logout</a></li>
               </ul>
             </li>
             <li>
@@ -64,28 +72,60 @@
       </div>
     </nav>
   </div>
+
+  <!--Login Page-->
+  <div id="login">
+    <div class="login-title">
+      <h2><b>LOGIN</b></h2>
+    </div>
+    <form>
+      <div class ='image'>
+        <img src="./assets/login.png" alt="Avatar" class="avatar">
+      </div>
+        <label for="username" id="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter username" name="username" required> <br>
+        <label for="password" id="psw"><b>Password</b></label>
+        <input type="text" placeholder="Enter password" name="password" required> <br>
+        <button class="login-button" type="submit" onclick="setPage('homepage')">LOGIN</button>
+    </form>
+  </div>
+  
   <div class="page-container">
 
     <!-- First row with location and search -->
     <div id="location-search-div" style="display: flex;">
       <div>
-        <input class="form-control mr-sm-2" value="Chicago,IL" aria-label="location" readonly title="Feature in progress">
+        <input class="form-control mr-sm-2" value="60607" aria-label="location"
+          title="Feature in progress" style="background: transparent;" readonly>
       </div>
       <div class="ms-auto" style="display: flex;">
-        <button id= "sort" type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
-        <button id="filter" type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="search-tab">
-        <button class="btn btn-outline-success" type="submit" style="float:right; margin-left: 4px;" id="search-button" >Search</button>
+        <button id="sort" type="button" class="btn btn-outline-secondary btn-sm"
+          style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
+        <button id="filter" type="button" class="btn btn-outline-secondary btn-sm"
+          style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="background: transparent;" id="search-tab">
+        <button class="btn btn-outline-secondary" type="submit" style="float:right; margin-left: 4px;"
+          id="search-button">Search</button>
       </div>
     </div>
 
     <!-- Homepage -->
     <div id="homepage" style="display: none;">
+      <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">Home</li>
+        </ol>
+      </nav>
+      </div>
+      <!--div for breadcrumbs-->
       <!-- div for recent searches -->
       <div class="recent-searches-container">
-        <p style="margin: 0;">Recent Searches</p>
+        <p style="margin: 0;"><strong>Recent Searches</strong></p>
         <div class="recent-searches" id="recents">
-<!--           <div class="card" title="Iphone 14">
+          <p id="empty-recents" style="width: 100%; text-align: center;">No recent searches</p>
+          <!-- <div class="card" title="Iphone 14">
             <img class="card-img-top" src="./assets/iphone-14.png">
           </div>
           <div class="card">
@@ -95,11 +135,11 @@
       </div>
       <!-- Nearest Stores -->
       <div class="nearby-stores-container">
-        <p>Nearby stores</p>
-        <table>
+        <p><strong>Nearby Stores</strong></p>
+        <table id="nearby-stores">
           <tr>
             <td>
-              <p>Walmart <br /> 2 miles from your location</p>
+              <p><img src="./assets/walmart-icon.png" class="icon-image">Walmart <br /> 2 miles from your location</p>
             </td>
             <td>
               <ul>
@@ -110,7 +150,7 @@
           </tr>
           <tr>
             <td>
-              <p>Target <br /> 5 miles from your location</p>
+              <p><img src="./assets/target-icon.png" class="icon-image">Target <br /> 5 miles from your location</p>
             </td>
             <td>
               <ul>
@@ -124,9 +164,20 @@
 
     <!-- Search results page-->
     <div id="search-results" class="search-results-container">
-      <p>Search results</p>  
-      <table id = "search-results-table">
-     <!--<tr>
+      <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Search Results</li>
+        </ol>
+      </nav>
+      </div>
+      <!--div for breadcrumbs-->
+      <p><strong>Search Results</strong></p>
+      <p id="empty-searches" style="width: 100%; text-align: center;">No Results</p>
+      <table id="search-results-table">
+        <!--<tr>
           <td>
             <p>Iphone 14 (black, 128 gb) <br /> icons</p>
           </td>
@@ -148,8 +199,20 @@
 
     <!-- product details page -->
     <div id="product-details" class="product-details-container">
+      <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+          <!-- <li class="breadcrumb-item"><a href="#" onclick='setPage("search-results");'>Search Results</a></li> -->
+          <li class="breadcrumb-item"><a href="#" id="search-result-breadcrumb">Search Results</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Product Details</li>
+        </ol>
+      </nav>
+      </div>
+      <!--div for breadcrumbs-->
       <table id="product-details-table">
-       <!--<tr>
+        <!--<tr>
           <td colspan="3">Apple iPhone 14 (Black, 128 gb)
           <button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;"> Subscribe </button>
           </td>
@@ -199,7 +262,17 @@
 
     <!-- My subscriptions page -->
     <div id="subscriptions" class="subscriptions-container">
-      <p>My subscriptions</p>
+      <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">My Subscriptions</li>
+        </ol>
+      </nav>
+      </div>
+      <!--div for breadcrumbs-->
+      <p><strong>My Subscriptions</strong></p>
       <table id="subscriptions-table">
         <!-- <tr>
           <td>

@@ -1,3 +1,8 @@
+body{
+    font-family: "Roboto", sans-serif !important;
+    background-color: white;
+}
+
 .page-container {
     margin: 1rem;
 }
@@ -6,11 +11,16 @@
 .nearby-stores-container,
 .search-results-container,
 .product-details-container,
-.subscriptions-container {
+.subscriptions-container
+{
     margin: 1rem;
     padding: .5rem;
-    background-color: lightgray;
-    box-shadow: 3px 6px rgba(211, 211, 211, 0.527);
+    /*background-color: lightgray;*/
+    background-color: white;
+    border: solid 2px burlywood;
+    /*box-shadow: 3px 6px rgba(211, 211, 211, 0.527);*/
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
 }
 
 .search-results-container,
@@ -42,15 +52,37 @@
     object-fit: contain;
 }
 
-table {
+/*table {
     border: solid 2px;
-    border-collapse: collapse;
+    border-collapse: separate;
     width: 100%;
+    border-radius: 10px;
 }
-
 td {
     border: solid 2px;
     padding: 4px;
+}*/
+
+table {
+   border-collapse:separate;
+    border:solid black 2px;
+    border-radius:6px;
+    width: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+td, th {
+    border-left:solid black 2px;
+    border-top:solid black 2px;
+}
+
+tr:first-child td{
+    border-top: none;
+}
+
+td:first-child, th:first-child {
+     border-left: none;
 }
 
 button {
@@ -60,18 +92,128 @@ button {
 .product-image{
     width:30px;
     height:60px;
+    border:  1px solid;
+    border-radius: 6px;
+    margin: 4px;
 }
 
 .icon-image {
     width: 25px;
     height: 25px;
+    /*padding-right: 10px;*/
+    margin-right: 10px;
 }
 
 #notifications{
-  width: 300px;
-  height: 200px;
-  overflow-y: scroll;
-  /*scrollbar-color: rebeccapurple green;*/
-  scrollbar-width: thin;
-  padding: 4px;
+    width: 300px;
+    height: 200px;
+    overflow-y: scroll;
+    /*scrollbar-color: rebeccapurple green;*/
+    scrollbar-width: thin;
+    padding: 4px;
+  }
+
+.breadcrumbs a{
+    color: burlywood;
+}  
+
+.search-results-container table tr .hover-table{
+    background-color: rgb(244, 241, 237);
+    box-shadow: burlywood 0px 7px 20px 0px;
+    border-radius:6px;
 }
+
+.search-results-container table {
+    border: none;
+    border-collapse: separate;
+    width: 100%;
+    border-radius: 10px;
+    border-spacing:0 20px;
+    box-shadow: none;
+}
+
+.search-results-container tr {
+    border: solid white 2px;
+    margin-top: 10px;
+    border-top:solid white 2px;
+    border-radius: 6px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.search-results-container tr td{
+    padding:10px;
+    border-top: solid white 2px;
+    border: none;
+}
+
+td {
+    padding:10px;
+}
+
+.search-results-container td:last-child, th:last-child {
+     border-left: none;
+}
+
+.brand-hover{
+    font-size: 50px;
+}
+
+form {
+    border: 3px solid #f1f1f1;
+    margin-left: 15% ;
+    margin-right: 15%;
+}
+
+.login-title{
+    text-align: center;
+    padding: 15px;
+}
+
+#uname,
+#psw {
+    margin-left: 35%;
+}
+
+input[type=text], input[type=password] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-left: 35%;
+  }
+
+  .login-button{
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    margin-left: 40%;
+  }
+
+  .login-button:hover {
+    opacity: 0.8;
+  }
+
+  .image {
+    text-align: center;
+    margin: 20px 0 8px 0;
+  }
+
+  img.avatar {
+    width: 10%;
+    border-radius: 50%;
+  }
+
+  #login {
+    padding: 10px;
+  }
+
+  span.password {
+    float: right;
+    padding-top: 16px;
+  }
