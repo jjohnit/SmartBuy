@@ -42,7 +42,7 @@ function setPage(page) {
             $('#homepage').css('display', '');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
-            $('#navbar-group').css('display', '');
+            $('#logged-in-user').css('display', 'contents');
             $('#edit-profile').css('display','none');
             getRecentSearches();
             sessionStorage.setItem('hash', null);
@@ -58,7 +58,7 @@ function setPage(page) {
             $('#sort').css('display', '');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
-            $('#navbar-group').css('display', '');
+            $('#logged-in-user').css('display', 'contents');
             $('#edit-profile').css('display','none');
             break;
         case 'product-details':
@@ -70,7 +70,7 @@ function setPage(page) {
             $('#sort').css('display', '');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
-            $('#navbar-group').css('display', '');
+            $('#logged-in-user').css('display', 'contents');
             $('#edit-profile').css('display','none');
             break;
         case 'subscriptions':
@@ -84,7 +84,7 @@ function setPage(page) {
             setHash('subscriptions');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
-            $('#navbar-group').css('display', '');
+            $('#logged-in-user').css('display', 'contents');
             $('#edit-profile').css('display','none');
             break;
         case 'login':
@@ -93,7 +93,7 @@ function setPage(page) {
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#location-search-div').css('display', 'none');
-            $('#navbar-group').css('display', 'none');
+            $('#logged-in-user').css('display', 'none');
             $('#login').css('display','');
             $('#edit-profile').css('display','none');
             break;
@@ -107,7 +107,7 @@ function setPage(page) {
             $('#filter').css('display', 'none');
             $('#edit-profile').css('display','');
             $('#location-search-div').css('display', 'flex');
-            $('#navbar-group').css('display', '');
+            $('#logged-in-user').css('display', 'contents');
             break;
     }
 }
