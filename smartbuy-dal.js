@@ -41,7 +41,7 @@ function setPage(page) {
             $('#login').css('display','none');
             $('#homepage').css('display', '');
             $('#filter').css('display', '');
-            $('#location-search-div').css('display', '');
+            $('#location-search-div').css('display', 'flex');
             $('#navbar-group').css('display', '');
             $('#edit-profile').css('display','none');
             getRecentSearches();
@@ -57,7 +57,7 @@ function setPage(page) {
             $('#search-results').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
-            $('#location-search-div').css('display', '');
+            $('#location-search-div').css('display', 'flex');
             $('#navbar-group').css('display', '');
             $('#edit-profile').css('display','none');
             break;
@@ -69,7 +69,7 @@ function setPage(page) {
             $('#product-details').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
-            $('#location-search-div').css('display', '');
+            $('#location-search-div').css('display', 'flex');
             $('#navbar-group').css('display', '');
             $('#edit-profile').css('display','none');
             break;
@@ -83,7 +83,7 @@ function setPage(page) {
             getSubscriptions();
             setHash('subscriptions');
             $('#filter').css('display', '');
-            $('#location-search-div').css('display', '');
+            $('#location-search-div').css('display', 'flex');
             $('#navbar-group').css('display', '');
             $('#edit-profile').css('display','none');
             break;
@@ -98,7 +98,6 @@ function setPage(page) {
             $('#edit-profile').css('display','none');
             break;
         case 'edit-profile':
-            $('#edit-profile').css('display','');
             $('#login').css('display','none');
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
@@ -106,6 +105,9 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#sort').css('display', 'none');
             $('#filter').css('display', 'none');
+            $('#edit-profile').css('display','');
+            $('#location-search-div').css('display', 'flex');
+            $('#navbar-group').css('display', '');
             break;
     }
 }
