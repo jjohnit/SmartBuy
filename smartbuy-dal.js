@@ -34,7 +34,7 @@ function setPage(page) {
             $('#sort').css('display', 'none');
             $('#filter').css('display', '');
             getRecentSearches();
-            sessionStorage.clear();
+            sessionStorage.setItem('hash', null);
             // clear the value in search
             document.getElementById('search-tab').value = '';
             break;
@@ -106,18 +106,22 @@ $(document).on('keypress', '#search-tab', function (event) {
 });
 
 function addRecentSearch(id) {
+    recentProducts = JSON.parse(sessionStorage.getItem('recentProducts')) || [];
     //Remove the id if it is already there
     let index = recentProducts.indexOf(id);
     if(index >= 0) {
         recentProducts.splice(index, 1);
     }
-    recentProducts.push(id)
+    recentProducts.push(id);
+    sessionStorage.setItem('recentProducts', JSON.stringify(recentProducts));
+    console.log(recentProducts);
     /*     <div class="card" title="Iphone 14">
                 <img class="card-img-top" src="./assets/iphone-14.png">
               </div> */
 }
 
 function getRecentSearches() {
+    recentProducts = JSON.parse(sessionStorage.getItem('recentProducts')) || [];
     // Show 'No recent searches when recentSearches is empty'
     if(recentProducts.length <= 0){
         $('#empty-recents').show();
