@@ -31,13 +31,15 @@ function loadPage(hashValues) {
 function setPage(page) {
     switch (page) {
         case 'homepage':
-            $('#homepage').css('display', '');
             $('#search-results').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
-            $('#filter').css('display', '');
             $('#login').css('display','none');
+            $('#homepage').css('display', '');
+            $('#filter').css('display', '');
+            $('#location-search-div').css('display', '');
+            $('#navbar-group').css('display', '');
             getRecentSearches();
             sessionStorage.clear();
             // clear the value in search
@@ -47,39 +49,45 @@ function setPage(page) {
             $('#homepage').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
+            $('#login').css('display','none');
             $('#search-results').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
-            $('#login').css('display','none');
+            $('#location-search-div').css('display', '');
+            $('#navbar-group').css('display', '');
             break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#subscriptions').css('display', 'none');
+            $('#login').css('display','none');
             $('#product-details').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
-            $('#login').css('display','none');
+            $('#location-search-div').css('display', '');
+            $('#navbar-group').css('display', '');
             break;
         case 'subscriptions':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#product-details').css('display', 'none');
-            $('#subscriptions').css('display', '');
             $('#sort').css('display', 'none');
+            $('#login').css('display','none');
+            $('#subscriptions').css('display', '');
             getSubscriptions();
             setHash('subscriptions');
             $('#filter').css('display', '');
-            $('#login').css('display','none');
+            $('#location-search-div').css('display', '');
+            $('#navbar-group').css('display', '');
             break;
         case 'login':
-            $('#login').css('display','');
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', 'none');
-            $('#sort').css('display', 'none');
-            $('#filter').css('display', 'none');
+            $('#location-search-div').css('display', 'none');
+            $('#navbar-group').css('display', 'none');
+            $('#login').css('display','');
             break;
 
     }
