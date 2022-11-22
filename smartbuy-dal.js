@@ -22,6 +22,9 @@ function loadPage(hashValues) {
         case 'homepage':
             setPage('homepage');
             break;
+        case 'edit-profile':
+            setPage('edit-profile');
+            break;
         default:
             setPage('login');
             break;
@@ -40,6 +43,7 @@ function setPage(page) {
             $('#filter').css('display', '');
             $('#location-search-div').css('display', '');
             $('#navbar-group').css('display', '');
+            $('#edit-profile').css('display','none');
             getRecentSearches();
             sessionStorage.clear();
             // clear the value in search
@@ -55,6 +59,7 @@ function setPage(page) {
             $('#filter').css('display', '');
             $('#location-search-div').css('display', '');
             $('#navbar-group').css('display', '');
+            $('#edit-profile').css('display','none');
             break;
         case 'product-details':
             $('#homepage').css('display', 'none');
@@ -66,6 +71,7 @@ function setPage(page) {
             $('#filter').css('display', '');
             $('#location-search-div').css('display', '');
             $('#navbar-group').css('display', '');
+            $('#edit-profile').css('display','none');
             break;
         case 'subscriptions':
             $('#homepage').css('display', 'none');
@@ -79,6 +85,7 @@ function setPage(page) {
             $('#filter').css('display', '');
             $('#location-search-div').css('display', '');
             $('#navbar-group').css('display', '');
+            $('#edit-profile').css('display','none');
             break;
         case 'login':
             $('#homepage').css('display', 'none');
@@ -88,8 +95,18 @@ function setPage(page) {
             $('#location-search-div').css('display', 'none');
             $('#navbar-group').css('display', 'none');
             $('#login').css('display','');
+            $('#edit-profile').css('display','none');
             break;
-
+        case 'edit-profile':
+            $('#edit-profile').css('display','');
+            $('#login').css('display','none');
+            $('#homepage').css('display', 'none');
+            $('#search-results').css('display', 'none');
+            $('#subscriptions').css('display', 'none');
+            $('#product-details').css('display', 'none');
+            $('#sort').css('display', 'none');
+            $('#filter').css('display', 'none');
+            break;
     }
 }
 

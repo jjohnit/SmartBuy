@@ -164,13 +164,17 @@ form {
     margin-right: 15%;
 }
 
-.login-title{
+.login-title,
+.editprofile{
     text-align: center;
     padding: 15px;
 }
 
 #uname,
-#psw {
+#psw,
+#fname,
+#lname,
+#euname {
     margin-left: 35%;
 }
 
@@ -195,7 +199,7 @@ input[type=text], input[type=password] {
     margin-left: 40%;
   }
 
-  .login-button:hover {
+  .login-button:hover{
     opacity: 0.8;
   }
 

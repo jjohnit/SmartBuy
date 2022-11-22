@@ -56,7 +56,7 @@
                   </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-home">
-                  <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                  <li><a class="dropdown-item" onclick="setPage('edit-profile')" href="#">Edit Profile</a></li>
                   <li><a class="dropdown-item" onclick="setPage('subscriptions')" href="#">Subscriptions</a></li>
                   <li><a class="dropdown-item" onclick="setPage('login')" href="#">Logout</a></li>
                 </ul>
@@ -89,6 +89,26 @@
       <label for="password" id="psw"><b>Password</b></label>
       <input type="text" placeholder="Enter password" name="password" required> <br>
       <button class="login-button" type="submit" onclick="setPage('homepage')">LOGIN</button>
+    </form>
+  </div>
+
+  <!--edit profile-->
+  <div id="edit-profile">
+    <div class="editprofile">
+      <h2><b>Edit Profile</b></h2>
+    </div>
+    <form>
+      <div class ='image'>
+        <img src="./assets/login.png" alt="Avatar" class="avatar">
+      </div>
+        <label for="firstname" id="fname"><b>First Name</b></label>
+        <input type="text" placeholder="Enter First Name" name="firstname" value="John"> <br>
+        <label for="lastname" id="lname"><b>Last Name</b></label>
+        <input type="text" placeholder="Enter Last Name" name="lastname" value="Doe"> <br>
+        <label for="eusername" id="euname"><b>Username</b></label>
+        <input type="text" name="eusername" value="johndoe"> <br>
+        <button class="btn btn-outline-secondary" type="submit" style="float:right;">Save Changes</button>
+        <button class="btn btn-outline-secondary" type="submit" style="float:left;">Cancel</button>
     </form>
   </div>
 
