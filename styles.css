@@ -164,7 +164,8 @@ form {
     margin-right: 15%;
 }
 
-.login-title{
+.login-title,
+.editprofile{
     text-align: center;
     padding: 15px;
 }
@@ -219,12 +220,4 @@ input[type=text], input[type=password] {
   span.password {
     float: right;
     padding-top: 16px;
-  }
-
-  #edit-profile {
-    margin: 1rem;
-  }
-
-  .editprofile{
-    margin-left: 15%;
   }
