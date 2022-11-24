@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let hash = getHash();
     // When the user is not logged in, redirect to login page.
-    if(sessionStorage.getItem('currentUser') == null){
+    if (sessionStorage.getItem('currentUser') == null) {
         setPage('login');
     }
     // When a user has logged in, load the page using url
@@ -43,54 +43,55 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
-            $('#login').css('display','none');
+            $('#login').css('display', 'none');
             $('#homepage').css('display', '');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
-            $('#edit-profile').css('display','none');
+            $('#edit-profile').css('display', 'none');
             getRecentSearches();
             sessionStorage.setItem('hash', null);
             // clear the value in search
             document.getElementById('search-tab').value = '';
+            document.getElementById('welcome-username').innerHTML = JSON.parse(sessionStorage.getItem('currentUser')).name;
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
-            $('#login').css('display','none');
+            $('#login').css('display', 'none');
             $('#search-results').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
-            $('#edit-profile').css('display','none');
+            $('#edit-profile').css('display', 'none');
             break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#subscriptions').css('display', 'none');
-            $('#login').css('display','none');
+            $('#login').css('display', 'none');
             $('#product-details').css('display', '');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
-            $('#edit-profile').css('display','none');
+            $('#edit-profile').css('display', 'none');
             break;
         case 'subscriptions':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#sort').css('display', 'none');
-            $('#login').css('display','none');
+            $('#login').css('display', 'none');
             $('#subscriptions').css('display', '');
             getSubscriptions();
             setHash('subscriptions');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
-            $('#edit-profile').css('display','none');
+            $('#edit-profile').css('display', 'none');
             break;
         case 'login':
             $('#homepage').css('display', 'none');
@@ -99,18 +100,18 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#location-search-div').css('display', 'none');
             $('#logged-in-user').css('display', 'none');
-            $('#edit-profile').css('display','none');
-            $('#login').css('display','');
+            $('#edit-profile').css('display', 'none');
+            $('#login').css('display', '');
             break;
         case 'edit-profile':
-            $('#login').css('display','none');
+            $('#login').css('display', 'none');
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#sort').css('display', 'none');
             $('#filter').css('display', 'none');
-            $('#edit-profile').css('display','');
+            $('#edit-profile').css('display', '');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
             break;
@@ -128,23 +129,31 @@ function getHash() {
     return hash;
 }
 
-function validateUser(){
+function validateUser() {
     let userName = document.getElementById('username').value;
     let password = document.getElementById('password').value;
     currentUser = validUsers.find(x => x.email == userName && x.password == password);
     console.log(currentUser);
-    if(currentUser){
+    if (currentUser) {
         setPage('homepage');
+        delete currentUser.password;
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
     }
-    else{
+    else {
         alert('Incorrect username or password');
     }
 }
 
-function logout(){
+function logout() {
     setPage('login');
     sessionStorage.clear();
+}
+
+function onEditProfile() {
+    currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    document.getElementById('ename').value = currentUser.name;
+    document.getElementById('eusername').value = currentUser.email;
+    setPage('edit-profile');
 }
 
 function searchProducts(search_term) {
@@ -178,7 +187,7 @@ function addRecentSearch(id) {
     recentProducts = JSON.parse(sessionStorage.getItem('recentProducts')) || [];
     //Remove the id if it is already there
     let index = recentProducts.indexOf(id);
-    if(index >= 0) {
+    if (index >= 0) {
         recentProducts.splice(index, 1);
     }
     recentProducts.push(id);
@@ -192,18 +201,18 @@ function addRecentSearch(id) {
 function getRecentSearches() {
     recentProducts = JSON.parse(sessionStorage.getItem('recentProducts')) || [];
     // Show 'No recent searches when recentSearches is empty'
-    if(recentProducts.length <= 0){
+    if (recentProducts.length <= 0) {
         $('#empty-recents').show();
         return;
     }
-    
+
     recents = document.getElementById("recents");
     recents.innerHTML = "";
     let recentElement;
     // Get the recent products
     // let productsList = products.filter(x => recentProducts.includes(x.id));
     let product;
-    for(var i = recentProducts.length - 1; i >= 0; i--) {
+    for (var i = recentProducts.length - 1; i >= 0; i--) {
         // $('#empty-recents').hide();
         product = products.find(x => x.id == recentProducts[i]);
         recentElement = document.createElement("div");
@@ -251,7 +260,7 @@ function createTable_searchresults(final_prod_ids) {
         colElem.setAttribute("id", "")
 
         colElem.innerHTML = "";
-        colElem.innerHTML = "<strong>"+getProductDescription(final_prod_ids[i])+"</strong><br/>";
+        colElem.innerHTML = "<strong>" + getProductDescription(final_prod_ids[i]) + "</strong><br/>";
         colElem.setAttribute("onclick", "addRecentSearch(" + final_prod_ids[i] + ")");
         colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prod_ids[i].toString() + "</p>";
 
@@ -438,7 +447,7 @@ function checkSubscription(productid) {
 function getNotifications() {
     var list = document.getElementById('notifications');
     let offersOnSubscriptions = offers.filter(x => currentUser.subscriptions.includes(x.productId));
-    if(offersOnSubscriptions.length <= 0){
+    if (offersOnSubscriptions.length <= 0) {
         list.innerHTML = '<p style="text-align: center;">No notifications</p>';
         return;
     }
@@ -541,7 +550,7 @@ function removeSubscription(productId) {
 }
 
 // To redirect on product details page on click of recent search item.
-$(document).on('click', '.recent-item', function() {
+$(document).on('click', '.recent-item', function () {
     let id = this.dataset.id;
     setHash(`product-details&${id}&${getProductDescription(id).split(' ')[0]}`);
     createTable_product(id);

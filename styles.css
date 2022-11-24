@@ -219,7 +219,7 @@ input[type=text], input[type=password] {
     border-radius: 50%;
   }
 
-  #login {
+  #login, #edit-profile {
     padding: 10px;
   }
 
