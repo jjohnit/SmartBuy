@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     let hash = getHash();
     // When the user is not logged in, redirect to login page.
     if (sessionStorage.getItem('currentUser') == null) {
@@ -6,6 +7,7 @@ $(document).ready(function () {
     }
     // When a user has logged in, load the page using url
     else if (hash != null && hash != 'null') {
+        document.getElementById('welcome-username').innerHTML = currentUser.name;
         loadPage(hash.split('&'));
     }
     else {
@@ -28,7 +30,7 @@ function loadPage(hashValues) {
             setPage('homepage');
             break;
         case 'edit-profile':
-            setPage('edit-profile');
+            onEditProfile();
             break;
         default:
             setPage('login');
@@ -85,13 +87,13 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#sort').css('display', 'none');
             $('#login').css('display', 'none');
+            $('#edit-profile').css('display', 'none');
             $('#subscriptions').css('display', '');
             getSubscriptions();
             setHash('subscriptions');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
-            $('#edit-profile').css('display', 'none');
             break;
         case 'login':
             $('#homepage').css('display', 'none');
@@ -114,6 +116,7 @@ function setPage(page) {
             $('#edit-profile').css('display', '');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
+            setHash('edit-profile');
             break;
     }
 }
@@ -135,9 +138,9 @@ function validateUser() {
     currentUser = validUsers.find(x => x.email == userName && x.password == password);
     console.log(currentUser);
     if (currentUser) {
-        setPage('homepage');
         delete currentUser.password;
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+        setPage('homepage');
     }
     else {
         alert('Incorrect username or password');
@@ -150,9 +153,15 @@ function logout() {
 }
 
 function onEditProfile() {
-    currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     document.getElementById('ename').value = currentUser.name;
     document.getElementById('eusername').value = currentUser.email;
+    setPage('edit-profile');
+}
+
+function updateProfile(){
+    currentUser.name = document.getElementById('ename').value;
+    currentUser.email = document.getElementById('eusername').value;
+    sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
     setPage('edit-profile');
 }
 

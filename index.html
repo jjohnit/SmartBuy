@@ -117,16 +117,16 @@
       <div class="editprofile">
         <h2><b>Edit Profile</b></h2>
       </div>
-      <form>
+      <form onsubmit="updateProfile()" method="post">
         <div class='image'>
           <img src="./assets/login.png" alt="Avatar" class="avatar">
         </div>
         <label class="col-4" for="ename" style="margin-left: 15%;"><b>Name</b></label>
-        <input class="col-6" type="text" placeholder="Name" id="ename" name="ename" value="John" style="margin-left: 15%;"> <br>
+        <input class="col-6" type="text" placeholder="Name" id="ename" name="ename" style="margin-left: 15%;"> <br>
         <label class="col-4" for="eusername" style="margin-left: 15%;"><b>Username</b></label>
-        <input class="col-6" type="text" name="eusername" id="eusername" value="johndoe" style="margin-left: 15%;" readonly> <br>
+        <input class="col-6" type="text" name="eusername" id="eusername" style="margin-left: 15%;" readonly> <br>
         <button class="btn btn-outline-secondary" type="submit" style="float:right;">Save Changes</button>
-        <button class="btn btn-outline-secondary" type="submit" style="float:left;">Cancel</button>
+        <button class="btn btn-outline-secondary" type="submit" onclick="setPage('homepage')" style="float:left;">Cancel</button>
       </form>
     </div>
 
