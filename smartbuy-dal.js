@@ -1,10 +1,15 @@
 $(document).ready(function () {
     let hash = getHash();
-    if (hash) {
+    // When the user is not logged in, redirect to login page.
+    if(sessionStorage.getItem('currentUser') == null){
+        setPage('login');
+    }
+    // When a user has logged in, load the page using url
+    else if (hash != null && hash != 'null') {
         loadPage(hash.split('&'));
     }
     else {
-        setPage('login');
+        setPage('homepage');
     }
 })
 
@@ -94,8 +99,8 @@ function setPage(page) {
             $('#product-details').css('display', 'none');
             $('#location-search-div').css('display', 'none');
             $('#logged-in-user').css('display', 'none');
-            $('#login').css('display','');
             $('#edit-profile').css('display','none');
+            $('#login').css('display','');
             break;
         case 'edit-profile':
             $('#login').css('display','none');
@@ -121,6 +126,25 @@ function getHash() {
     // return window.location.hash.substring(1);
     let hash = sessionStorage.getItem('hash');
     return hash;
+}
+
+function validateUser(){
+    let userName = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+    currentUser = validUsers.find(x => x.email == userName && x.password == password);
+    console.log(currentUser);
+    if(currentUser){
+        setPage('homepage');
+        sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+    }
+    else{
+        alert('Incorrect username or password');
+    }
+}
+
+function logout(){
+    setPage('login');
+    sessionStorage.clear();
 }
 
 function searchProducts(search_term) {

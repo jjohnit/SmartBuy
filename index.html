@@ -58,7 +58,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-home">
                   <li><a class="dropdown-item" onclick="setPage('edit-profile')" href="#">Edit Profile</a></li>
                   <li><a class="dropdown-item" onclick="setPage('subscriptions')" href="#">Subscriptions</a></li>
-                  <li><a class="dropdown-item" onclick="setPage('login')" href="#">Logout</a></li>
+                  <li><a class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
                 </ul>
               </li>
               <li>
@@ -80,16 +80,16 @@
     <div class="login-title">
       <h2><b>LOGIN</b></h2>
     </div>
-    <form>
+    <div class="login-form">
       <div class='image'>
         <img src="./assets/login.png" alt="Avatar" class="avatar">
       </div>
       <label for="username" id="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter username" name="username" required> <br>
+      <input type="text" placeholder="Enter username" name="username" id="username" required> <br>
       <label for="password" id="psw"><b>Password</b></label>
-      <input type="text" placeholder="Enter password" name="password" required> <br>
-      <button class="login-button" type="submit" onclick="setPage('homepage')">LOGIN</button>
-    </form>
+      <input type="password" placeholder="Enter password" name="password" id="password" required> <br>
+      <button class="login-button" type="submit" onclick="validateUser()">LOGIN</button>
+    </div>
   </div>
 
   <div class="page-container">
