@@ -1,5 +1,6 @@
 $(document).ready(function () {
     currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    getNotifications();
     let hash = getHash();
     // When the user is not logged in, redirect to login page.
     if (sessionStorage.getItem('currentUser') == null) {
