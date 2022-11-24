@@ -80,7 +80,7 @@
     <div class="login-title">
       <h2><b>LOGIN</b></h2>
     </div>
-    <form method="post">
+    <form method="post" onsubmit="validateUser()">
       <div class='image'>
         <img src="./assets/login.png" alt="Avatar" class="avatar">
       </div>
@@ -88,7 +88,7 @@
       <input type="text" placeholder="Enter username" name="username" id="username" required> <br>
       <label for="password" id="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter password" name="password" id="password" required> <br>
-      <button class="login-button" type="submit" onclick="validateUser()">LOGIN</button>
+      <button class="login-button" type="submit">LOGIN</button>
     </form>
   </div>
 
