@@ -158,6 +158,12 @@ td {
     font-size: 50px;
 }
 
+.login-form {
+    border: 3px solid #f1f1f1;
+    margin-left: 15% ;
+    margin-right: 15%;
+}
+
 form {
     border: 3px solid #f1f1f1;
     margin-left: 15% ;
@@ -213,7 +219,7 @@ input[type=text], input[type=password] {
     border-radius: 50%;
   }
 
-  #login {
+  #login, #edit-profile {
     padding: 10px;
   }
 
