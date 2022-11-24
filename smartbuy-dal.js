@@ -139,6 +139,7 @@ function validateUser() {
     console.log(currentUser);
     if (currentUser) {
         delete currentUser.password;
+        currentUser.subscriptions = [];
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
         setPage('homepage');
     }
@@ -542,6 +543,7 @@ function createViewForSubscriptions(subscriptions) {
 // To add a new subscription
 function addSubscription(productId) {
     currentUser.subscriptions.push(productId);
+    sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
     getNotifications();
 }
 
@@ -550,6 +552,7 @@ function removeSubscription(productId) {
     let index = currentUser.subscriptions.indexOf(productId);
     if (index >= 0) {
         currentUser.subscriptions.splice(index, 1);
+        sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
         getSubscriptions();
         getNotifications();
     }
