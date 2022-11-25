@@ -432,6 +432,25 @@ $(document).on('mouseout', '#search-results-table tr', function () {
 });
 
 
+
+$(document).on('click', '#nearby-stores tr', function () {
+    var store = $(this).find("td:first").find('p').find('strong').text();
+    searchStores(store);
+});
+
+
+$(document).on('mouseover', '#nearby-stores tr', function () {
+    $("#nearby-stores").css("cursor", "pointer");
+    $(this).find("td").addClass('hover-table');
+});
+
+$(document).on('mouseout', '#nearby-stores tr', function () {
+    $("#nearby-stores").css("cursor", "pointer");
+    $(this).find("td").removeClass('hover-table');
+});
+
+
+
 $(document).on('mouseover', '.popup', function () {
     $(this).find("div:first").addClass('fa-xl');
     $(this).find("h1").addClass('brand-hover');

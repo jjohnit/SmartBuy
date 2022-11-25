@@ -118,13 +118,17 @@ button {
     color: burlywood;
 }  
 
-.search-results-container table tr .hover-table{
+.search-results-container table tr .hover-table,
+.nearby-stores-container table tr .hover-table
+{
     background-color: rgb(244, 241, 237);
     box-shadow: burlywood 0px 7px 20px 0px;
     border-radius:6px;
 }
 
-.search-results-container table {
+.search-results-container table,
+.nearby-stores-container table
+ {
     border: none;
     border-collapse: separate;
     width: 100%;
@@ -133,7 +137,9 @@ button {
     box-shadow: none;
 }
 
-.search-results-container tr {
+.search-results-container tr,
+.nearby-stores-container tr
+ {
     border: solid white 2px;
     margin-top: 10px;
     border-top:solid white 2px;
@@ -141,7 +147,9 @@ button {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.search-results-container tr td{
+.search-results-container tr td,
+.nearby-stores-container tr td
+{
     padding:10px;
     border-top: solid white 2px;
     border: none;
@@ -151,7 +159,9 @@ td {
     padding:10px;
 }
 
-.search-results-container td:last-child, th:last-child {
+.search-results-container td:last-child, th:last-child,
+.nearby-stores-container td:last-child, th:last-child,
+ {
      border-left: none;
 }
 
@@ -235,3 +245,4 @@ input[type=text], input[type=password] {
     border-radius:6px;
     cursor: pointer;
  } 
+ 
