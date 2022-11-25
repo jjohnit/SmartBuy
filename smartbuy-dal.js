@@ -33,6 +33,9 @@ function loadPage(hashValues) {
         case 'edit-profile':
             onEditProfile();
             break;
+        case 'search-results-store':
+            searchStores(hashValues[1]);
+            break;
         default:
             setPage('login');
             break;
@@ -79,8 +82,8 @@ function setPage(page) {
                 $('#login').css('display', 'none');
                 $('#search-results').css('display', 'none');
                 $('#search-results-store').css('display', '');
-                $('#sort').css('display', '');
-                $('#filter').css('display', '');
+                $('#sort').css('display', 'none');
+                $('#filter').css('display', 'none');
                 $('#location-search-div').css('display', 'flex');
                 $('#logged-in-user').css('display', 'contents');
                 $('#edit-profile').css('display', 'none');
