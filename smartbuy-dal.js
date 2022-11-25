@@ -364,8 +364,12 @@ function createTable_searchresults(final_prod_ids) {
     $('#empty-searches').hide();
     tableElem = document.getElementById("search-results-table");
     tableElem.innerHTML = "";
+
+    final_table=[];
+    final_dict={};
+
     for (let i = 0; i < final_prod_ids.length; i++) {
-        rowElem = document.createElement('tr');
+        /*rowElem = document.createElement('tr');
         colElem = document.createElement('td');
         colElem.setAttribute("id", "")
 
@@ -373,9 +377,10 @@ function createTable_searchresults(final_prod_ids) {
         colElem.innerHTML = "<strong>" + getProductDescription(final_prod_ids[i]) + "</strong><br/>";
         colElem.setAttribute("onclick", "addRecentSearch(" + final_prod_ids[i] + ")");
         colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prod_ids[i].toString() + "</p>";
-
+        */
+        final_dict={id:0,desc:"",price:0};
         var prices = [];
-        var stores_final = [];
+        //var stores_final = [];
         for (let j = 0; j < productPrices.length; j++) {
             if (productPrices[j].productId == final_prod_ids[i]) {
                 var total = productPrices[j].price +
@@ -383,11 +388,50 @@ function createTable_searchresults(final_prod_ids) {
                     productPrices[j].deliveryCharge -
                     productPrices[j].discount;
                 prices.push(total);
+                //stores_final.push(productPrices[j].storeId);
+            }
+        }
+        prices.sort();
+        final_dict.id= final_prod_ids[i];
+        final_dict.desc=getProductDescription(final_prod_ids[i]);
+        final_dict.price=prices[0];
+        final_table.push(final_dict)
+    }   
+    
+    if(document.getElementById('sort-by-name').checked==true){
+        final_table.sort((a,b) => (a.desc > b.desc) ? 1 : ((b.desc > a.desc) ? -1 : 0));
+    }
+    else if(document.getElementById('sort-by-price').checked==true){
+        final_table.sort((a,b) => a.price - b.price);
+    }
+
+    if(document.getElementById('price-low').value!=0 && document.getElementById('price-high').value!=0)
+    {
+        final_table=final_table.filter(function(a) { 
+            return ( a.price >= document.getElementById('price-low').value &&  
+            a.price <= document.getElementById('price-high').value);
+        });
+    }
+
+    for(let i = 0;i<final_table.length;i++){
+        rowElem = document.createElement('tr');
+        colElem = document.createElement('td');
+        colElem.setAttribute("id", "")
+
+        colElem.innerHTML = "";
+        colElem.innerHTML = "<strong>" + final_table[i].desc + "</strong><br/>";
+        colElem.setAttribute("onclick", "addRecentSearch(" + final_table[i].id + ")");
+        colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_table[i].id.toString() + "</p>";
+        colElem.innerHTML = colElem.innerHTML + "<br />";
+
+        var stores_final = [];
+        for (let j = 0; j < productPrices.length; j++) {
+            if (productPrices[j].productId == final_table[i].id) {
                 stores_final.push(productPrices[j].storeId);
             }
         }
 
-        colElem.innerHTML = colElem.innerHTML + "<br />";
+
         for (let j = 0; j < stores_final.length; j++) {
             for (let k = 0; k < stores.length; k++) {
                 if (stores[k].id == stores_final[j]) {
@@ -397,10 +441,8 @@ function createTable_searchresults(final_prod_ids) {
             }
         }
         rowElem.appendChild(colElem);
-
-        prices.sort();
         colElem = document.createElement('td');
-        colElem.innerHTML = "Starting from <br /><strong>" + prices[0].toString() + "</strong>";
+        colElem.innerHTML = "Starting from <br /><strong>" + final_table[i].price.toString() + "</strong>";
         rowElem.appendChild(colElem);
 
         tableElem.appendChild(rowElem);
@@ -686,3 +728,28 @@ $(document).on('click', '.recent-item', function () {
     setHash(`product-details&${id}&${getProductDescription(id).split(' ')[0]}`);
     createTable_product(id);
 });
+
+$(document).on('click','#sort', function () {
+    $('#sortModal').modal('show');
+  });
+
+  $(document).on('click','#save-sort', function () {
+    let hash = getHash();
+    if (hash != null && hash != 'null') {
+        searchProducts(hash.split('&')[1]);
+    }
+}); 
+
+$(document).on('click','#filter', function () {
+    $('#filterModal').modal('show');
+  });
+
+  $(document).on('click','#save-filter', function (){
+    if(document.getElementById('price-low').value==0 || document.getElementById('price-high').value==0){
+        alert('Please enter both price low and price high');
+    }
+    let hash = getHash();
+    if (hash != null && hash != 'null') {
+        searchProducts(hash.split('&')[1]);
+    }
+}); 

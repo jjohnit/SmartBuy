@@ -102,9 +102,51 @@
       </div>
       <div class="ms-auto" style="display: flex;">
         <button id="sort" type="button" class="btn btn-outline-secondary btn-sm"
-          style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
+          style="float:right; margin-right:.5rem;">
+          <i class="fas fa-sort"></i> </button>
+<!-- Modal HTML -->
+<div id="sortModal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Sort by</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+              <p><input type="radio" id="sort-by-name" name="sort-by" value="Name">
+                <label for="sort-by-name">Name</label><br></p>
+                <p><input type="radio" id="sort-by-price" name="sort-by" value="Price">
+                  <label for="sort-by-price">Price</label><br></p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" id="save-sort" data-bs-dismiss="modal">Save changes</button>
+          </div>
+      </div>
+  </div>
+</div>
         <button id="filter" type="button" class="btn btn-outline-secondary btn-sm"
           style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
+<!-- Modal HTML -->
+<div id="filterModal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Filter by</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Price Low:<input type="number" class="form-control" id="price-low">
+              Price High:<input type="number" class="form-control" id="price-high">
+            </p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" id="save-filter" data-bs-dismiss="modal">Save changes</button>
+          </div>
+      </div>
+  </div>
+</div>
           <select class="form-select" aria-label="Search for" placeholder="Search for" id="search-category" required>
             <option selected>Search for...</option>
             <option value="1">Products</option>
@@ -169,8 +211,7 @@
             </td>
             <td>
               <ul>
-                <li>10% off on electronics</li>
-                <li>5% off on groceries</li>
+                <li>$15 off on all phones for next 1 week</li>
               </ul>
             </td>
           </tr>
@@ -180,7 +221,8 @@
             </td>
             <td>
               <ul>
-                <li>10% off on home appliances</li>
+                <li>10% off on Electronics in 2 days</li>
+                <li>Black Friday Offers starting from November 20th on all products</li>
               </ul>
             </td>
           </tr>

@@ -107,7 +107,7 @@ var productPrices = [
     {
         productId: 1,
         storeId: 1,
-        price: 1299,
+        price: 1999,
         tax: 39.99,
         deliveryCharge: 0,
         discount: 149,
@@ -115,7 +115,7 @@ var productPrices = [
     {
         productId: 1,
         storeId: 5,
-        price: 1299,
+        price: 1999,
         tax: 39.99,
         deliveryCharge: 10,
         discount: 99
@@ -123,7 +123,7 @@ var productPrices = [
     {
         productId: 1,
         storeId: 4,
-        price: 1299,
+        price: 1999,
         tax: 39.99,
         deliveryCharge: 10,
         discount: 0

@@ -160,7 +160,7 @@ td {
 }
 
 .search-results-container td:last-child, th:last-child,
-.nearby-stores-container td:last-child, th:last-child,
+.nearby-stores-container td:last-child, th:last-child
  {
      border-left: none;
 }
