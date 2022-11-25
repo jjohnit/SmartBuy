@@ -43,12 +43,13 @@ function setPage(page) {
     switch (page) {
         case 'homepage':
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
             $('#login').css('display', 'none');
             $('#homepage').css('display', '');
-            $('#filter').css('display', '');
+            $('#filter').css('display', 'none');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
             $('#edit-profile').css('display', 'none');
@@ -64,15 +65,30 @@ function setPage(page) {
             $('#subscriptions').css('display', 'none');
             $('#login').css('display', 'none');
             $('#search-results').css('display', '');
+            $('#search-results-store').css('display', 'none');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
             $('#edit-profile').css('display', 'none');
             break;
+        case 'search-results-store':
+                $('#homepage').css('display', 'none');
+                $('#product-details').css('display', 'none');
+                $('#subscriptions').css('display', 'none');
+                $('#login').css('display', 'none');
+                $('#search-results').css('display', 'none');
+                $('#search-results-store').css('display', '');
+                $('#sort').css('display', '');
+                $('#filter').css('display', '');
+                $('#location-search-div').css('display', 'flex');
+                $('#logged-in-user').css('display', 'contents');
+                $('#edit-profile').css('display', 'none');
+                break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#login').css('display', 'none');
             $('#product-details').css('display', '');
@@ -85,6 +101,7 @@ function setPage(page) {
         case 'subscriptions':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#sort').css('display', 'none');
             $('#login').css('display', 'none');
@@ -99,6 +116,7 @@ function setPage(page) {
         case 'login':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#location-search-div').css('display', 'none');
@@ -110,6 +128,7 @@ function setPage(page) {
             $('#login').css('display', 'none');
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#sort').css('display', 'none');
@@ -181,16 +200,92 @@ function searchProducts(search_term) {
     setPage('search-results');
 }
 
+
+function searchStores(search_term) {
+    var final_store_ids = [];
+    for (let j = 0; j < stores.length; j++) {
+        if (stores[j].type=="store"){
+        var storename = stores[j].name.toLowerCase().replace(/\s/g, '');
+        if (storename.includes(search_term.toLowerCase().replace(/\s/g, ''))) {
+            final_store_ids.push(stores[j].id);
+        }
+    }
+    }
+    createTable_searchresultsstore(final_store_ids);
+    // set hash to retain page on refresh
+    setHash(`search-results&${search_term}`);
+    setPage('search-results-store');
+}
+
+
+function createTable_searchresultsstore(final_store_ids) {
+    $('#empty-searches-store').hide();
+    tableElem = document.getElementById("search-results-store-table");
+    tableElem.innerHTML = "";
+    for (let i = 0; i < final_store_ids.length; i++) {
+        rowElem = document.createElement('tr');
+        colElem = document.createElement('td');
+        colElem.innerHTML = "";
+        let store = stores.find(x => x.id == final_store_ids[i]);
+        colElem.innerHTML = "<img src='./assets/" + store.icon + "' class='icon-image'>"+"<strong>"+store.name.toString() + "</strong><br/>";
+        
+        rowElem.appendChild(colElem);
+        colElem=document.createElement('td');
+        colElem.rowSpan=1000;
+        colElem.innerHTML="<strong>Promotions</strong>";
+        colElem.innerHTML+="<ul>";
+        for(let j=0;j<offers.length;j++){
+            if (offers[j].storeId==final_store_ids[i]){
+            colElem.innerHTML+="<li>"+offers[j].offer+"</li>";
+            }
+        }
+        colElem.innerHTML+="</ul>";
+        rowElem.appendChild(colElem);
+        tableElem.appendChild(rowElem);
+
+
+        for(let j=0;j<storeLocations.length;j++){
+            if(storeLocations[j].storeId==final_store_ids[i]){
+            rowElem = document.createElement('tr');
+            colElem = document.createElement('td');
+            colElem.innerHTML="";
+            colElem.innerHTML = storeLocations[j].address+"<br/>("+storeLocations[j].location+")";
+            rowElem.appendChild(colElem);
+            tableElem.appendChild(rowElem)
+        }}}
+
+    if (final_store_ids == "") {
+        $('#empty-searches-store').show();
+    }
+}
 $(document).on('click', '#search-button', function () {
     let search_term = document.getElementById('search-tab').value;
-    searchProducts(search_term);
-})
+    //searchProducts(search_term);
+    if (document.getElementById('search-category').value==1){
+        searchProducts(search_term);
+        }
+        else if (document.getElementById('search-category').value==2){
+            searchStores(search_term);
+            }
+        else{
+            alert("Please select what you want to search for!");
+        }
+});
 
 // Using Enter to submit search input
 $(document).on('keypress', '#search-tab', function (event) {
     if (event.key === 'Enter') {
         let search_term = document.getElementById('search-tab').value;
-        searchProducts(search_term);
+        //searchProducts(search_term);
+        if (document.getElementById('search-category').value==1){
+            searchProducts(search_term);
+            }
+            else if (document.getElementById('search-category').value==2){
+                searchStores(search_term);
+                }
+            else{
+                alert("Please select what you want to search for!");
+            }
     }
 });
 

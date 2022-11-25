@@ -105,6 +105,11 @@
           style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
         <button id="filter" type="button" class="btn btn-outline-secondary btn-sm"
           style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
+          <select class="form-select" aria-label="Search for" placeholder="Search for" id="search-category" required>
+            <option selected>Search for...</option>
+            <option value="1">Products</option>
+            <option value="2">Stores</option>
+          </select>  
         <input class="form-control" type="search" placeholder="Search" aria-label="Search"
           style="background: transparent;" id="search-tab">
         <button class="btn btn-outline-secondary" type="submit" style="float:right; margin-left: 4px;"
@@ -215,7 +220,41 @@
           </td>
         </tr>-->
       </table>
+    </div>
 
+
+    <!-- Search results for stores page-->
+    <div id="search-results-store">
+      <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Search Results</li>
+          </ol>
+        </nav>
+      </div>
+      <!--div for breadcrumbs-->
+      <p><strong>Search Results</strong></p>
+      <p id="empty-searches-store" style="width: 100%; text-align: center; display:none;">No Results</p>
+      <table id="search-results-store-table">
+        <!--<tr>
+          <td>
+            <p>Iphone 14 (black, 128 gb) <br /> icons</p>
+          </td>
+          <td>
+            <p>Starting from <br><strong>$1150</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Iphone 14 (black, 128 gb) <br /> icons</p>
+          </td>
+          <td>
+            <p>Starting from <br><strong>$1150</strong></p>
+          </td>
+        </tr>-->
+      </table>
     </div>
 
     <!-- product details page -->

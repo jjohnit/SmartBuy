@@ -303,3 +303,27 @@ var currentUser = {
     last_location: 60607,
     subscriptions: []
 }
+
+
+var storeLocations = [
+    {
+    storeId: 1,
+    branchId: 1,
+    address: '1257 S Claremont',
+    location: '2 miles from your location',
+},
+
+{
+    storeId: 3,
+    branchId: 1,
+    address: '390 W Polk St',
+    location: '5 miles from your location',
+},
+
+{
+    storeId: 1,
+    branchId: 2,
+    address: '1975 W Cermark St',
+    location: '8 miles from your location',
+}
+]
