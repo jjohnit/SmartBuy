@@ -11,7 +11,8 @@ body{
 .nearby-stores-container,
 .search-results-container,
 .product-details-container,
-.subscriptions-container
+.subscriptions-container,
+.search-results-store-container
 {
     margin: 1rem;
     padding: .5rem;
@@ -227,3 +228,10 @@ input[type=text], input[type=password] {
     float: right;
     padding-top: 16px;
   }
+
+ .card:hover{
+    background-color: rgb(244, 241, 237);
+    box-shadow: burlywood 0px 7px 20px 0px;
+    border-radius:6px;
+    cursor: pointer;
+ } 
