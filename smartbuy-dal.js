@@ -33,6 +33,9 @@ function loadPage(hashValues) {
         case 'edit-profile':
             onEditProfile();
             break;
+        case 'search-results-store':
+            searchStores(hashValues[1]);
+            break;
         default:
             setPage('login');
             break;
@@ -43,12 +46,13 @@ function setPage(page) {
     switch (page) {
         case 'homepage':
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#sort').css('display', 'none');
             $('#login').css('display', 'none');
             $('#homepage').css('display', '');
-            $('#filter').css('display', '');
+            $('#filter').css('display', 'none');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
             $('#edit-profile').css('display', 'none');
@@ -64,15 +68,30 @@ function setPage(page) {
             $('#subscriptions').css('display', 'none');
             $('#login').css('display', 'none');
             $('#search-results').css('display', '');
+            $('#search-results-store').css('display', 'none');
             $('#sort').css('display', '');
             $('#filter').css('display', '');
             $('#location-search-div').css('display', 'flex');
             $('#logged-in-user').css('display', 'contents');
             $('#edit-profile').css('display', 'none');
             break;
+        case 'search-results-store':
+                $('#homepage').css('display', 'none');
+                $('#product-details').css('display', 'none');
+                $('#subscriptions').css('display', 'none');
+                $('#login').css('display', 'none');
+                $('#search-results').css('display', 'none');
+                $('#search-results-store').css('display', '');
+                $('#sort').css('display', 'none');
+                $('#filter').css('display', 'none');
+                $('#location-search-div').css('display', 'flex');
+                $('#logged-in-user').css('display', 'contents');
+                $('#edit-profile').css('display', 'none');
+                break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#login').css('display', 'none');
             $('#product-details').css('display', '');
@@ -85,6 +104,7 @@ function setPage(page) {
         case 'subscriptions':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#sort').css('display', 'none');
             $('#login').css('display', 'none');
@@ -99,6 +119,7 @@ function setPage(page) {
         case 'login':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#location-search-div').css('display', 'none');
@@ -110,6 +131,7 @@ function setPage(page) {
             $('#login').css('display', 'none');
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', 'none');
             $('#subscriptions').css('display', 'none');
             $('#product-details').css('display', 'none');
             $('#sort').css('display', 'none');
@@ -181,16 +203,93 @@ function searchProducts(search_term) {
     setPage('search-results');
 }
 
+
+function searchStores(search_term) {
+    var final_store_ids = [];
+    for (let j = 0; j < stores.length; j++) {
+        if (stores[j].type=="store"){
+        var storename = stores[j].name.toLowerCase().replace(/\s/g, '');
+        if (storename.includes(search_term.toLowerCase().replace(/\s/g, ''))) {
+            final_store_ids.push(stores[j].id);
+        }
+    }
+    }
+    createTable_searchresultsstore(final_store_ids);
+    // set hash to retain page on refresh
+    setHash(`search-results-store&${search_term}`)
+    setPage('search-results-store');
+}
+
+
+function createTable_searchresultsstore(final_store_ids) {
+    $('#empty-searches-store').hide();
+    tableElem = document.getElementById("search-results-store-table");
+    tableElem.innerHTML = "";
+    for (let i = 0; i < final_store_ids.length; i++) {
+        rowElem = document.createElement('tr');
+        colElem = document.createElement('td');
+        colElem.innerHTML = "";
+        let store = stores.find(x => x.id == final_store_ids[i]);
+        colElem.innerHTML = "<img src='./assets/" + store.icon + "' class='icon-image'>"+"<strong>"+store.name.toString() + "</strong><br/>";
+        
+        rowElem.appendChild(colElem);
+        colElem=document.createElement('td');
+        colElem.rowSpan=1000;
+        colElem.innerHTML="<strong>Promotions</strong>";
+        colElem.innerHTML+="<ul>";
+        const unique_offers = [...new Map(offers.map((m) => [m.offer, m])).values()];
+        for(let j=0;j<unique_offers.length;j++){
+            if (unique_offers[j].storeId==final_store_ids[i]){
+            colElem.innerHTML+="<li>"+unique_offers[j].offer+"</li>";
+            }
+        }
+        colElem.innerHTML+="</ul>";
+        rowElem.appendChild(colElem);
+        tableElem.appendChild(rowElem);
+
+
+        for(let j=0;j<storeLocations.length;j++){
+            if(storeLocations[j].storeId==final_store_ids[i]){
+            rowElem = document.createElement('tr');
+            colElem = document.createElement('td');
+            colElem.innerHTML="";
+            colElem.innerHTML = storeLocations[j].address+"<br/>("+storeLocations[j].location+")";
+            rowElem.appendChild(colElem);
+            tableElem.appendChild(rowElem)
+        }}}
+
+    if (final_store_ids == "") {
+        $('#empty-searches-store').show();
+    }
+}
 $(document).on('click', '#search-button', function () {
     let search_term = document.getElementById('search-tab').value;
-    searchProducts(search_term);
-})
+    //searchProducts(search_term);
+    if (document.getElementById('search-category').value==1){
+        searchProducts(search_term);
+        }
+        else if (document.getElementById('search-category').value==2){
+            searchStores(search_term);
+            }
+        else{
+            alert("Please select what you want to search for!");
+        }
+});
 
 // Using Enter to submit search input
 $(document).on('keypress', '#search-tab', function (event) {
     if (event.key === 'Enter') {
         let search_term = document.getElementById('search-tab').value;
-        searchProducts(search_term);
+        //searchProducts(search_term);
+        if (document.getElementById('search-category').value==1){
+            searchProducts(search_term);
+            }
+            else if (document.getElementById('search-category').value==2){
+                searchStores(search_term);
+                }
+            else{
+                alert("Please select what you want to search for!");
+            }
     }
 });
 
@@ -265,8 +364,12 @@ function createTable_searchresults(final_prod_ids) {
     $('#empty-searches').hide();
     tableElem = document.getElementById("search-results-table");
     tableElem.innerHTML = "";
+
+    final_table=[];
+    final_dict={};
+
     for (let i = 0; i < final_prod_ids.length; i++) {
-        rowElem = document.createElement('tr');
+        /*rowElem = document.createElement('tr');
         colElem = document.createElement('td');
         colElem.setAttribute("id", "")
 
@@ -274,9 +377,10 @@ function createTable_searchresults(final_prod_ids) {
         colElem.innerHTML = "<strong>" + getProductDescription(final_prod_ids[i]) + "</strong><br/>";
         colElem.setAttribute("onclick", "addRecentSearch(" + final_prod_ids[i] + ")");
         colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prod_ids[i].toString() + "</p>";
-
+        */
+        final_dict={id:0,desc:"",price:0};
         var prices = [];
-        var stores_final = [];
+        //var stores_final = [];
         for (let j = 0; j < productPrices.length; j++) {
             if (productPrices[j].productId == final_prod_ids[i]) {
                 var total = productPrices[j].price +
@@ -284,11 +388,50 @@ function createTable_searchresults(final_prod_ids) {
                     productPrices[j].deliveryCharge -
                     productPrices[j].discount;
                 prices.push(total);
+                //stores_final.push(productPrices[j].storeId);
+            }
+        }
+        prices.sort();
+        final_dict.id= final_prod_ids[i];
+        final_dict.desc=getProductDescription(final_prod_ids[i]);
+        final_dict.price=prices[0];
+        final_table.push(final_dict)
+    }   
+    
+    if(document.getElementById('sort-by-name').checked==true){
+        final_table.sort((a,b) => (a.desc > b.desc) ? 1 : ((b.desc > a.desc) ? -1 : 0));
+    }
+    else if(document.getElementById('sort-by-price').checked==true){
+        final_table.sort((a,b) => a.price - b.price);
+    }
+
+    if(document.getElementById('price-low').value!=0 && document.getElementById('price-high').value!=0)
+    {
+        final_table=final_table.filter(function(a) { 
+            return ( a.price >= document.getElementById('price-low').value &&  
+            a.price <= document.getElementById('price-high').value);
+        });
+    }
+
+    for(let i = 0;i<final_table.length;i++){
+        rowElem = document.createElement('tr');
+        colElem = document.createElement('td');
+        colElem.setAttribute("id", "")
+
+        colElem.innerHTML = "";
+        colElem.innerHTML = "<strong>" + final_table[i].desc + "</strong><br/>";
+        colElem.setAttribute("onclick", "addRecentSearch(" + final_table[i].id + ")");
+        colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_table[i].id.toString() + "</p>";
+        colElem.innerHTML = colElem.innerHTML + "<br />";
+
+        var stores_final = [];
+        for (let j = 0; j < productPrices.length; j++) {
+            if (productPrices[j].productId == final_table[i].id) {
                 stores_final.push(productPrices[j].storeId);
             }
         }
 
-        colElem.innerHTML = colElem.innerHTML + "<br />";
+
         for (let j = 0; j < stores_final.length; j++) {
             for (let k = 0; k < stores.length; k++) {
                 if (stores[k].id == stores_final[j]) {
@@ -298,10 +441,8 @@ function createTable_searchresults(final_prod_ids) {
             }
         }
         rowElem.appendChild(colElem);
-
-        prices.sort();
         colElem = document.createElement('td');
-        colElem.innerHTML = "Starting from <br /><strong>" + prices[0].toString() + "</strong>";
+        colElem.innerHTML = "Starting from <br /><strong>" + final_table[i].price.toString() + "</strong>";
         rowElem.appendChild(colElem);
 
         tableElem.appendChild(rowElem);
@@ -331,6 +472,25 @@ $(document).on('mouseout', '#search-results-table tr', function () {
     $("#search-results-table").css("cursor", "pointer");
     $(this).find("td").removeClass('hover-table');
 });
+
+
+
+$(document).on('click', '#nearby-stores tr', function () {
+    var store = $(this).find("td:first").find('p').find('strong').text();
+    searchStores(store);
+});
+
+
+$(document).on('mouseover', '#nearby-stores tr', function () {
+    $("#nearby-stores").css("cursor", "pointer");
+    $(this).find("td").addClass('hover-table');
+});
+
+$(document).on('mouseout', '#nearby-stores tr', function () {
+    $("#nearby-stores").css("cursor", "pointer");
+    $(this).find("td").removeClass('hover-table');
+});
+
 
 
 $(document).on('mouseover', '.popup', function () {
@@ -568,3 +728,28 @@ $(document).on('click', '.recent-item', function () {
     setHash(`product-details&${id}&${getProductDescription(id).split(' ')[0]}`);
     createTable_product(id);
 });
+
+$(document).on('click','#sort', function () {
+    $('#sortModal').modal('show');
+  });
+
+  $(document).on('click','#save-sort', function () {
+    let hash = getHash();
+    if (hash != null && hash != 'null') {
+        searchProducts(hash.split('&')[1]);
+    }
+}); 
+
+$(document).on('click','#filter', function () {
+    $('#filterModal').modal('show');
+  });
+
+  $(document).on('click','#save-filter', function (){
+    if(document.getElementById('price-low').value==0 || document.getElementById('price-high').value==0){
+        alert('Please enter both price low and price high');
+    }
+    let hash = getHash();
+    if (hash != null && hash != 'null') {
+        searchProducts(hash.split('&')[1]);
+    }
+}); 

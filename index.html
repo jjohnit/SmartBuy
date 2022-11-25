@@ -102,9 +102,56 @@
       </div>
       <div class="ms-auto" style="display: flex;">
         <button id="sort" type="button" class="btn btn-outline-secondary btn-sm"
-          style="float:right; margin-right:.5rem;"> <i class="fas fa-sort"></i> </button>
+          style="float:right; margin-right:.5rem;">
+          <i class="fas fa-sort"></i> </button>
+<!-- Modal HTML -->
+<div id="sortModal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Sort by</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+              <p><input type="radio" id="sort-by-name" name="sort-by" value="Name">
+                <label for="sort-by-name">Name</label><br></p>
+                <p><input type="radio" id="sort-by-price" name="sort-by" value="Price">
+                  <label for="sort-by-price">Price</label><br></p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" id="save-sort" data-bs-dismiss="modal">Save changes</button>
+          </div>
+      </div>
+  </div>
+</div>
         <button id="filter" type="button" class="btn btn-outline-secondary btn-sm"
           style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
+<!-- Modal HTML -->
+<div id="filterModal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Filter by</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Price Low:<input type="number" class="form-control" id="price-low">
+              Price High:<input type="number" class="form-control" id="price-high">
+            </p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" id="save-filter" data-bs-dismiss="modal">Save changes</button>
+          </div>
+      </div>
+  </div>
+</div>
+          <select class="form-select" aria-label="Search for" placeholder="Search for" id="search-category" required>
+            <option selected>Search for...</option>
+            <option value="1">Products</option>
+            <option value="2">Stores</option>
+          </select>  
         <input class="form-control" type="search" placeholder="Search" aria-label="Search"
           style="background: transparent;" id="search-tab">
         <button class="btn btn-outline-secondary" type="submit" style="float:right; margin-left: 4px;"
@@ -160,22 +207,22 @@
         <table id="nearby-stores">
           <tr>
             <td>
-              <p><img src="./assets/walmart-icon.png" class="icon-image">Walmart <br /> 2 miles from your location</p>
+              <p><img src="./assets/walmart-icon.png" class="icon-image"><strong>Walmart</strong><br/>2 miles from your location</p>
             </td>
             <td>
               <ul>
-                <li>10% off on electronics</li>
-                <li>5% off on groceries</li>
+                <li>$15 off on all phones for next 1 week</li>
               </ul>
             </td>
           </tr>
           <tr>
             <td>
-              <p><img src="./assets/target-icon.png" class="icon-image">Target <br /> 5 miles from your location</p>
+              <p><img src="./assets/target-icon.png" class="icon-image"><strong>Target</strong><br/>5 miles from your location</p>
             </td>
             <td>
               <ul>
-                <li>10% off on home appliances</li>
+                <li>10% off on Electronics in 2 days</li>
+                <li>Black Friday Offers starting from November 20th on all products</li>
               </ul>
             </td>
           </tr>
@@ -215,7 +262,41 @@
           </td>
         </tr>-->
       </table>
+    </div>
 
+
+    <!-- Search results for stores page-->
+    <div id="search-results-store" class="search-results-store-container">
+      <!--div for breadcrumbs-->
+      <div class="breadcrumbs">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" onclick='setPage("homepage");'>Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Search Results</li>
+          </ol>
+        </nav>
+      </div>
+      <!--div for breadcrumbs-->
+      <p><strong>Search Results</strong></p>
+      <p id="empty-searches-store" style="width: 100%; text-align: center; display:none;">No Results</p>
+      <table id="search-results-store-table">
+        <!--<tr>
+          <td>
+            <p>Iphone 14 (black, 128 gb) <br /> icons</p>
+          </td>
+          <td>
+            <p>Starting from <br><strong>$1150</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Iphone 14 (black, 128 gb) <br /> icons</p>
+          </td>
+          <td>
+            <p>Starting from <br><strong>$1150</strong></p>
+          </td>
+        </tr>-->
+      </table>
     </div>
 
     <!-- product details page -->
