@@ -213,7 +213,7 @@ function searchStores(search_term) {
     }
     createTable_searchresultsstore(final_store_ids);
     // set hash to retain page on refresh
-    setHash(`search-results&${search_term}`);
+    setHash(`search-results-store&${search_term}`)
     setPage('search-results-store');
 }
 
@@ -234,9 +234,10 @@ function createTable_searchresultsstore(final_store_ids) {
         colElem.rowSpan=1000;
         colElem.innerHTML="<strong>Promotions</strong>";
         colElem.innerHTML+="<ul>";
-        for(let j=0;j<offers.length;j++){
-            if (offers[j].storeId==final_store_ids[i]){
-            colElem.innerHTML+="<li>"+offers[j].offer+"</li>";
+        const unique_offers = [...new Map(offers.map((m) => [m.offer, m])).values()];
+        for(let j=0;j<unique_offers.length;j++){
+            if (unique_offers[j].storeId==final_store_ids[i]){
+            colElem.innerHTML+="<li>"+unique_offers[j].offer+"</li>";
             }
         }
         colElem.innerHTML+="</ul>";
