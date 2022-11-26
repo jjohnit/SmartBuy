@@ -442,7 +442,7 @@ function createTable_searchresults(final_prod_ids) {
         }
         rowElem.appendChild(colElem);
         colElem = document.createElement('td');
-        colElem.innerHTML = "Starting from <br /><strong>" + final_table[i].price.toString() + "</strong>";
+        colElem.innerHTML = "Starting from <br /><strong> $" + final_table[i].price.toString() + "</strong>";
         rowElem.appendChild(colElem);
 
         tableElem.appendChild(rowElem);
@@ -580,18 +580,18 @@ function createTable_product(productid) {
             colElem = document.createElement('td');
             colElem.colSpan = "1";
             colElem.innerHTML = "";
-            colElem.innerHTML += 'Price:' + productPrices[i].price + "<br/>";
-            colElem.innerHTML += 'Tax:' + productPrices[i].tax + "<br/>";
+            colElem.innerHTML += 'Price: $' + productPrices[i].price + "<br/>";
+            colElem.innerHTML += 'Tax: $' + productPrices[i].tax + "<br/>";
             if (productPrices[i].deliveryCharge != 0) {
-                colElem.innerHTML += 'Delivery Charges:' + productPrices[i].deliveryCharge + "<br/>";
+                colElem.innerHTML += 'Delivery Charges: $' + productPrices[i].deliveryCharge + "<br/>";
             }
-            colElem.innerHTML += 'Discount:' + productPrices[i].discount + "<br/>";
+            colElem.innerHTML += 'Discount: $' + productPrices[i].discount + "<br/>";
             rowElem.appendChild(colElem);
 
             colElem = document.createElement('td');
             colElem.colSpan = "1";
-            colElem.innerHTML = "";
-            colElem.innerHTML = productPrices[i].price +
+            colElem.innerHTML = "$";
+            colElem.innerHTML += productPrices[i].price +
                 productPrices[i].tax -
                 productPrices[i].discount +
                 productPrices[i].deliveryCharge;
