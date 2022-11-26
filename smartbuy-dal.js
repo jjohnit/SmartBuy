@@ -543,7 +543,7 @@ function createTable_product(productid) {
     var product_final = [];
     product_final = products.find(product => product.id.toString() == productid.toString());
     for (let j = 0; j < product_final.images?.length; j++) {
-        colElem.innerHTML += "<img src='./assets/" + product_final.images[j] + "' class='product-image'>";
+        colElem.innerHTML += "<img src='./assets/" + product_final.images[j] + "' class='product-image card-img-top'>";
     }
 
     rowElem.appendChild(colElem);
