@@ -533,10 +533,10 @@ function createTable_product(productid) {
 
 
     if (currentUser.subscriptions.find(subscribe => subscribe == productid)) {
-        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Remove from Watchlist</button>';
+        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-danger btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Remove from Watchlist</button>';
     }
     else {
-        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Add to Watchlist</button>';
+        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-success btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Add to Watchlist</button>';
     }
     rowElem.appendChild(colElem);
     tableElem.appendChild(rowElem);
@@ -612,13 +612,16 @@ function createTable_product(productid) {
 }
 
 function checkSubscription(productid) {
+    let element = document.getElementById('subscribe-button-prod');
     if (currentUser.subscriptions.find(subscribe => subscribe == productid)) {
-        document.getElementById('subscribe-button-prod').innerHTML = "Add to Watchlist"
+        element.innerHTML = "Add to Watchlist"
+        element.className = "btn btn-outline-success btn-sm";
         removeSubscription(productid);
 
     }
     else {
-        document.getElementById('subscribe-button-prod').innerHTML = "Remove from Watchlist"
+        element.innerHTML = "Remove from Watchlist";
+        element.className = "btn btn-outline-danger btn-sm";
         addSubscription(productid);
     }
 }
@@ -691,7 +694,7 @@ function createViewForSubscriptions(subscriptions) {
         column = document.createElement('td');
         // Add name to the first column
         column.innerHTML = `<p>${subscription.name}
-            <button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;"
+            <button type="button" class="btn btn-outline-danger btn-sm" style="float:right; margin-left:4px;"
             onclick="removeSubscription(${subscription.id})">
             Remove from Watchlist</button></p>`;
         row.append(column);
