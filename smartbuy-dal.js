@@ -617,7 +617,7 @@ function checkSubscription(productid) {
 
 function getNotifications() {
     var list = document.getElementById('notifications');
-    let offersOnSubscriptions = offers.filter(x => currentUser.subscriptions.includes(x.productId));
+    let offersOnSubscriptions = offers.filter(x => currentUser?.subscriptions?.includes(x.productId));
     if (offersOnSubscriptions.length <= 0) {
         list.innerHTML = '<p style="text-align: center;">No notifications</p>';
         return;
