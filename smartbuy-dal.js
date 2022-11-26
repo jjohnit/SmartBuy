@@ -61,6 +61,7 @@ function setPage(page) {
             // clear the value in search
             document.getElementById('search-tab').value = '';
             document.getElementById('welcome-username').innerHTML = JSON.parse(sessionStorage.getItem('currentUser')).name;
+            document.getElementById('smartbuy-logo').setAttribute('onclick', 'setPage("homepage")');
             break;
         case 'search-results':
             $('#homepage').css('display', 'none');
@@ -76,18 +77,18 @@ function setPage(page) {
             $('#edit-profile').css('display', 'none');
             break;
         case 'search-results-store':
-                $('#homepage').css('display', 'none');
-                $('#product-details').css('display', 'none');
-                $('#subscriptions').css('display', 'none');
-                $('#login').css('display', 'none');
-                $('#search-results').css('display', 'none');
-                $('#search-results-store').css('display', '');
-                $('#sort').css('display', 'none');
-                $('#filter').css('display', 'none');
-                $('#location-search-div').css('display', 'flex');
-                $('#logged-in-user').css('display', 'contents');
-                $('#edit-profile').css('display', 'none');
-                break;
+            $('#homepage').css('display', 'none');
+            $('#product-details').css('display', 'none');
+            $('#subscriptions').css('display', 'none');
+            $('#login').css('display', 'none');
+            $('#search-results').css('display', 'none');
+            $('#search-results-store').css('display', '');
+            $('#sort').css('display', 'none');
+            $('#filter').css('display', 'none');
+            $('#location-search-div').css('display', 'flex');
+            $('#logged-in-user').css('display', 'contents');
+            $('#edit-profile').css('display', 'none');
+            break;
         case 'product-details':
             $('#homepage').css('display', 'none');
             $('#search-results').css('display', 'none');
@@ -126,6 +127,7 @@ function setPage(page) {
             $('#logged-in-user').css('display', 'none');
             $('#edit-profile').css('display', 'none');
             $('#login').css('display', '');
+            document.getElementById('smartbuy-logo').setAttribute('onclick', '#');
             break;
         case 'edit-profile':
             $('#login').css('display', 'none');
@@ -164,6 +166,7 @@ function validateUser() {
         delete currentUser.password;
         currentUser.subscriptions = [];
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+        document.getElementById('smartbuy-logo').setAttribute('onclick', 'setPage("homepage")');
         setPage('homepage');
     }
     else {
@@ -172,8 +175,9 @@ function validateUser() {
 }
 
 function logout() {
-    setPage('login');
+    document.getElementById('smartbuy-logo').setAttribute('onclick', '#');
     sessionStorage.clear();
+    setPage('login');
 }
 
 function onEditProfile() {
@@ -182,7 +186,7 @@ function onEditProfile() {
     setPage('edit-profile');
 }
 
-function updateProfile(){
+function updateProfile() {
     currentUser.name = document.getElementById('ename').value;
     currentUser.email = document.getElementById('eusername').value;
     sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -207,12 +211,12 @@ function searchProducts(search_term) {
 function searchStores(search_term) {
     var final_store_ids = [];
     for (let j = 0; j < stores.length; j++) {
-        if (stores[j].type=="store"){
-        var storename = stores[j].name.toLowerCase().replace(/\s/g, '');
-        if (storename.includes(search_term.toLowerCase().replace(/\s/g, ''))) {
-            final_store_ids.push(stores[j].id);
+        if (stores[j].type == "store") {
+            var storename = stores[j].name.toLowerCase().replace(/\s/g, '');
+            if (storename.includes(search_term.toLowerCase().replace(/\s/g, ''))) {
+                final_store_ids.push(stores[j].id);
+            }
         }
-    }
     }
     createTable_searchresultsstore(final_store_ids);
     // set hash to retain page on refresh
@@ -230,33 +234,35 @@ function createTable_searchresultsstore(final_store_ids) {
         colElem = document.createElement('td');
         colElem.innerHTML = "";
         let store = stores.find(x => x.id == final_store_ids[i]);
-        colElem.innerHTML = "<img src='./assets/" + store.icon + "' class='icon-image'>"+"<strong>"+store.name.toString() + "</strong><br/>";
-        
+        colElem.innerHTML = "<img src='./assets/" + store.icon + "' class='icon-image'>" + "<strong>" + store.name.toString() + "</strong><br/>";
+
         rowElem.appendChild(colElem);
-        colElem=document.createElement('td');
-        colElem.rowSpan=1000;
-        colElem.innerHTML="<strong>Promotions</strong>";
-        colElem.innerHTML+="<ul>";
+        colElem = document.createElement('td');
+        colElem.rowSpan = 1000;
+        colElem.innerHTML = "<strong>Promotions</strong>";
+        colElem.innerHTML += "<ul>";
         const unique_offers = [...new Map(offers.map((m) => [m.offer, m])).values()];
-        for(let j=0;j<unique_offers.length;j++){
-            if (unique_offers[j].storeId==final_store_ids[i]){
-            colElem.innerHTML+="<li>"+unique_offers[j].offer+"</li>";
+        for (let j = 0; j < unique_offers.length; j++) {
+            if (unique_offers[j].storeId == final_store_ids[i]) {
+                colElem.innerHTML += "<li>" + unique_offers[j].offer + "</li>";
             }
         }
-        colElem.innerHTML+="</ul>";
+        colElem.innerHTML += "</ul>";
         rowElem.appendChild(colElem);
         tableElem.appendChild(rowElem);
 
 
-        for(let j=0;j<storeLocations.length;j++){
-            if(storeLocations[j].storeId==final_store_ids[i]){
-            rowElem = document.createElement('tr');
-            colElem = document.createElement('td');
-            colElem.innerHTML="";
-            colElem.innerHTML = storeLocations[j].address+"<br/>("+storeLocations[j].location+")";
-            rowElem.appendChild(colElem);
-            tableElem.appendChild(rowElem)
-        }}}
+        for (let j = 0; j < storeLocations.length; j++) {
+            if (storeLocations[j].storeId == final_store_ids[i]) {
+                rowElem = document.createElement('tr');
+                colElem = document.createElement('td');
+                colElem.innerHTML = "";
+                colElem.innerHTML = storeLocations[j].address + "<br/>(" + storeLocations[j].location + ")";
+                rowElem.appendChild(colElem);
+                tableElem.appendChild(rowElem)
+            }
+        }
+    }
 
     if (final_store_ids == "") {
         $('#empty-searches-store').show();
@@ -265,15 +271,15 @@ function createTable_searchresultsstore(final_store_ids) {
 $(document).on('click', '#search-button', function () {
     let search_term = document.getElementById('search-tab').value;
     //searchProducts(search_term);
-    if (document.getElementById('search-category').value==1){
+    if (document.getElementById('search-category').value == 1) {
         searchProducts(search_term);
-        }
-        else if (document.getElementById('search-category').value==2){
-            searchStores(search_term);
-            }
-        else{
-            alert("Please select what you want to search for!");
-        }
+    }
+    else if (document.getElementById('search-category').value == 2) {
+        searchStores(search_term);
+    }
+    else {
+        alert("Please select what you want to search for!");
+    }
 });
 
 // Using Enter to submit search input
@@ -281,15 +287,15 @@ $(document).on('keypress', '#search-tab', function (event) {
     if (event.key === 'Enter') {
         let search_term = document.getElementById('search-tab').value;
         //searchProducts(search_term);
-        if (document.getElementById('search-category').value==1){
+        if (document.getElementById('search-category').value == 1) {
             searchProducts(search_term);
-            }
-            else if (document.getElementById('search-category').value==2){
-                searchStores(search_term);
-                }
-            else{
-                alert("Please select what you want to search for!");
-            }
+        }
+        else if (document.getElementById('search-category').value == 2) {
+            searchStores(search_term);
+        }
+        else {
+            alert("Please select what you want to search for!");
+        }
     }
 });
 
@@ -365,8 +371,8 @@ function createTable_searchresults(final_prod_ids) {
     tableElem = document.getElementById("search-results-table");
     tableElem.innerHTML = "";
 
-    final_table=[];
-    final_dict={};
+    final_table = [];
+    final_dict = {};
 
     for (let i = 0; i < final_prod_ids.length; i++) {
         /*rowElem = document.createElement('tr');
@@ -378,7 +384,7 @@ function createTable_searchresults(final_prod_ids) {
         colElem.setAttribute("onclick", "addRecentSearch(" + final_prod_ids[i] + ")");
         colElem.innerHTML = colElem.innerHTML + "<p style='display:none'>" + final_prod_ids[i].toString() + "</p>";
         */
-        final_dict={id:0,desc:"",price:0};
+        final_dict = { id: 0, desc: "", price: 0 };
         var prices = [];
         //var stores_final = [];
         for (let j = 0; j < productPrices.length; j++) {
@@ -392,28 +398,27 @@ function createTable_searchresults(final_prod_ids) {
             }
         }
         prices.sort();
-        final_dict.id= final_prod_ids[i];
-        final_dict.desc=getProductDescription(final_prod_ids[i]);
-        final_dict.price=prices[0];
+        final_dict.id = final_prod_ids[i];
+        final_dict.desc = getProductDescription(final_prod_ids[i]);
+        final_dict.price = prices[0];
         final_table.push(final_dict)
-    }   
-    
-    if(document.getElementById('sort-by-name').checked==true){
-        final_table.sort((a,b) => (a.desc > b.desc) ? 1 : ((b.desc > a.desc) ? -1 : 0));
-    }
-    else if(document.getElementById('sort-by-price').checked==true){
-        final_table.sort((a,b) => a.price - b.price);
     }
 
-    if(document.getElementById('price-low').value!=0 && document.getElementById('price-high').value!=0)
-    {
-        final_table=final_table.filter(function(a) { 
-            return ( a.price >= document.getElementById('price-low').value &&  
-            a.price <= document.getElementById('price-high').value);
+    if (document.getElementById('sort-by-name').checked == true) {
+        final_table.sort((a, b) => (a.desc > b.desc) ? 1 : ((b.desc > a.desc) ? -1 : 0));
+    }
+    else if (document.getElementById('sort-by-price').checked == true) {
+        final_table.sort((a, b) => a.price - b.price);
+    }
+
+    if (document.getElementById('price-low').value != 0 && document.getElementById('price-high').value != 0) {
+        final_table = final_table.filter(function (a) {
+            return (a.price >= document.getElementById('price-low').value &&
+                a.price <= document.getElementById('price-high').value);
         });
     }
 
-    for(let i = 0;i<final_table.length;i++){
+    for (let i = 0; i < final_table.length; i++) {
         rowElem = document.createElement('tr');
         colElem = document.createElement('td');
         colElem.setAttribute("id", "")
@@ -732,23 +737,23 @@ $(document).on('click', '.recent-item', function () {
     createTable_product(id);
 });
 
-$(document).on('click','#sort', function () {
+$(document).on('click', '#sort', function () {
     $('#sortModal').modal('show');
-  });
+});
 
-  $(document).on('click','#save-sort', function () {
+$(document).on('click', '#save-sort', function () {
     let hash = getHash();
     if (hash != null && hash != 'null') {
         searchProducts(hash.split('&')[1]);
     }
-}); 
+});
 
-$(document).on('click','#filter', function () {
+$(document).on('click', '#filter', function () {
     $('#filterModal').modal('show');
-  });
+});
 
-  $(document).on('click','#save-filter', function (){
-    if(document.getElementById('price-low').value==0 || document.getElementById('price-high').value==0){
+$(document).on('click', '#save-filter', function () {
+    if (document.getElementById('price-low').value == 0 || document.getElementById('price-high').value == 0) {
         alert('Please enter both price low and price high');
     }
     let hash = getHash();
