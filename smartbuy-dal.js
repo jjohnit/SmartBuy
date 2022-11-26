@@ -442,7 +442,7 @@ function createTable_searchresults(final_prod_ids) {
         }
         rowElem.appendChild(colElem);
         colElem = document.createElement('td');
-        colElem.innerHTML = "Starting from <br /><strong>" + final_table[i].price.toString() + "</strong>";
+        colElem.innerHTML = "Starting from <br /><strong> $" + final_table[i].price.toString() + "</strong>";
         rowElem.appendChild(colElem);
 
         tableElem.appendChild(rowElem);
@@ -528,10 +528,10 @@ function createTable_product(productid) {
 
 
     if (currentUser.subscriptions.find(subscribe => subscribe == productid)) {
-        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Unsubscribe</button>';
+        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Remove from Watchlist</button>';
     }
     else {
-        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Subscribe</button>';
+        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Add to Watchlist</button>';
     }
     rowElem.appendChild(colElem);
     tableElem.appendChild(rowElem);
@@ -543,7 +543,7 @@ function createTable_product(productid) {
     var product_final = [];
     product_final = products.find(product => product.id.toString() == productid.toString());
     for (let j = 0; j < product_final.images?.length; j++) {
-        colElem.innerHTML += "<img src='./assets/" + product_final.images[j] + "' class='product-image'>";
+        colElem.innerHTML += "<img src='./assets/" + product_final.images[j] + "' class='product-image card-img-top'>";
     }
 
     rowElem.appendChild(colElem);
@@ -580,18 +580,18 @@ function createTable_product(productid) {
             colElem = document.createElement('td');
             colElem.colSpan = "1";
             colElem.innerHTML = "";
-            colElem.innerHTML += 'Price:' + productPrices[i].price + "<br/>";
-            colElem.innerHTML += 'Tax:' + productPrices[i].tax + "<br/>";
+            colElem.innerHTML += 'Price: $' + productPrices[i].price + "<br/>";
+            colElem.innerHTML += 'Tax: $' + productPrices[i].tax + "<br/>";
             if (productPrices[i].deliveryCharge != 0) {
-                colElem.innerHTML += 'Delivery Charges:' + productPrices[i].deliveryCharge + "<br/>";
+                colElem.innerHTML += 'Delivery Charges: $' + productPrices[i].deliveryCharge + "<br/>";
             }
-            colElem.innerHTML += 'Discount:' + productPrices[i].discount + "<br/>";
+            colElem.innerHTML += 'Discount: $' + productPrices[i].discount + "<br/>";
             rowElem.appendChild(colElem);
 
             colElem = document.createElement('td');
             colElem.colSpan = "1";
-            colElem.innerHTML = "";
-            colElem.innerHTML = productPrices[i].price +
+            colElem.innerHTML = "$";
+            colElem.innerHTML += productPrices[i].price +
                 productPrices[i].tax -
                 productPrices[i].discount +
                 productPrices[i].deliveryCharge;
@@ -605,19 +605,19 @@ function createTable_product(productid) {
 
 function checkSubscription(productid) {
     if (currentUser.subscriptions.find(subscribe => subscribe == productid)) {
-        document.getElementById('subscribe-button-prod').innerHTML = "Subscribe"
+        document.getElementById('subscribe-button-prod').innerHTML = "Add to Watchlist"
         removeSubscription(productid);
 
     }
     else {
-        document.getElementById('subscribe-button-prod').innerHTML = "Unsubscribe"
+        document.getElementById('subscribe-button-prod').innerHTML = "Remove from Watchlist"
         addSubscription(productid);
     }
 }
 
 function getNotifications() {
     var list = document.getElementById('notifications');
-    let offersOnSubscriptions = offers.filter(x => currentUser.subscriptions.includes(x.productId));
+    let offersOnSubscriptions = offers.filter(x => currentUser?.subscriptions?.includes(x.productId));
     if (offersOnSubscriptions.length <= 0) {
         list.innerHTML = '<p style="text-align: center;">No notifications</p>';
         return;
@@ -685,7 +685,7 @@ function createViewForSubscriptions(subscriptions) {
         column.innerHTML = `<p>${subscription.name}
             <button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;"
             onclick="removeSubscription(${subscription.id})">
-            Unsubscribe</button></p>`;
+            Remove from Watchlist</button></p>`;
         row.append(column);
         // Add offers to the next column
         column = document.createElement('td');
