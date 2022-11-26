@@ -528,10 +528,10 @@ function createTable_product(productid) {
 
 
     if (currentUser.subscriptions.find(subscribe => subscribe == productid)) {
-        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Unsubscribe</button>';
+        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Remove from Watchlist</button>';
     }
     else {
-        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Subscribe</button>';
+        colElem.innerHTML = product_desc + '<button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;" id="subscribe-button-prod" onclick="checkSubscription(' + productid + ');">Add to Watchlist</button>';
     }
     rowElem.appendChild(colElem);
     tableElem.appendChild(rowElem);
@@ -605,12 +605,12 @@ function createTable_product(productid) {
 
 function checkSubscription(productid) {
     if (currentUser.subscriptions.find(subscribe => subscribe == productid)) {
-        document.getElementById('subscribe-button-prod').innerHTML = "Subscribe"
+        document.getElementById('subscribe-button-prod').innerHTML = "Add to Watchlist"
         removeSubscription(productid);
 
     }
     else {
-        document.getElementById('subscribe-button-prod').innerHTML = "Unsubscribe"
+        document.getElementById('subscribe-button-prod').innerHTML = "Remove from Watchlist"
         addSubscription(productid);
     }
 }
@@ -685,7 +685,7 @@ function createViewForSubscriptions(subscriptions) {
         column.innerHTML = `<p>${subscription.name}
             <button type="button" class="btn btn-outline-secondary btn-sm" style="float:right; margin-left:4px;"
             onclick="removeSubscription(${subscription.id})">
-            Unsubscribe</button></p>`;
+            Remove from Watchlist</button></p>`;
         row.append(column);
         // Add offers to the next column
         column = document.createElement('td');
