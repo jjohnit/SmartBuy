@@ -104,54 +104,59 @@
         <button id="sort" type="button" class="btn btn-outline-secondary btn-sm"
           style="float:right; margin-right:.5rem;">
           <i class="fas fa-sort"></i> </button>
-<!-- Modal HTML -->
-<div id="sortModal" class="modal fade" tabindex="-1">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title">Sort by</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-              <p><input type="radio" id="sort-by-name" name="sort-by" value="Name">
-                <label for="sort-by-name">Name</label><br></p>
+        <!-- Modal HTML -->
+        <div id="sortModal" class="modal fade" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Sort by</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <p><input type="radio" id="sort-by-name" name="sort-by" value="Name">
+                  <label for="sort-by-name">Name</label><br>
+                </p>
                 <p><input type="radio" id="sort-by-price" name="sort-by" value="Price">
-                  <label for="sort-by-price">Price</label><br></p>
+                  <label for="sort-by-price">Price</label><br>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="save-sort" data-bs-dismiss="modal">Save
+                  changes</button>
+              </div>
+            </div>
           </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" id="save-sort" data-bs-dismiss="modal">Save changes</button>
-          </div>
-      </div>
-  </div>
-</div>
+        </div>
         <button id="filter" type="button" class="btn btn-outline-secondary btn-sm"
           style="float:right; margin-right:.5rem;"> <i class="fa-solid fa-filter"></i> </button>
-<!-- Modal HTML -->
-<div id="filterModal" class="modal fade" tabindex="-1">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title">Filter by</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <!-- Modal HTML -->
+        <div id="filterModal" class="modal fade" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Filter by</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <p>Price Low:<input type="number" class="form-control" id="price-low">
+                  Price High:<input type="number" class="form-control" id="price-high">
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="save-filter" data-bs-dismiss="modal">Save
+                  changes</button>
+              </div>
+            </div>
           </div>
-          <div class="modal-body">
-            <p>Price Low:<input type="number" class="form-control" id="price-low">
-              Price High:<input type="number" class="form-control" id="price-high">
-            </p>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" id="save-filter" data-bs-dismiss="modal">Save changes</button>
-          </div>
-      </div>
-  </div>
-</div>
-          <select class="form-select" aria-label="Search for" placeholder="Search for" id="search-category" required>
-            <option selected>Search for...</option>
-            <option value="1">Products</option>
-            <option value="2">Stores</option>
-          </select>  
+        </div>
+        <select class="form-select" aria-label="Search for" placeholder="Search for" id="search-category"
+          style="margin-right: 4px;" required>
+          <option selected>Search for...</option>
+          <option value="1">Products</option>
+          <option value="2">Stores</option>
+        </select>
         <input class="form-control" type="search" placeholder="Search" aria-label="Search"
           style="background: transparent;" id="search-tab">
         <button class="btn btn-outline-secondary" type="submit" style="float:right; margin-left: 4px;"
@@ -173,7 +178,8 @@
         <label class="col-4" for="eusername" style="margin-left: 15%;"><b>Username</b></label>
         <input class="col-6" type="text" name="eusername" id="eusername" style="margin-left: 15%;" readonly> <br>
         <button class="btn btn-outline-secondary" type="submit" style="float:right;">Save Changes</button>
-        <button class="btn btn-outline-secondary" type="button" onclick="setPage('homepage')" style="float:left;">Cancel</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="setPage('homepage')"
+          style="float:left;">Cancel</button>
       </form>
     </div>
 
@@ -207,7 +213,8 @@
         <table id="nearby-stores">
           <tr>
             <td>
-              <p><img src="./assets/walmart-icon.png" class="icon-image"><strong>Walmart</strong><br/>2 miles from your location</p>
+              <p><img src="./assets/walmart-icon.png" class="icon-image"><strong>Walmart</strong><br />2 miles from your
+                location</p>
             </td>
             <td>
               <ul>
@@ -217,7 +224,8 @@
           </tr>
           <tr>
             <td>
-              <p><img src="./assets/target-icon.png" class="icon-image"><strong>Target</strong><br/>5 miles from your location</p>
+              <p><img src="./assets/target-icon.png" class="icon-image"><strong>Target</strong><br />5 miles from your
+                location</p>
             </td>
             <td>
               <ul>
