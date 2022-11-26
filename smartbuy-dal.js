@@ -575,6 +575,9 @@ function createTable_product(productid) {
             if (stores.find(store => store.id.toString() == productPrices[i].storeId.toString()).type == "online") {
                 colElem.innerHTML += '<span class="badge rounded-pill bg-secondary" style="float:right; background-color:black">Online </span>';
             }
+            else {
+                colElem.innerHTML += '<span class="badge rounded-pill bg-secondary" style="float:right; background-color:black">Store</span>';
+            }
             rowElem.appendChild(colElem);
 
             colElem = document.createElement('td');
