@@ -577,7 +577,7 @@ function createTable_product(productid) {
                 + stores.find(store => store.id.toString() == productPrices[i].storeId.toString()).name
                 + "</strong>";
             if (stores.find(store => store.id.toString() == productPrices[i].storeId.toString()).type == "online") {
-                colElem.innerHTML += '<span class="badge rounded-pill bg-secondary" style="float:right; background-color:black">Online </span>';
+                colElem.innerHTML += '<span class="badge rounded-pill bg-primary" style="float:right; background-color:black">Online </span>';
             }
             else {
                 colElem.innerHTML += '<span class="badge rounded-pill bg-secondary" style="float:right; background-color:black">Store</span>';
