@@ -624,6 +624,14 @@ function createTable_product(productid) {
             else {
                 colElem.innerHTML += '<span class="badge rounded-pill bg-secondary" style="float:right; background-color:black">Store</span>';
             }
+
+            var storeLocationsFinal = storeLocations.filter(x=>x.storeId==productPricesFinal[i].storeId);
+            storeLocationsFinal.sort((a, b) => a.location[0] - b.location[0]);
+            if(storeLocationsFinal.length>0){
+            colElem.innerHTML+="<br />("+storeLocationsFinal[0].location+")";
+            }
+
+
             rowElem.appendChild(colElem);
 
             colElem = document.createElement('td');
