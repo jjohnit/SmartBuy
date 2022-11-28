@@ -325,5 +325,13 @@ var storeLocations = [
     branchId: 2,
     address: '1975 W Cermark St',
     location: '8 miles from your location',
+},
+
+{
+    storeId: 6,
+    branchId: 1,
+    address: '195 W Miller St',
+    location: '10 miles from your location',
 }
+
 ]
