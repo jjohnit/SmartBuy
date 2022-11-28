@@ -235,10 +235,12 @@ function createTable_searchresultsstore(final_store_ids) {
         colElem.innerHTML = "";
         let store = stores.find(x => x.id == final_store_ids[i]);
         colElem.innerHTML = "<img src='./assets/" + store.icon + "' class='icon-image'>" + "<strong>" + store.name.toString() + "</strong><br/>";
-
+        
+        storeloc = storeLocations.filter(x => x.storeId == final_store_ids[i]);
+        alert(storeloc.length);
         rowElem.appendChild(colElem);
         colElem = document.createElement('td');
-        colElem.rowSpan = 1000;
+        colElem.rowSpan = storeloc.length+1;
         colElem.innerHTML = "<strong>Promotions</strong>";
         colElem.innerHTML += "<ul>";
         const unique_offers = [...new Map(offers.map((m) => [m.offer, m])).values()];
@@ -566,7 +568,6 @@ function createTable_product(productid) {
     colElem.innerHTML += "</ul>";
     rowElem.appendChild(colElem);
     tableElem.appendChild(rowElem);
-
     for (let i = 0; i < productPrices.length; i++) {
         if (productPrices[i].productId == productid) {
             rowElem = document.createElement('tr');
