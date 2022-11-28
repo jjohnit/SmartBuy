@@ -237,7 +237,6 @@ function createTable_searchresultsstore(final_store_ids) {
         colElem.innerHTML = "<img src='./assets/" + store.icon + "' class='icon-image'>" + "<strong>" + store.name.toString() + "</strong><br/>";
         
         storeloc = storeLocations.filter(x => x.storeId == final_store_ids[i]);
-        alert(storeloc.length);
         rowElem.appendChild(colElem);
         colElem = document.createElement('td');
         colElem.rowSpan = storeloc.length+1;
@@ -568,7 +567,10 @@ function createTable_product(productid) {
     colElem.innerHTML += "</ul>";
     rowElem.appendChild(colElem);
     tableElem.appendChild(rowElem);
-    for (let i = 0; i < productPrices.length; i++) {
+    
+    productPricesFinal=productPrices.filter(x => x.productId == productid);
+    productPricesFinal.sort((a, b) => (a.price+a.tax+a.deliveryCharge-a.discount) - (b.price+b.tax+b.deliveryCharge-b.discount));
+/*    for (let i = 0; i < productPrices.length; i++) {
         if (productPrices[i].productId == productid) {
             rowElem = document.createElement('tr');
             colElem = document.createElement('td');
@@ -606,6 +608,44 @@ function createTable_product(productid) {
             rowElem.appendChild(colElem);
             tableElem.appendChild(rowElem);
         }
+    }*/
+
+    for (let i = 0; i < productPricesFinal.length; i++) {
+            rowElem = document.createElement('tr');
+            colElem = document.createElement('td');
+            colElem.colSpan = "1";
+            colElem.innerHTML = "";
+            colElem.innerHTML += "<strong>"
+                + stores.find(store => store.id.toString() == productPricesFinal[i].storeId.toString()).name
+                + "</strong>";
+            if (stores.find(store => store.id.toString() == productPricesFinal[i].storeId.toString()).type == "online") {
+                colElem.innerHTML += '<span class="badge rounded-pill bg-primary" style="float:right; background-color:black">Online </span>';
+            }
+            else {
+                colElem.innerHTML += '<span class="badge rounded-pill bg-secondary" style="float:right; background-color:black">Store</span>';
+            }
+            rowElem.appendChild(colElem);
+
+            colElem = document.createElement('td');
+            colElem.colSpan = "1";
+            colElem.innerHTML = "";
+            colElem.innerHTML += 'Price: $' + productPricesFinal[i].price + "<br/>";
+            colElem.innerHTML += 'Tax: $' + productPricesFinal[i].tax + "<br/>";
+            if (productPricesFinal[i].deliveryCharge != 0) {
+                colElem.innerHTML += 'Delivery Charges: $' + productPricesFinal[i].deliveryCharge + "<br/>";
+            }
+            colElem.innerHTML += 'Discount: $' + productPricesFinal[i].discount + "<br/>";
+            rowElem.appendChild(colElem);
+
+            colElem = document.createElement('td');
+            colElem.colSpan = "1";
+            colElem.innerHTML = "$";
+            colElem.innerHTML += productPricesFinal[i].price +
+                productPricesFinal[i].tax -
+                productPricesFinal[i].discount +
+                productPricesFinal[i].deliveryCharge;
+            rowElem.appendChild(colElem);
+            tableElem.appendChild(rowElem);
     }
 
 
