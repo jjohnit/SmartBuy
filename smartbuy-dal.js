@@ -682,7 +682,7 @@ function createViewForSubscriptions(subscriptions) {
         row.style.width = '100%';
         row.style.textAlign = 'center';
         column = document.createElement('td');
-        column.innerHTML = '<p>No subscriptions</p>';
+        column.innerHTML = '<p>Watchlist is Empty</p>';
         row.append(column);
         // Add the row to the table.
         subscriptionsTable.append(row);
